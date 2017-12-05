@@ -1,7 +1,6 @@
-section.board {
+.board {
   height: 800px;
   width: 800px;
-  background: blue;
   margin: 0 auto;
   padding: 10px;
 
@@ -9,14 +8,37 @@ section.board {
     width: 100px;
     height: 100%;
     float: left;
-     margin-left: 10px;
+    position: relative;
+
+    .test {
+      width: 100%;
+      height: 100px;
+      background: red;
+      position: absolute;
+    }
+
+     
 
     .board-slot {
-    	width: 100%;
-    	height: 100px;
-    	background: white;
-    	border-radius: 50%;
-    	margin-bottom: 10px;
+      width:100px; 
+      height:100px;
+      margin:0 auto;
+      overflow: hidden;
+      position: relative;
+      cursor: pointer;
+      display: block;
+      z-index: 2;
+
+      &:before {
+        content: "";
+        box-shadow: 0 0 0 7vw blue;
+        border-radius: 50%;
+        position: absolute;
+        height: 80%;
+        width: 80%;
+        left: 10%;
+        top: 10%;
+      }
     }
 	}
 }

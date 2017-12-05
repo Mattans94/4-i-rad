@@ -1,5 +1,6 @@
-class Board {
+class Board extends Base {
     constructor() {
+        super();
         this.state = [
             [0, 0, 0, 0, 0, 0],
             [0, 0, 0, 0, 0, 0],
@@ -8,7 +9,14 @@ class Board {
             [0, 0, 0, 0, 0, 0],
             [0, 0, 0, 0, 0, 0],
             [0, 0, 0, 0, 0, 0]
-        ]
+        ];
+
+
+        this.board = this.generateBoard();
+
+
+
+
     }
 
     /**
@@ -45,4 +53,32 @@ class Board {
             return false
         }
     }
+
+
+    generateBoard(){
+
+        this.render('section.boardarea');
+
+        
+    }
+
+    //need to add id on them as well but here is a start on the board
+
+    template(){
+        let returnValue = '<div class="board">';
+        let inner = '', column = '';
+
+        for(let co = 0; co < 6; co++){
+            inner += '<div class="board-slot"></div>';
+        };
+
+        for(let co = 0; co < 7; co++){
+            column += '<div class="board-column">' + inner + '</div>';
+        };
+
+        return returnValue += returnValue + column + '</div>';
+
+    }
+
+
 }
