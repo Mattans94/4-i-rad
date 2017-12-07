@@ -1,4 +1,9 @@
-class player{
+class Player{
 	
+	constructor(name, color){
+		this.name = name;
+		this.color = color;
+		this.numberOfMoves = 0;
+	}
 	
 }
