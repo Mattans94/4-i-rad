@@ -53,10 +53,25 @@ class Board extends Base {
             return false
         }
 
-        
+
 
     }
 
+    changePlayerColor(currentPlayer){
+      currentPlayer;
+      let colorPlayer1 = "red";
+      let colorPlayer2 = "#fdd91d";
+
+      if(currentPlayer == 1){
+        $("p.player1").css("color", colorPlayer1);
+        $("p.player2").css("color", "grey");
+      }
+      else{
+        $("p.player1").css("color", "grey")
+        $("p.player2").css("color", colorPlayer2);
+      }
+
+    }
 
     generateBoard(){
 

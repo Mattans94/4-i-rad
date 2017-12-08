@@ -39,8 +39,10 @@
 .players {
   display: block;
   margin: 0 auto;
-  width: 50%;
+  width: 10%;
 }
 .players p {
   display: inline-block;
+  font-size: 20px;
+  font-weight: bold;
 }
