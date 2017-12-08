@@ -19,6 +19,37 @@
 
     <main>
 
+      <div class="container">
+        <form>
+          <div class="form-group row">
+            <label for="inputname" class="col-sm-2 col-form-label">Player 1</label>
+            <div class="col-sm-6">
+              <div class="row">
+                <input type="name" class="form-control" id="player1" placeholder="Name:">
+              </div>
+            </div>
+            <div class="offset-sm-2 col-sm-2">
+              <button type="submit" class="btn btn-secondary">Type</button>
+            </div>
+          </div>
+          <div class="form-group row">
+            <label for="inputname" class="col-sm-2 col-form-label">Player 2</label>
+            <div class="col-sm-6">
+              <div class="row">
+                <input type="name" class="form-control" id="player2" placeholder="Name:">
+              </div>
+            </div>
+            <div class="offset-sm-2 col-sm-2">
+              <button type="submit" class="btn btn-secondary">Type</button>
+            </div>
+          </div>
+            <div class="form-group row">
+              <div class="offset-sm-2 col-sm-10">
+                <a class="btn btn-primary" href="/index.html" role="button">Starta Spel</a>
+              </div>
+          </div>
+        </form>
+      </div>
 
     </main>
 
@@ -39,6 +70,8 @@
     <script src="/js/libs/popper-1.11.0.js"></script>
     <script src="/js/libs/bootstrap-4-beta.js"></script>
     <!-- Application specific JavaScript -->
+    <script src="/js/classes/base.class.js"></script>
+    <script src="/js/classes/board.class.js"></script>
     <script src="/js/main.js"></script>
   </body>
 </html>
