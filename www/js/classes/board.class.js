@@ -2,7 +2,7 @@ class Board extends Base {
     constructor() {
         super();
         this.state = [
-            [0, 0, 0, 0, 0, 0],
+            [1, -1, 0, 0, 0, 0],
             [0, 0, 0, 0, 0, 0],
             [0, 0, 0, 0, 0, 0],
             [0, 0, 0, 0, 0, 0],
@@ -11,10 +11,10 @@ class Board extends Base {
             [0, 0, 0, 0, 0, 0]
         ];
 
-
+        JSON._save('saves', {
+            board: this
+        });
         this.board = this.generateBoard();
-
-
 
 
     }
@@ -57,6 +57,7 @@ class Board extends Base {
 
     }
 
+
     changePlayerColor(currentPlayer){
       currentPlayer;
       let colorPlayer1 = "red";
@@ -73,17 +74,32 @@ class Board extends Base {
 
     }
 
-    generateBoard(){
+    click(element, instances){
+        let parent = element.parent();
 
-        this.render('section.boardarea');
 
-
+        if(parent.hasClass('board-column')){
+            this.createSlot(parent);
+        }
+        
     }
+
+
+    generateBoard(){
+        this.render('section.boardarea');
+    }
+
+
+    createSlot(parent){
+        console.log('working',parent);
+        this.render(parent,2);
+    }
+
 
     //need to add id on them as well but here is a start on the board
 
     template(){
-        let returnValue = '<div class="board">';
+        let returnValue = '<div class="board col-12">';
         let inner = '', column = '';
 
         for(let co = 0; co < 6; co++){
@@ -96,6 +112,18 @@ class Board extends Base {
 
         return returnValue += returnValue + column + '</div>';
 
+    }
+
+
+    template2(){
+        console.log('hefef');
+        let wrapper = '<div>';
+        let inner = '';
+        for(let co = 0; co < 6; co++){
+            inner += '<div class="board-slot red"></div>';
+        };
+        console.log(inner);
+        return inner = wrapper + inner + '</div>';
     }
 
 
