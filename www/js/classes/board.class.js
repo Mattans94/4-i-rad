@@ -20,8 +20,8 @@ class Board extends Base {
     }
 
     /**
-     * 
-     * 
+     *
+     *
      * @param {number} x Horizontal axis
      * @param {number} y Vertical axis
      * @returns  0 if empty, 1 for player 1, -1 for player 2, false if invalid slot
@@ -37,7 +37,7 @@ class Board extends Base {
 
     /**
      * Sets a slot to 1 for player 1 and -1 for player 2
-     * 
+     *
      * @param {number} x Horizontal axis
      * @param {number} y Vertical axis
      * @param {number} playerId Player 1 or 2
@@ -52,6 +52,9 @@ class Board extends Base {
             console.log('Invalid axis')
             return false
         }
+
+        
+
     }
 
 
@@ -59,7 +62,7 @@ class Board extends Base {
 
         this.render('section.boardarea');
 
-        
+
     }
 
     //need to add id on them as well but here is a start on the board
