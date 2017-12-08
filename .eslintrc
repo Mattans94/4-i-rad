@@ -1,0 +1,7 @@
+{
+  "extends": ["standard"],
+  "rules": {
+    "strict": 0,
+    "no-multiple-empty-lines": "off"
+  }
+}

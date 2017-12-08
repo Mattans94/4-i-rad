@@ -11,6 +11,10 @@
   "dependencies": {
     "compression": "^1.7.1",
     "express": "^4.16.2",
+    "express-handlebars": "^3.0.0",
     "jsonflex": "^1.0.9"
+  },
+  "devDependencies": {
+    "eslint": "^4.12.1"
   }
 }
