@@ -9,6 +9,9 @@
     <link rel="stylesheet" href="/css/libs/bootstrap-4-beta.css">
     <!-- Application specific CSS -->
     <link rel="stylesheet" href="/css/main.css">
+    <link rel="stylesheet" href="/css/stickyfooter.css">
+
+
     <link href="https://fonts.googleapis.com/css?family=Raleway:300,400,600,800" rel="stylesheet">
 
   </head>
@@ -16,7 +19,7 @@
 
     <header>
       <h1>FYRA I RAD</h1>
-      <ul class="nav nav-pills nav-fill mb-4">
+      <ul class="nav nav-pills nav-fill">
         <li class="nav-item">
           <a class="nav-link active" href="index.html">Start</a>
         </li>
@@ -50,7 +53,6 @@
             <div class="card w-50">
               <img class="card-img-top" src="/imgs/happy-kids.jpg" alt="Card image cap">
               <div class="card-block">
-                <h4 class="card-title text-center">4-i-rad</h4>
               </div>
             </div>
           </div>
@@ -69,12 +71,44 @@
 
     </section>
 
-     <footer class="footer">
-      <div class="container">
-        <span class="text-muted">Group C, Canalstreet 999, 12345 Canada.</span>
-        <a href="mailto:info@cgroup.com" class="btn btn-secondary btn-lg disabled" role="button" aria-disabled="true">Email us</a>
+     <footer class="container-fluid bg-dark text-light">
 
-      </div>
+      <section class="row mt-3">
+
+      <!-- Equal width columns can be acheived with just setting the col class-->
+
+      <!-- please note: does not allow for responsive layout / different column width on different viewport sizes-->
+
+        <div class="col-9 col-md-4">
+
+          <div class="row justify-content-center">
+            <div class="col-6 col-md-auto mt-2">
+              <h6>Group -C</h6>
+              <p class="mb-1">Canalstreet 999 | 123 45 Canada</p>
+              <p class="mb-1">+46 708 123 456</p>
+              <div class="d-md-none mt-3">
+                <h6>E-post</h6>
+                <p class="mb-1"><a href="mailto:info@groupc.com">info@groupc.com</p>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="col-md-4 d-none d-md-block">
+
+          <div class="row justify-content-center">
+            <div class="col-6 col-md-auto mt-2">
+              <h6>E-mail</h6>
+              <p class="mb-1"><a href="mailto:info@groupc.com">info@groupc.com</p>
+              
+            </div>
+          </div>
+
+        </div>
+      </section> <!--end of row-->
+
+
     </footer>
 
 
