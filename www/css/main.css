@@ -1,3 +1,14 @@
+header {
+  font-family: Raleway;
+  font-weight: 600;
+  margin-left: 40px;
+  margin-bottom: 80px;
+  margin-top: 20px;
+}
+h1 {
+  font-size: 60px;
+  margin-bottom: 20px;
+}
 .board {
   width: 100vw;
   margin: 0 auto;

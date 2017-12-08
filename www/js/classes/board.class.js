@@ -15,8 +15,7 @@ class Board extends Base {
             board: this
         });
         this.board = this.generateBoard();
-
-
+        this.currentPlayer = 0
     }
 
     /**
@@ -46,18 +45,24 @@ class Board extends Base {
      */
     setSlot(x, y, playerId) {
         try {
-            this.state[x][y] = playerId < 2 ? 1 : -1
+            this.state[x][y] = playerId < 1 ? 1 : -1
             return true
         } catch (error) {
             console.log('Invalid axis')
             return false
         }
-
-
-
     }
 
+    nextPlayer() {
+        this.currentPlayer ^= 1
+    }
 
+    placeInColumn(column) {
+        let y = this.state[column].findIndex((slot) => {return (slot === 0)})
+        if (this.setSlot(column, y, this.currentPlayer)) {
+            this.nextPlayer()
+        }
+    }
     changePlayerColor(currentPlayer){
       currentPlayer;
       let colorPlayer1 = "red";
@@ -102,11 +107,11 @@ class Board extends Base {
         let returnValue = '<div class="board col-12">';
         let inner = '', column = '';
 
-        for(let co = 0; co < 6; co++){
+        for (let co = 0; co < 6; co++) {
             inner += '<div class="board-slot"></div>';
         };
 
-        for(let co = 0; co < 7; co++){
+        for (let co = 0; co < 7; co++) {
             column += '<div class="board-column">' + inner + '</div>';
         };
 

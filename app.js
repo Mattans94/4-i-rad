@@ -2,9 +2,17 @@
 const express = require('express');
 const flexjson = require('jsonflex')();
 const compression = require('compression');
+const exphbs = require('express-handlebars');
 
 // Create express server
 const app = express();
+
+app.engine('.html', exphbs({
+  extname: '.html',
+  defaultLayout: 'main'
+}));
+app.set('view engine', '.html');
+
 
 // Express middleware
 app.use(compression());
