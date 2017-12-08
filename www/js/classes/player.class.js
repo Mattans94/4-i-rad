@@ -1,9 +1,10 @@
 class Player{
-	
-	constructor(name, color){
+
+	constructor(name, color, playerId){
 		this.name = name;
 		this.color = color;
 		this.numberOfMoves = 0;
+		this.playerId = playerId;
 	}
-	
+
 }
