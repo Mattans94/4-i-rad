@@ -2,7 +2,7 @@ class Board extends Base {
     constructor() {
         super();
         this.state = [
-            [0, 0, 0, 0, 0, 0],
+            [1, -1, 0, 0, 0, 0],
             [0, 0, 0, 0, 0, 0],
             [0, 0, 0, 0, 0, 0],
             [0, 0, 0, 0, 0, 0],
@@ -10,13 +10,17 @@ class Board extends Base {
             [0, 0, 0, 0, 0, 0],
             [0, 0, 0, 0, 0, 0]
         ];
+
+        JSON._save('saves', {
+            board: this
+        });
         this.board = this.generateBoard();
         this.currentPlayer = 0
     }
 
     /**
-     * 
-     * 
+     *
+     *
      * @param {number} x Horizontal axis
      * @param {number} y Vertical axis
      * @returns  0 if empty, 1 for player 1, -1 for player 2, false if invalid slot
@@ -32,7 +36,7 @@ class Board extends Base {
 
     /**
      * Sets a slot to 1 for player 1 and -1 for player 2
-     * 
+     *
      * @param {number} x Horizontal axis
      * @param {number} y Vertical axis
      * @param {number} playerId Player 1 or 2
@@ -47,6 +51,9 @@ class Board extends Base {
             console.log('Invalid axis')
             return false
         }
+
+
+
     }
 
     nextPlayer() {
@@ -59,17 +66,49 @@ class Board extends Base {
             this.nextPlayer()
         }
     }
+    changePlayerColor(currentPlayer){
+      currentPlayer;
+      let colorPlayer1 = "red";
+      let colorPlayer2 = "#fdd91d";
 
-    generateBoard() {
+      if(currentPlayer == 1){
+        $("p.player1").css("color", colorPlayer1);
+        $("p.player2").css("color", "grey");
+      }
+      else{
+        $("p.player1").css("color", "grey")
+        $("p.player2").css("color", colorPlayer2);
+      }
+
+    }
+
+    click(element, instances){
+        let parent = element.parent();
+
+
+        if(parent.hasClass('board-column')){
+            this.createSlot(parent);
+        }
+        
+    }
+
+
+    generateBoard(){
         this.render('section.boardarea');
     }
 
+
+    createSlot(parent){
+        console.log('working',parent);
+        this.render(parent,2);
+    }
+
+
     //need to add id on them as well but here is a start on the board
 
-    template() {
-        let returnValue = '<div class="board">';
-        let inner = '',
-            column = '';
+    template(){
+        let returnValue = '<div class="board col-12">';
+        let inner = '', column = '';
 
         for (let co = 0; co < 6; co++) {
             inner += '<div class="board-slot"></div>';
@@ -82,4 +121,18 @@ class Board extends Base {
         return returnValue += returnValue + column + '</div>';
 
     }
+
+
+    template2(){
+        console.log('hefef');
+        let wrapper = '<div>';
+        let inner = '';
+        for(let co = 0; co < 6; co++){
+            inner += '<div class="board-slot red"></div>';
+        };
+        console.log(inner);
+        return inner = wrapper + inner + '</div>';
+    }
+
+
 }
