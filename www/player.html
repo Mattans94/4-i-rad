@@ -49,10 +49,10 @@
               </div>
             </div>
             <div class="offset-sm-2 col-sm-2">
-              <button type="button" class="btn btn-secondary">Type</button>
+              <button type="button" class="btn btn-secondary" id="switchButton1">Type</button>
             </div>
-            <p class="show">&#x1F64B;</p>
-            <p class="hidden">&#x1F4BB;</p>
+            <p  id="human" class="show">&#x1F64B;</p>
+            <p  id="computer" class="hidden">&#x1F4BB;</p>
           </div>
           <div class="form-group row">
             <label for="inputname" class="col-sm-2 col-form-label">Player 2</label>
@@ -62,8 +62,10 @@
               </div>
             </div>
             <div class="offset-sm-2 col-sm-2">
-              <button type="button" class="btn btn-secondary">Type</button>
+              <button type="button" class="btn btn-secondary" id="switchButton2">Type</button>
             </div>
+            <p  id="human" class="show2">&#x1F64B;</p>
+            <p  id="computer" class="hidden2">&#x1F4BB;</p>
           </div>
             <div class="form-group row">
               <div class="offset-sm-2 col-sm-10">
@@ -128,6 +130,7 @@
     <!-- Application specific JavaScript -->
     <script src="/js/classes/base.class.js"></script>
     <script src="/js/classes/board.class.js"></script>
+    <script src="/js/classes/player.class.js"></script>
     <script src="/js/main.js"></script>
   </body>
 </html>
