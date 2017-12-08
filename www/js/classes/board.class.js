@@ -53,6 +53,12 @@ class Board extends Base {
         this.currentPlayer ^= 1
     }
 
+    placeInColumn(column) {
+        let y = this.state[column].findIndex((slot) => {return (slot === 0)})
+        if (this.setSlot(column, y, this.currentPlayer)) {
+            this.nextPlayer()
+        }
+    }
 
     generateBoard() {
         this.render('section.boardarea');
