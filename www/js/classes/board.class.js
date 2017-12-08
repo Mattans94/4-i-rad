@@ -51,9 +51,6 @@ class Board extends Base {
             console.log('Invalid axis')
             return false
         }
-
-
-
     }
 
     nextPlayer() {
