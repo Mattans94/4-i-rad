@@ -10,13 +10,8 @@ class Board extends Base {
             [0, 0, 0, 0, 0, 0],
             [0, 0, 0, 0, 0, 0]
         ];
-
-
         this.board = this.generateBoard();
-
-
-
-
+        this.currentPlayer = 0
     }
 
     /**
@@ -46,7 +41,7 @@ class Board extends Base {
      */
     setSlot(x, y, playerId) {
         try {
-            this.state[x][y] = playerId < 2 ? 1 : -1
+            this.state[x][y] = playerId < 1 ? 1 : -1
             return true
         } catch (error) {
             console.log('Invalid axis')
@@ -54,31 +49,31 @@ class Board extends Base {
         }
     }
 
+    nextPlayer() {
+        this.currentPlayer ^= 1
+    }
 
-    generateBoard(){
 
+    generateBoard() {
         this.render('section.boardarea');
-
-        
     }
 
     //need to add id on them as well but here is a start on the board
 
-    template(){
+    template() {
         let returnValue = '<div class="board">';
-        let inner = '', column = '';
+        let inner = '',
+            column = '';
 
-        for(let co = 0; co < 6; co++){
+        for (let co = 0; co < 6; co++) {
             inner += '<div class="board-slot"></div>';
         };
 
-        for(let co = 0; co < 7; co++){
+        for (let co = 0; co < 7; co++) {
             column += '<div class="board-column">' + inner + '</div>';
         };
 
         return returnValue += returnValue + column + '</div>';
 
     }
-
-
 }
