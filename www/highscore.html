@@ -11,7 +11,6 @@
     <link rel="stylesheet" href="/css/main.css">
     <link href="https://fonts.googleapis.com/css?family=Raleway:300,400,600,800" rel="stylesheet">
 
-    <title>Player page</title>
   </head>
   <body>
 
@@ -22,58 +21,50 @@
           <a class="nav-link" href="index.html">Start</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link active" href="player.html">Play</a>
+          <a class="nav-link" href="player.html">Play</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="highscore.html">Highscore list</a>
+          <a class="nav-link active" href="highscore.html">Highscore list</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="spelregler.html">Spelregler</a>
+          <a class="nav-link" href="rules.html">Spelregler</a>
         </li>
       </ul>
 
-      
     </header>
 
     <main>
-
       <div class="container">
-        <form>
-          <div class="form-group row">
-            <label for="inputname" class="col-sm-2 col-form-label">Player 1</label>
-            <div class="col-sm-6">
-              <div class="row">
-                <input type="name" class="form-control" id="player1" placeholder="Name:">
-              </div>
-            </div>
-            <div class="offset-sm-2 col-sm-2">
-              <button type="submit" class="btn btn-secondary">Type</button>
-            </div>
-          </div>
-          <div class="form-group row">
-            <label for="inputname" class="col-sm-2 col-form-label">Player 2</label>
-            <div class="col-sm-6">
-              <div class="row">
-                <input type="name" class="form-control" id="player2" placeholder="Name:">
-              </div>
-            </div>
-            <div class="offset-sm-2 col-sm-2">
-              <button type="submit" class="btn btn-secondary">Type</button>
-            </div>
-          </div>
-            <div class="form-group row">
-              <div class="offset-sm-2 col-sm-10">
-                <a class="btn btn-primary" href="/index.html" role="button">Starta Spel</a>
+        <div class="row">
+          <div class="col-12 col-md-6">
+              <div class="jumbotron">
+                <h1 class="display-5">Välkomna!</h1>
+                <p class="lead">Spela det klassiska 4 i rad online!</p>
+                <hr class="my-4">
+                <p class="lead">
+                  <a class="btn btn-primary btn-lg" href="/player.html" role="button">Spela</a>
+                </p>
               </div>
           </div>
-        </form>
+          <div class="col-12 col-md-6">
+            <div class="card w-50">
+              <img class="card-img-top" src="/imgs/happy-kids.jpg" alt="Card image cap">
+              <div class="card-block">
+                <h4 class="card-title text-center">4-i-rad</h4>
+              </div>
+            </div>
+          </div>
+        </div>
+
       </div>
+
 
     </main>
 
 
-   
+    <section class="boardarea">    
 
+    </section>
 
     <footer>
       <div class="card">
@@ -96,6 +87,7 @@
     <script src="/js/libs/popper-1.11.0.js"></script>
     <script src="/js/libs/bootstrap-4-beta.js"></script>
     <!-- Application specific JavaScript -->
+    <script src="/js/classes/player.class.js"></script>
     <script src="/js/classes/base.class.js"></script>
     <script src="/js/classes/board.class.js"></script>
     <script src="/js/main.js"></script>
