@@ -20,8 +20,8 @@ class Board extends Base {
     }
 
     /**
-     * 
-     * 
+     *
+     *
      * @param {number} x Horizontal axis
      * @param {number} y Vertical axis
      * @returns  0 if empty, 1 for player 1, -1 for player 2, false if invalid slot
@@ -37,7 +37,7 @@ class Board extends Base {
 
     /**
      * Sets a slot to 1 for player 1 and -1 for player 2
-     * 
+     *
      * @param {number} x Horizontal axis
      * @param {number} y Vertical axis
      * @param {number} playerId Player 1 or 2
@@ -52,14 +52,32 @@ class Board extends Base {
             console.log('Invalid axis')
             return false
         }
+
+
+
     }
 
+    changePlayerColor(currentPlayer){
+      currentPlayer;
+      let colorPlayer1 = "red";
+      let colorPlayer2 = "#fdd91d";
+
+      if(currentPlayer == 1){
+        $("p.player1").css("color", colorPlayer1);
+        $("p.player2").css("color", "grey");
+      }
+      else{
+        $("p.player1").css("color", "grey")
+        $("p.player2").css("color", colorPlayer2);
+      }
+
+    }
 
     generateBoard(){
 
         this.render('section.boardarea');
 
-        
+
     }
 
     //need to add id on them as well but here is a start on the board
