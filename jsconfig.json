@@ -1,0 +1,17 @@
+{
+  "compilerOptions": {
+    "target": "ES6",
+    "module": "commonjs",
+    "jsx": "preserve",
+    "checkJs": true
+  },
+  "exclude": [
+    "node_modules",
+    "**/node_modules/*"
+  ],
+  "typeAcquisition": {
+    "include": [
+      "jquery"
+    ]
+  }
+}

@@ -45,16 +45,17 @@ class Board extends Base {
      */
     setSlot(x, y, playerId) {
         try {
-            this.state[x][y] = playerId < 1 ? 1 : -1
+            this.state[x][y] = playerId < 2 ? 1 : -1
             return true
         } catch (error) {
-            console.log('Invalid axis')
+            console.log('Invalid slot')
             return false
         }
     }
 
     nextPlayer() {
-        this.currentPlayer ^= 1
+        this.currentPlayer ^= 3
+        // this.currentPlayer ^= 1 // Switches between 1 and 0 instead
     }
 
     placeInColumn(column) {
@@ -86,7 +87,7 @@ class Board extends Base {
         if(parent.hasClass('board-column')){
             this.createSlot(parent);
         }
-        
+
     }
 
 
@@ -97,7 +98,7 @@ class Board extends Base {
 
     createSlot(parent){
         console.log('working',parent);
-        this.render(parent,2);
+        this.render(parent, '2');
     }
 
 
