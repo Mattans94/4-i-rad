@@ -6,7 +6,7 @@
   "scripts": {
     "test": "eslint .",
     "start": "node app.js",
-    "sync": "node app.js | browser-sync start --proxy localhost:3000 --files \"www\" \"views\" \"public\""
+    "sync": "node --inspect app.js | browser-sync start --proxy localhost:3000 --no-online --files \"www\" \"views\" \"public\""
   },
   "author": "",
   "license": "ISC",
