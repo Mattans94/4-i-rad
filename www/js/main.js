@@ -31,5 +31,5 @@ let url = location.pathname;
 if(url == "/play.html") {
   let name1 = localStorage.getItem('player1Name');
   console.log(name1);
-  document.write(name1);
+  document.write("Namn" + name1);
 }
