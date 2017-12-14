@@ -8,7 +8,7 @@ class Player extends Game{
 	}
 
 	makeMove(){	
-		
+		this.numberOfMoves++
 
 	}
 
