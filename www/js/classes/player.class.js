@@ -1,17 +1,15 @@
-class Player{
+class Player {
 
 	constructor(name, color, playerId){
 		this.name = name;
 		this.color = color;
-		this.numberOfMoves = 0;
 		this.playerId = playerId;
-		this.type = 'human';
+		this.numberOfMoves = 0;
 	}
 
+	makeMove(){	
+		this.numberOfMoves++
 
-
-	setType(response){
-		this.type = response;
 	}
 
 }
