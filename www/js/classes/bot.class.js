@@ -5,4 +5,10 @@ class Bot extends Player{
 
 	}
 
+	randomMove(){
+		let move = Math.round(Math.random()*6);
+
+		return move;
+	}
+
 }
