@@ -11,6 +11,7 @@ h1 {
 }
 .board {
   width: 100vw;
+  max-width: 800px;
   margin: 0 auto;
   padding: 10px;
 }
@@ -19,6 +20,20 @@ h1 {
   height: 100%;
   float: left;
   position: relative;
+  max-width: 13%;
+}
+.board .board-column:hover:before {
+  content: '';
+  display: block;
+  height: 9vw;
+  width: 9vw;
+  max-height: 100px;
+  border-radius: 100%;
+  background: red;
+  position: absolute;
+  top: -15%;
+  right: -32%;
+  transform: translate(-50%);
 }
 .board .board-column .test {
   width: 100%;
@@ -35,14 +50,15 @@ h1 {
   cursor: pointer;
   display: block;
   z-index: 2;
+  max-height: 100px;
 }
 .board .board-column .board-slot.red:before {
   content: "";
   border-radius: 50%;
   background: red;
   position: absolute;
-  height: 80%;
-  width: 80%;
+  height: 9vw;
+  width: 9vw;
   left: 10%;
   top: 10%;
 }
