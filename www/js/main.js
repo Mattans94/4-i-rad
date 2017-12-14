@@ -7,12 +7,13 @@ JSON._classes(Board);
 JSON._load('saves')
 .then((data) => {
   // Retrieve the app from JSON
-  board = data.board;
+  // board = data.board;
+  board = new Board();
 })
 .catch(() => {
   // No working json data
   // create new app
-	let board = new Board();
+	board = new Board();
 })
 .then(() => {
 
@@ -36,7 +37,7 @@ $(document).on("click", "#switchButton1", function(){
 	$("p.hidden").toggle();
 	$('')
 	let value = 'human';
-	
+
 	if ($("p.hidden").css("display") == "none"){
 		value = 'human'
 		console.log(value);
@@ -54,7 +55,7 @@ $(document).on("click", "#switchButton2", function(){
 	$("p.hidden2").toggle();
 	$('')
 	let value = 'human';
-	
+
 	if ($("p.hidden2").css("display") == "none"){
 		value = 'human'
 		console.log(value);

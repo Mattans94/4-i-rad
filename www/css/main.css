@@ -46,6 +46,16 @@ h1 {
   left: 10%;
   top: 10%;
 }
+.board .board-column .board-slot.yellow:before {
+  content: "";
+  border-radius: 50%;
+  background: yellow;
+  position: absolute;
+  height: 80%;
+  width: 80%;
+  left: 10%;
+  top: 10%;
+}
 .board .board-column .board-slot:before {
   content: "";
   box-shadow: 0 0 0 20vw blue;

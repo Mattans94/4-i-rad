@@ -19,7 +19,7 @@
       position: absolute;
     }
 
-     
+
 
     .board-slot {
       width: 100%;
@@ -41,7 +41,20 @@
           width: 80%;
           left: 10%;
           top: 10%;
-        }        
+        }
+      }
+
+      &.yellow {
+        &:before {
+          content: "";
+          border-radius: 50%;
+          background: yellow;
+          position: absolute;
+          height: 80%;
+          width: 80%;
+          left: 10%;
+          top: 10%;
+        }
       }
 
       &:before {
