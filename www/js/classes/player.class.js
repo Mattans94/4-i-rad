@@ -8,4 +8,6 @@ class Player extends Game{
 		this.type = type;
 	}
 
+	makeMove();
+
 }
