@@ -1,13 +1,15 @@
 class Player extends Game{
 
-	constructor(name, color, playerId, type){
+	constructor(name, color, playerId){
 		this.name = name;
 		this.color = color;
-		this.numberOfMoves = 0;
 		this.playerId = playerId;
-		this.type = type;
+		this.numberOfMoves = 0;
 	}
 
-	makeMove();
+	makeMove(){	
+		
+
+	}
 
 }
