@@ -146,7 +146,6 @@ class Board extends Base {
 
     }
 
-
     template2(){
         let wrapper = '<div>';
         let inner = '';
