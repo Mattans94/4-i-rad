@@ -120,7 +120,6 @@ class Board extends Base {
 
     }
 
-
     template2(){
         console.log('hefef');
         let wrapper = '<div>';
