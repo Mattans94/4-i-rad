@@ -1,4 +1,4 @@
-class Game {
+class Game{
   constructor(player1, player2, player1Type, player2Type){
     this.player1 = player1;
     this.player2 = player2;
@@ -17,24 +17,19 @@ class Game {
     name1 = this.player1;
     name2 = this.player2;
   }
+
+
+	setPlayer1Type(response){
+		this.player1Type = response;
+	}
+
+	setPlayer2Type(response){
+		this.player2Type = response;
+	}
 }
 
+let game = new Game();
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-let player1 = new Player();
-let player2 = new Player();
 
 $(document).on("click", "#switchButton1", function(){
 	$("p.show").toggle();
@@ -50,7 +45,7 @@ $(document).on("click", "#switchButton1", function(){
 		console.log(value);
 	}
 
-	player1.setType(value);
+	game.setPlayer1Type(value);
 
 });
 
@@ -68,5 +63,5 @@ $(document).on("click", "#switchButton2", function(){
 		console.log(value);
 	}
 
-	player2.setType(value);
+	game.setPlayer2Type(value);
 });
