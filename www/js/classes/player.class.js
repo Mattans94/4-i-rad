@@ -1,4 +1,4 @@
-class Player extends Game{
+class Player {
 
 	constructor(name, color, playerId){
 		this.name = name;
