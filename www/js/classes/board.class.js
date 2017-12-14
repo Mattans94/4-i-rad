@@ -2,7 +2,7 @@ class Board extends Base {
     constructor() {
         super();
         this.state = [
-            [1, -1, 0, 0, 0, 0],
+            [0, 0, 0, 0, 0, 0],
             [0, 0, 0, 0, 0, 0],
             [0, 0, 0, 0, 0, 0],
             [0, 0, 0, 0, 0, 0],
@@ -15,7 +15,9 @@ class Board extends Base {
             board: this
         });
         this.board = this.generateBoard();
-        this.currentPlayer = 0
+        this.currentPlayer = 1
+        this.width = this.state.length
+        this.height = this.state[0].length
     }
 
     /**
@@ -61,8 +63,12 @@ class Board extends Base {
     placeInColumn(column) {
         let y = this.state[column].findIndex((slot) => {return (slot === 0)})
         if (this.setSlot(column, y, this.currentPlayer)) {
-            this.nextPlayer()
+            return y
         }
+        else {
+          return -1
+        }
+
     }
     changePlayerColor(currentPlayer){
       currentPlayer;
@@ -82,12 +88,14 @@ class Board extends Base {
 
     click(element, instances){
         let parent = element.parent();
+        // if(parent.hasClass('board-column')){
+        //     this.createSlot(parent);
+        // }
 
-
+        // let e = element
         if(parent.hasClass('board-column')){
-            this.createSlot(parent);
-        }
-
+          this.createSingleSlot(parent);
+      }
     }
 
 
@@ -99,6 +107,24 @@ class Board extends Base {
     createSlot(parent){
         console.log('working',parent);
         this.render(parent, '2');
+    }
+
+    createSingleSlot(parent){
+        console.log(parent[0].id.split('column-').pop())
+        const row = this.placeInColumn(parent[0].id.split('column-').pop())
+        if (row != -1){
+        let element = parent[0].children[this.height - row - 1]
+        // this.render(element, 'single');
+        if (this.currentPlayer == 1){
+          element.className += ' red'
+
+        } else if (this.currentPlayer == 2){
+          element.className += ' yellow'
+
+        }
+        console.log(element.className)
+        this.nextPlayer()
+      }
     }
 
 
@@ -113,7 +139,7 @@ class Board extends Base {
         };
 
         for (let co = 0; co < 7; co++) {
-            column += '<div class="board-column">' + inner + '</div>';
+            column += '<div class="board-column" ' + 'id="column-' + co + '">' + inner + '</div>';
         };
 
         return returnValue += returnValue + column + '</div>';
@@ -121,7 +147,6 @@ class Board extends Base {
     }
 
     template2(){
-        console.log('hefef');
         let wrapper = '<div>';
         let inner = '';
         for(let co = 0; co < 6; co++){
@@ -129,6 +154,10 @@ class Board extends Base {
         };
         console.log(inner);
         return inner = wrapper + inner + '</div>';
+    }
+
+    templatesingle(){
+        return `<div class="board-slot red"></div>`;
     }
 
 

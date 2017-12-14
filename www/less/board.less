@@ -1,8 +1,8 @@
 // main: main.less
 
 .board {
-  // height: 300px;
   width: 100vw;
+  max-width: 800px;
   margin: 0 auto;
   padding: 10px;
 
@@ -11,6 +11,27 @@
     height: 100%;
     float: left;
     position: relative;
+    max-width: 13%;
+
+
+    &:hover {
+      &:before {
+        content: '';
+        display: block;
+        height: 9vw;
+        width: 9vw;
+        max-height: 100px;
+        border-radius: 100%;
+        background: red;
+        position: absolute;
+        top: -15%;
+        right: -32%;
+        transform: translate(-50%);
+      }
+
+  
+      
+    }
 
     .test {
       width: 100%;
@@ -19,7 +40,7 @@
       position: absolute;
     }
 
-     
+
 
     .board-slot {
       width: 100%;
@@ -30,6 +51,7 @@
       cursor: pointer;
       display: block;
       z-index: 2;
+      max-height: 100px;
 
       &.red {
         &:before {
@@ -37,11 +59,24 @@
           border-radius: 50%;
           background: red;
           position: absolute;
+          height: 9vw;
+          width: 9vw;
+          left: 10%;
+          top: 10%;
+        }
+      }
+
+      &.yellow {
+        &:before {
+          content: "";
+          border-radius: 50%;
+          background: yellow;
+          position: absolute;
           height: 80%;
           width: 80%;
           left: 10%;
           top: 10%;
-        }        
+        }
       }
 
       &:before {
