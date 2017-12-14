@@ -31,10 +31,11 @@ class Game{
 let game = new Game();
 
 
+
 $(document).on("click", "#switchButton1", function(){
 	$("p.show").toggle();
 	$("p.hidden").toggle();
-	$('')
+
 	let value = 'human';
 
 	if ($("p.hidden").css("display") == "none"){
@@ -45,14 +46,14 @@ $(document).on("click", "#switchButton1", function(){
 		console.log(value);
 	}
 
-	game.setPlayer1Type(value);
+	game.player1Type = value;
 
 });
 
 $(document).on("click", "#switchButton2", function(){
 	$("p.show2").toggle();
 	$("p.hidden2").toggle();
-	$('')
+
 	let value = 'human';
 
 	if ($("p.hidden2").css("display") == "none"){
@@ -63,5 +64,5 @@ $(document).on("click", "#switchButton2", function(){
 		console.log(value);
 	}
 
-	game.setPlayer2Type(value);
+	game.player2Type = value;
 });
