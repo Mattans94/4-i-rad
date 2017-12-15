@@ -1,3 +1,7 @@
+//TODO: Ändra till board.playerX.color överallt
+const player1color = 'red'
+const player2color = 'yellow'
+
 class Board extends Base {
     constructor() {
         super();
@@ -18,6 +22,7 @@ class Board extends Base {
         this.currentPlayer = 1
         this.width = this.state.length
         this.height = this.state[0].length
+        hoverFn(player1color)
     }
 
     /**
@@ -81,36 +86,12 @@ class Board extends Base {
 
 
     nextPlayer() {
-        this.currentPlayer ^= 3
-        // this.currentPlayer ^= 1 // Switches between 1 and 0 instead
+        this.currentPlayer ^= 3 // Switches between 1 and 2 // this.currentPlayer ^= 1 // Switches between 1 and 0 instead
         if(this.currentPlayer === 1){
-          $('.board-slot-hover').css('background','red');
-          $('.board-column .board-slot').hover(function(){
-              $(this).css("background", "red");
-              // console.log($(this).parent().parent().children('#column-hover-' + $(this).parent().attr('id').split('column-').pop()))
-              let hoverdiv = $(this).parent().parent().children('#column-hover-' + $(this).parent().attr('id').split('column-').pop()).children('.board-slot-hover')
-              console.log(hoverdiv)
-              hoverdiv.css({
-                "background": "red",
-                "opacity": "100"
-            })
-              }, function(){
-              $(this).css("background", "white");
-              let hoverdiv = $(this).parent().parent().children('#column-hover-' + $(this).parent().attr('id').split('column-').pop())
-              hoverdiv.css({
-                "background": "white"
-            })
-
-          });
+          hoverFn(player1color)
         }
         if(this.currentPlayer === 2){
-          $('.board-slot-hover').css('background','yellow');
-          $('.board-column .board-slot').hover(function(){
-              $(this).css("background", "yellow");
-            }, function(){
-              $(this).css("background", "white");
-
-            });
+          hoverFn(player2color)
         }
     }
 
@@ -243,4 +224,35 @@ class Board extends Base {
 
 
 
+}
+
+function hoverFn(color){
+  var hoverdiv
+  // $('.board-slot-hover').css('background','red');
+  $('.board-column .board-slot').hover(function(){
+    // $(this).css("background", "red");
+    // console.log($(this).parent().parent().children('#column-hover-' + $(this).parent().attr('id').split('column-').pop()))
+    hoverdiv = $(this).parent().parent().children('#column-hover-' + $(this).parent().attr('id').split('column-').pop()).children('.board-slot-hover')
+    // console.log(hoverdiv)
+    // console.log(board.currentPlayer)
+    $(this).click(() => {
+      // console.log(((board.currentPlayer == 1) ? player2color: player1color))
+      hoverdiv.css({
+      'background': ((board.currentPlayer == 1) ? player2color: player1color), // TODO: Ändra till board.player2.color och board.player1.color
+      'opacity': '100'
+  })})
+    hoverdiv.css({
+      'background': color,
+      'opacity': '100'
+  })
+    }, function(){
+    // $(this).css('background', 'white');
+    if (hoverdiv) {
+    hoverdiv.css({
+      'background': 'white',
+      'opacity': '0'
+  })
+}
+
+});
 }
