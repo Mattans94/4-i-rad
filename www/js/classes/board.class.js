@@ -65,7 +65,7 @@ class Board extends Base {
 
             for(let player of [1, -1]){
 
-              if(row < 3 && bd[col][row] == player && bd[col][row+1] == player && bd[col][row+2] == player && bd[col][row+3] == player){ 
+              if(row < 3 && bd[col][row] == player && bd[col][row+1] == player && bd[col][row+2] == player && bd[col][row+3] == player){
                 console.log(player);
               }
             }
@@ -98,7 +98,7 @@ class Board extends Base {
               }, function(){
               $(this).css("background", "white");
           });
-        } 
+        }
     }
 
     placeInColumn(column) {
@@ -134,8 +134,20 @@ class Board extends Base {
         // }
 
         // let e = element
-        if(parent.hasClass('board-column') || parent.hasClass('board-column-hover')){
-          this.createSingleSlot(parent);
+
+      if (parent.hasClass('board-column-hover')) {
+
+        let childnumber = parseInt(parent[0].id.split('column-hover-').pop())
+        const row = this.placeInColumn(childnumber)
+        let parentchild = parent[0].parentElement.children[childnumber + 7]
+
+        this.createSingleSlot($(parentchild), row);
+        this.checkWinner(this.state);
+        }
+
+        if(parent.hasClass('board-column')){
+        const row = this.placeInColumn(parent[0].id.split('column-').pop())
+          this.createSingleSlot(parent, row);
           this.checkWinner(this.state);
       }
     }
@@ -151,9 +163,9 @@ class Board extends Base {
         this.render(parent, '2');
     }
 
-    createSingleSlot(parent){
+    createSingleSlot(parent, row){
         // console.log(parent[0].id.split('column-').pop())
-        const row = this.placeInColumn(parent[0].id.split('column-').pop())
+        // const row = this.placeInColumn(parent[0].id.split('column-').pop())
         if (row != -1){
         let element = parent[0].children[this.height - row - 1]
         // this.render(element, 'single');
@@ -185,7 +197,7 @@ class Board extends Base {
         };
 
         for (let co = 0; co < 7; co++) {
-            columnhover += '<div class="board-column-hover" ' + 'id="column-hover-' + co + '">' + innerhover + '</div>';
+            column += '<div class="board-column-hover" ' + 'id="column-hover-' + co + '">' + innerhover + '</div>';
         };
 
         for (let co = 0; co < 6; co++) {
