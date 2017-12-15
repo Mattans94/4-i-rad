@@ -1,16 +1,30 @@
 {
-  "name": "oop-cats-and-slaves",
-  "version": "1.0.0",
+  "name": "4-i-rad",
+  "version": "0.0.0",
   "description": "",
   "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "eslint .",
+    "start": "node app.js",
+    "sync": "node --inspect app.js | browser-sync start --proxy localhost:3000 --no-online --files \"www\" \"views\" \"public\""
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
     "compression": "^1.7.1",
     "express": "^4.16.2",
+    "express-handlebars": "^3.0.0",
     "jsonflex": "^1.0.9"
+  },
+  "devDependencies": {
+    "@types/jquery": "^3.2.16",
+    "babel-eslint": "^8.0.3",
+    "browser-sync": "^2.18.13",
+    "eslint": "^4.12.1",
+    "eslint-config-standard": "^11.0.0-beta.0",
+    "eslint-plugin-import": "^2.8.0",
+    "eslint-plugin-node": "^5.2.1",
+    "eslint-plugin-promise": "^3.6.0",
+    "eslint-plugin-standard": "^3.0.1"
   }
 }
