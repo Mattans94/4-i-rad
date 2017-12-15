@@ -68,7 +68,7 @@ class Board extends Base {
       let colorPlayer1 = "red";
       let colorPlayer2 = "#fdd91d";
 
-      if(currentPlayer == 1){
+      if(currentPlayer == 0){
         $(".player1").css("color", colorPlayer1);
         $(".player2").css("color", "grey");
       }
