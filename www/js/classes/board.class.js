@@ -87,17 +87,30 @@ class Board extends Base {
           $('.board-slot-hover').css('background','red');
           $('.board-column .board-slot').hover(function(){
               $(this).css("background", "red");
+              // console.log($(this).parent().parent().children('#column-hover-' + $(this).parent().attr('id').split('column-').pop()))
+              let hoverdiv = $(this).parent().parent().children('#column-hover-' + $(this).parent().attr('id').split('column-').pop()).children('.board-slot-hover')
+              console.log(hoverdiv)
+              hoverdiv.css({
+                "background": "red",
+                "opacity": "100"
+            })
               }, function(){
               $(this).css("background", "white");
+              let hoverdiv = $(this).parent().parent().children('#column-hover-' + $(this).parent().attr('id').split('column-').pop())
+              hoverdiv.css({
+                "background": "white"
+            })
+
           });
         }
         if(this.currentPlayer === 2){
           $('.board-slot-hover').css('background','yellow');
           $('.board-column .board-slot').hover(function(){
               $(this).css("background", "yellow");
-              }, function(){
+            }, function(){
               $(this).css("background", "white");
-          });
+
+            });
         }
     }
 
