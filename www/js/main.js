@@ -20,16 +20,3 @@ JSON._load('saves')
  //  // Tell the app to render to <main>
  //  board.generateBoard();
 });
-
-$(document).on('click', '.startGame', function(){
-  let val1 = $('#playerName1').val();
-  localStorage.setItem('player1Name', val1);
-});
-
-let url = location.pathname;
-
-if(url == "/play.html") {
-  let name1 = localStorage.getItem('player1Name');
-  console.log(name1);
-  document.write("Namn" + name1);
-}
