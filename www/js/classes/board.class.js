@@ -55,9 +55,50 @@ class Board extends Base {
         }
     }
 
+
+    checkWinner(bd) {
+      // console.log(bd);
+        // Check down
+        for(let row = 0; row < 6; row++){
+
+          for(let col = 0; col < 7; col++ ){
+
+            for(let player of [1, -1]){
+
+              if(row < 3 && bd[col][row] == player && bd[col][row+1] == player && bd[col][row+2] == player && bd[col][row+3] == player){ 
+                console.log(player);
+              }
+            }
+
+          }
+        }
+
+
+
+
+    }
+
+
+
     nextPlayer() {
         this.currentPlayer ^= 3
         // this.currentPlayer ^= 1 // Switches between 1 and 0 instead
+        if(this.currentPlayer === 1){
+          $('.board-slot-hover').css('background','red');
+          $('.board-column .board-slot').hover(function(){
+              $(this).css("background", "red");
+              }, function(){
+              $(this).css("background", "white");
+          });
+        }
+        if(this.currentPlayer === 2){
+          $('.board-slot-hover').css('background','yellow');
+          $('.board-column .board-slot').hover(function(){
+              $(this).css("background", "yellow");
+              }, function(){
+              $(this).css("background", "white");
+          });
+        } 
     }
 
     placeInColumn(column) {
@@ -93,8 +134,9 @@ class Board extends Base {
         // }
 
         // let e = element
-        if(parent.hasClass('board-column')){
+        if(parent.hasClass('board-column') || parent.hasClass('board-column-hover')){
           this.createSingleSlot(parent);
+          this.checkWinner(this.state);
       }
     }
 
@@ -123,7 +165,7 @@ class Board extends Base {
 
         }
         $(parent).hover(function(){
-          console.log(this)
+          // console.log(this)
         })
         // console.log(element.className)
         this.nextPlayer()
@@ -158,19 +200,22 @@ class Board extends Base {
 
     }
 
-    template2(){
-        let wrapper = '<div>';
-        let inner = '';
-        for(let co = 0; co < 6; co++){
-            inner += '<div class="board-slot red"></div>';
-        };
-        // console.log(inner);
-        return inner = wrapper + inner + '</div>';
-    }
 
-    templatesingle(){
-        return `<div class="board-slot red"></div>`;
-    }
+    // template2(){
+    //     let wrapper = '<div>';
+    //     let inner = '';
+    //     for(let co = 0; co < 6; co++){
+    //         inner += '<div class="board-slot red"></div>';
+    //     };
+    //     // console.log(inner);
+    //     return inner = wrapper + inner + '</div>';
+    // }
+
+    // templatesingle(){
+    //     return `<div class="board-slot red"></div>`;
+    // }
+
+
 
 
 }
