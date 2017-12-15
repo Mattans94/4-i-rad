@@ -57,9 +57,6 @@ h1 {
   z-index: 2;
   max-height: 100px;
 }
-.board .board-column .board-slot:hover {
-  background: red;
-}
 .board .board-column .board-slot.red:before {
   content: "";
   border-radius: 50%;
