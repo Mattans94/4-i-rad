@@ -85,7 +85,27 @@ class Board extends Base {
       }
 
     }
+    checkWinner(bd) {
+      // console.log(bd);
+        // Check down
+        for(let row = 0; row < 6; row++){
 
+          for(let col = 0; col < 7; col++ ){
+
+            for(let player of [1, -1]){
+
+              if(row < 3 && bd[col][row] == player && bd[col][row+1] == player && bd[col][row+2] == player && bd[col][row+3] == player){ 
+                console.log(player);
+              }
+            }
+
+          }
+        }
+
+
+
+
+    }
     click(element, instances){
         let parent = element.parent();
         // if(parent.hasClass('board-column')){
