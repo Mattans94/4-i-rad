@@ -36,6 +36,7 @@ let game = new Game();
 $(document).on("click", "#switchButton1", function(){
 	$("p.show").toggle();
 	$("p.hidden").toggle();
+  $('.player1RadioBtns').toggleClass('d-none');
 
 	let value = 'human';
 
@@ -54,6 +55,7 @@ $(document).on("click", "#switchButton1", function(){
 $(document).on("click", "#switchButton2", function(){
 	$("p.show2").toggle();
 	$("p.hidden2").toggle();
+  $('.player2RadioBtns').toggleClass('d-none');
 
 	let value = 'human';
 
