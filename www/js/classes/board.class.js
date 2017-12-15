@@ -94,15 +94,35 @@ class Board extends Base {
 
             for(let player of [1, -1]){
 
+              //vertical
+
+
+              // if(bd[col][row] == player){
+              //   console.log('col', col);
+              //   console.log('row',row);
+              // }
+              
+
               if(row < 3 && bd[col][row] == player && bd[col][row+1] == player && bd[col][row+2] == player && bd[col][row+3] == player){ 
                 console.log('winner',player);
               }
 
+              // horisontel
+
               if(col < 3 && bd[col][row] == player && bd[col+1][row] == player && bd[col+2][row] == player && bd[col+3][row] == player){
-                console.log('winner',player);
+                console.log('winner våg',player);
               }
 
 
+              if(col < 4 && bd[col][row] == player && bd[col+1][row+1] == player && bd[col+2][row+2] == player && bd[col+3][row+3] == player ){
+                console.log('winner diagonal up right');
+              }
+
+              if(col > 2 && row < 3 && bd[col][row] == player && bd[col-1][row+1] == player && bd[col-2][row+2] == player && bd[col-3][row+3] == player ){
+                console.log('winner diagonal up left');
+              }
+
+ 
             }
 
           }
