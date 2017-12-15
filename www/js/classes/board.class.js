@@ -18,8 +18,6 @@ class Board extends Base {
         JSON._save('saves', {
             board: this
         });
-        this.co = 0;
-        this.winner = null;
         this.board = this.generateBoard();
         this.currentPlayer = 1
         this.width = this.state.length
@@ -98,83 +96,32 @@ class Board extends Base {
     }
 
     placeInColumn(column) {
-        let y = this.state[column].findIndex((slot) => {
-            return (slot === 0)
-        })
+        let y = this.state[column].findIndex((slot) => {return (slot === 0)})
         if (this.setSlot(column, y, this.currentPlayer)) {
             return y
-        } else {
-            return -1
+        }
+        else {
+          return -1
         }
 
     }
-    changePlayerColor(currentPlayer) {
-        currentPlayer;
-        let colorPlayer1 = "red";
-        let colorPlayer2 = "#fdd91d";
+    changePlayerColor(currentPlayer){
+      currentPlayer;
+      let colorPlayer1 = "red";
+      let colorPlayer2 = "#fdd91d";
 
-        if (currentPlayer == 1) {
-            $("p.player1").css("color", colorPlayer1);
-            $("p.player2").css("color", "grey");
-        } else {
-            $("p.player1").css("color", "grey")
-            $("p.player2").css("color", colorPlayer2);
-        }
-
-    }
-    checkWinner(bd) {
-        // console.log(bd);
-        // Check down
-        for (let row = 0; row < 6; row++) {
-
-            for (let col = 0; col < 7; col++) {
-
-                for (let player of[1, -1]) {
-
-                    //vertical
-
-
-                    // if(bd[col][row] == player){
-                    //   console.log('col', col);
-                    //   console.log('row',row);
-                    // }
-
-
-                    if (row < 3 && bd[col][row] == player && bd[col][row + 1] == player && bd[col][row + 2] == player && bd[col][row + 3] == player) {
-                        this.winner = player;
-                    }
-
-                    // horisontel
-
-                    if (col < 3 && bd[col][row] == player && bd[col + 1][row] == player && bd[col + 2][row] == player && bd[col + 3][row] == player) {
-                        this.winner = player;
-                    }
-
-
-                    if (col < 4 && bd[col][row] == player && bd[col + 1][row + 1] == player && bd[col + 2][row + 2] == player && bd[col + 3][row + 3] == player) {
-                        this.winner = player;
-                    }
-
-                    if (col > 2 && row < 3 && bd[col][row] == player && bd[col - 1][row + 1] == player && bd[col - 2][row + 2] == player && bd[col - 3][row + 3] == player) {
-                        this.winner = player;
-                    }
-
-
-                }
-
-            }
-        }
-
-        this.co++;
-        if (this.co === 42 && this.winner == null) {
-            this.winner = 'draw';
-        }
-
-
-
+      if(currentPlayer == 1){
+        $("p.player1").css("color", colorPlayer1);
+        $("p.player2").css("color", "grey");
+      }
+      else{
+        $("p.player1").css("color", "grey")
+        $("p.player2").css("color", colorPlayer2);
+      }
 
     }
-    click(element, instances) {
+
+    click(element, instances){
         let parent = element.parent();
         // if(parent.hasClass('board-column')){
         //     this.createSlot(parent);
@@ -200,7 +147,7 @@ class Board extends Base {
     }
 
 
-    generateBoard() {
+    generateBoard(){
         this.render('section.boardarea');
     }
 
@@ -219,19 +166,22 @@ class Board extends Base {
         if (this.currentPlayer == 1){
           element.className += ' red'
 
-            } else if (this.currentPlayer == 2) {
-                element.className += ' yellow'
+        } else if (this.currentPlayer == 2){
+          element.className += ' yellow'
 
-            }
-            console.log(element.className)
-            this.nextPlayer()
         }
+        $(parent).hover(function(){
+          // console.log(this)
+        })
+        // console.log(element.className)
+        this.nextPlayer()
+      }
     }
 
 
     //need to add id on them as well but here is a start on the board
 
-    template() {
+    template(){
         let returnValue = '<div class="board col-12">';
         let inner = '', column = '';
         let innerhover = '', columnhover = '';
