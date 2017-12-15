@@ -95,8 +95,14 @@ class Board extends Base {
             for(let player of [1, -1]){
 
               if(row < 3 && bd[col][row] == player && bd[col][row+1] == player && bd[col][row+2] == player && bd[col][row+3] == player){ 
-                console.log(player);
+                console.log('winner',player);
               }
+
+              if(col < 3 && bd[col][row] == player && bd[col+1][row] == player && bd[col+2][row] == player && bd[col+3][row] == player){
+                console.log('winner',player);
+              }
+
+
             }
 
           }
