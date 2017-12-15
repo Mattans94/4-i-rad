@@ -1,41 +1,10 @@
 // main: main.less
 
 .board {
+  width: 100vw;
   max-width: 800px;
   margin: 0 auto;
   padding: 10px;
-
-  .board-column-hover {
-    width: 11vw;
-    height: 100%;
-    float: left;
-    position: relative;
-    max-width: 13%;
-
-  .board-slot-hover {
-      width: 80%;
-      height: 9vw;
-      margin:0 auto;
-      overflow: hidden;
-      position: relative;
-      cursor: pointer;
-      display: block;
-      opacity: 0;
-      z-index: 2;
-      margin-bottom: 10px;
-      max-height: 80px;
-      border-radius: 50%;
-
-    }
-
-    &:hover {
-      .board-slot-hover {
-        background: red;
-        opacity: 100;
-      }
-    }
-
-  }
 
 	.board-column {
     width: 11vw;
@@ -43,6 +12,34 @@
     float: left;
     position: relative;
     max-width: 13%;
+
+
+    &:hover {
+      &:before {
+        content: '';
+        display: block;
+        height: 9vw;
+        width: 9vw;
+        max-height: 100px;
+        border-radius: 100%;
+        background: red;
+        position: absolute;
+        top: -15%;
+        right: -32%;
+        transform: translate(-50%);
+      }
+
+  
+      
+    }
+
+    .test {
+      width: 100%;
+      height: 100px;
+      background: red;
+      position: absolute;
+    }
+
 
 
     .board-slot {
@@ -56,18 +53,14 @@
       z-index: 2;
       max-height: 100px;
 
-      // &:hover {
-      //   background: red;
-      // }
-
       &.red {
         &:before {
           content: "";
           border-radius: 50%;
           background: red;
           position: absolute;
-          height: 80%;
-          width: 80%;
+          height: 9vw;
+          width: 9vw;
           left: 10%;
           top: 10%;
         }
@@ -98,10 +91,6 @@
       }
     }
 	}
-}
-
-#column-0 {
-  clear: left;
 }
 
 

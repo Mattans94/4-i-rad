@@ -1,4 +1,4 @@
-class Game {
+class Game{
   constructor(player1, player2, player1Type, player2Type){
     this.player1 = player1;
     this.player2 = player2;
