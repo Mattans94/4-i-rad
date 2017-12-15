@@ -8,6 +8,8 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="/css/libs/bootstrap-4-beta.css">
     <!-- Application specific CSS -->
+
+    <link rel="stylesheet" href="/css/spelregler.css">
     <link rel="stylesheet" href="/css/main.css">
     <link rel="stylesheet" href="/css/stickyfooter.css">
 
@@ -29,35 +31,33 @@
           <a class="nav-link" href="highscore.html">Highscore list</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link active" href="rules.html">Spelregler</a>
+          <a class="nav-link active" href="rules.html" data-toggle="modal" data-target="#exampleModal">Spelregler</a>
         </li>
       </ul>
 
     </header>
 
     <main>
-      <div class="container">
-        <div class="row">
-          <div class="col-12 col-md-6">
-              <div class="jumbotron">
-                <h1 class="display-5">Välkomna!</h1>
-                <p class="lead">Spela det klassiska 4 i rad online!</p>
-                <hr class="my-4">
-                <p class="lead">
-                  <a class="btn btn-primary btn-lg" href="/player.html" role="button">Spela</a>
-                </p>
-              </div>
-          </div>
-          <div class="col-12 col-md-6">
-            <div class="card w-50">
-              <img class="card-img-top" src="/imgs/happy-kids.jpg" alt="Card image cap">
-              <div class="card-block">
-                <h4 class="card-title text-center">4-i-rad</h4>
-              </div>
+      <!-- Modal -->
+      <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Spelregler</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <p>Varannan gång lägger deltagarna en bricka i spelet. Den som först får fyra av sina brickor i rad (vågrätt, lodrätt eller diagonalt) vinner.</p> 
+              <p>Eftersom brickor hela tiden tillförs samtidigt som ytan är begränsad slutar spelet oavgjort när det inte längre finns plats för fler brickor.</p> 
+              <p>Det har demonstrerats att i en match i Fyra i rad, så kan den som lägger först, om han använder rätt strategi, vinna, hur än motståndaren lägger sina brickor.</p>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Stäng</button>
             </div>
           </div>
         </div>
-
       </div>
 
 
