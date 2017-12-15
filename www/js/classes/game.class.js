@@ -93,5 +93,4 @@ if(url == "/play.html") {
   console.log(name2 + " is type " + type2);
   $('.player1').html(name1);
   $('.player2').html(name2);
-  game.newGame();
 }
