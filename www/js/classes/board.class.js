@@ -93,8 +93,9 @@ class Board extends Base {
         // }
 
         // let e = element
-        if(parent.hasClass('board-column')){
+        if(parent.hasClass('board-column') || parent.hasClass('board-column-hover')){
           this.createSingleSlot(parent);
+          this.checkWinner(this.state);
       }
     }
 
