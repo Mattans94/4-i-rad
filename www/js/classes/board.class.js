@@ -206,35 +206,37 @@ class Board extends Base {
 
     }
 
-
-    // template2(){
-    //     let wrapper = '<div>';
-    //     let inner = '';
-    //     for(let co = 0; co < 6; co++){
-    //         inner += '<div class="board-slot red"></div>';
-    //     };
-    //     // console.log(inner);
-    //     return inner = wrapper + inner + '</div>';
-    // }
-
-    // templatesingle(){
-    //     return `<div class="board-slot red"></div>`;
-    // }
-
-
-
-
 }
 
+
+/**
+ * Hc Svnt Dracones
+ *
+ * @param {string} color
+ */
 function hoverFn(color){
   var hoverdiv
-  // $('.board-slot-hover').css('background','red');
+  $('.board-slot-hover').hover(function() {
+    $(this).css({
+      'background': color,
+      'opacity': '100'
+  });
+  $(this).click(function() {
+    // console.log(((board.currentPlayer == 1) ? player2color: player1color))
+    $(this).css({
+    'background': ((board.currentPlayer == 1) ? player2color: player1color), // TODO: Ändra till board.player2.color och board.player1.color
+    'opacity': '100'
+})})
+  }, function(){
+    // $(this).css('background', 'white');
+      $(this).css({
+      'background': 'white',
+      'opacity': '0'
+  })
+});
   $('.board-column .board-slot').hover(function(){
     // $(this).css("background", "red");
-    // console.log($(this).parent().parent().children('#column-hover-' + $(this).parent().attr('id').split('column-').pop()))
     hoverdiv = $(this).parent().parent().children('#column-hover-' + $(this).parent().attr('id').split('column-').pop()).children('.board-slot-hover')
-    // console.log(hoverdiv)
-    // console.log(board.currentPlayer)
     $(this).click(() => {
       // console.log(((board.currentPlayer == 1) ? player2color: player1color))
       hoverdiv.css({
