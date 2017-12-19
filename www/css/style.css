@@ -1,5 +1,5 @@
 header {
-  font-family: 'Kalam', cursive;
+  font-family: 'Comfortaa', cursive;
   margin-bottom: 50px;
   margin-top: 20px;
   font-size: 20px;
@@ -48,6 +48,11 @@ h3 {
 @media only screen and (min-width: 780px) {
   .games p {
     font-size: 24px;
+  }
+}
+@media only screen and (max-width: 510px) {
+  .games p {
+    font-size: 12px;
   }
 }
 html {
@@ -198,5 +203,9 @@ p#computer {
 }
 button {
   cursor: pointer;
+}
+.gamer {
+  font-family: 'Comfortaa', cursive;
+  font-size: 18px;
 }
 /*@import 'stickyfooter';*/
