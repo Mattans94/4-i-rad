@@ -1,0 +1,195 @@
+header {
+  font-family: 'Kalam', cursive;
+  margin-bottom: 50px;
+  margin-top: 20px;
+  font-size: 20px;
+}
+h1 {
+  font-family: 'Comfortaa', cursive;
+  font-size: 70px;
+  margin-bottom: 20px;
+}
+.nav-pills .nav-link.active {
+  background-color: #f4dc42;
+  color: #000;
+}
+.nav-pills .nav-link.hover {
+  background-color: #f4dc42;
+}
+a {
+  color: #000;
+}
+a:hover {
+  color: #f4dc42;
+}
+a:focus {
+  outline: none;
+}
+.jumbotron {
+  padding-bottom: 10px;
+  padding-top: 20px;
+}
+.jumbotron h1 {
+  font-size: 5.9vw;
+}
+.card {
+  border: none;
+}
+.other-games img {
+  width: 100%;
+}
+html {
+  position: relative;
+  min-height: 100%;
+}
+p {
+  font-size: 17px;
+}
+footer {
+  font-family: 'Kalam', cursive;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 120px;
+  justify-content: center;
+}
+footer a:link,
+footer a:active,
+footer a:visited {
+  color: white;
+}
+@media only screen and (max-width: 768px) {
+  footer {
+    height: 200px;
+  }
+}
+@media screen and (max-width: 767px) {
+  body {
+    margin-bottom: 230px;
+  }
+  footer {
+    height: 200px;
+  }
+}
+.board {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 10px;
+}
+.board .board-column-hover {
+  width: 11vw;
+  height: 100%;
+  float: left;
+  position: relative;
+  max-width: 13%;
+}
+.board .board-column-hover .board-slot-hover {
+  width: 80%;
+  height: 9vw;
+  margin: 0 auto;
+  overflow: hidden;
+  position: relative;
+  cursor: pointer;
+  display: block;
+  opacity: 100;
+  z-index: 2;
+  margin-bottom: 10px;
+  max-height: 80px;
+  border-radius: 50%;
+}
+.board .board-column-hover:hover .board-slot-hover {
+  background: red;
+  opacity: 100;
+}
+.board .board-column {
+  width: 11vw;
+  height: 100%;
+  float: left;
+  position: relative;
+  max-width: 13%;
+}
+.board .board-column .board-slot {
+  width: 100%;
+  height: 11vw;
+  margin: 0 auto;
+  overflow: hidden;
+  position: relative;
+  cursor: pointer;
+  display: block;
+  z-index: 2;
+  max-height: 100px;
+}
+.board .board-column .board-slot.red:before {
+  content: "";
+  border-radius: 50%;
+  background: red;
+  position: absolute;
+  height: 80%;
+  width: 80%;
+  left: 10%;
+  top: 10%;
+}
+.board .board-column .board-slot.yellow:before {
+  content: "";
+  border-radius: 50%;
+  background: yellow;
+  position: absolute;
+  height: 80%;
+  width: 80%;
+  left: 10%;
+  top: 10%;
+}
+.board .board-column .board-slot:before {
+  content: "";
+  box-shadow: 0 0 0 20vw blue;
+  border-radius: 50%;
+  position: absolute;
+  height: 80%;
+  width: 80%;
+  left: 10%;
+  top: 10%;
+}
+#column-0 {
+  clear: left;
+}
+.slot {
+  width: 100px;
+  height: 100px;
+  background: red;
+  border-radius: 100%;
+}
+@media screen and (min-width: 767px) {
+  .boardarea {
+    min-height: 875px;
+  }
+}
+.modal-content {
+  background-color: #f4dc42;
+}
+.modal-body {
+  background-color: #fff;
+}
+.players {
+  display: block;
+  margin: 0 auto;
+  width: 10%;
+}
+.players p {
+  display: inline-block;
+  font-size: 20px;
+  font-weight: bold;
+}
+p.hidden,
+p.hidden2 {
+  display: none;
+}
+p#human,
+p#computer {
+  font-size: 38px;
+  margin-left: 50px;
+  margin-top: -10px;
+}
+button {
+  cursor: pointer;
+}
+/*@import 'stickyfooter';*/
