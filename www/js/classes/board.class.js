@@ -3,7 +3,7 @@ const player1color = 'red'
 const player2color = 'yellow'
 
 class Board extends Base {
-    constructor() {
+    constructor(game) {
         super();
         this.state = [
             [0, 0, 0, 0, 0, 0],
@@ -15,16 +15,16 @@ class Board extends Base {
             [0, 0, 0, 0, 0, 0]
         ];
 
-        JSON._save('saves', {
-            board: this
-        });
+        this.game = game;
+        this.player1 = this.game.player1;
+        this.player2 = this.game.player2;
         this.co = 0;
         this.winner = null;
         this.board = this.generateBoard();
-        this.currentPlayer = 1
-        this.width = this.state.length
-        this.height = this.state[0].length
-        hoverFn(player1color)
+        this.currentPlayer = 1;
+        this.width = this.state.length;
+        this.height = this.state[0].length;
+        // this.hoverFn(player1color); //Moved into generateBoard
         this.possibleMoves = new Array(7).fill(1)
     }
 
@@ -63,15 +63,19 @@ class Board extends Base {
         }
     }
 
+    get currentRound(){
+      return Math.ceil(this.co/2);
+    }
+
     nextPlayer() {
       this.currentPlayer ^= 3 // Switches between 1 and 2
         // this.currentPlayer ^= 1 // Switches between 1 and 0 instead
         // this.currentPlayer ^= -2 // Switches between 1 and -1
       if(this.currentPlayer === 1){
-        hoverFn(player1color)
+        this.hoverFn(player1color)
       }
       if(this.currentPlayer === 2){
-        hoverFn(player2color)
+        this.hoverFn(player2color)
       }
   }
 
@@ -104,6 +108,7 @@ class Board extends Base {
 
     }
     checkWinner(bd) {
+
       // console.log(bd);
       // Check down
       for (let row = 0; row < 6; row++) {
@@ -142,14 +147,17 @@ class Board extends Base {
 
       this.co++;
       if (this.winner != null) {
-        $('.board-column-hover').css({'opacity': '0'})
-        return true
+        this.winner = this.winner == 1 ? this.player1 : this.player2;
+        this.winner.rounds = this.currentRound;
+        this.game.highscoreList.register(this.winner);
+        $('.board-column-hover').css({'opacity': '0'});
+        return true;
       } else if (this.co === 42) {
           this.winner = 'draw';
-          $('.board-column-hover').css({'opacity': '0'})
-          return true
+          $('.board-column-hover').css({'opacity': '0'});
+          return true;
       } else {
-        return false
+        return false;
       }
   }
 
@@ -181,6 +189,10 @@ class Board extends Base {
 
     generateBoard() {
         this.render('section.boardarea');
+        $(() => {
+          this.hoverFn(player1color);
+      });
+
     }
 
 
@@ -201,8 +213,8 @@ class Board extends Base {
         element.className += ' yellow'
 
       }
-      $(parent).hover(function(){
-      })
+      // $(parent).hover(function(){
+      // })
       this.nextPlayer()
     }
   }
@@ -235,17 +247,15 @@ class Board extends Base {
 
   }
 
-}
-
-
 
 /**
  * Hc Svnt Dracones
  *
  * @param {string} color
  */
-function hoverFn(color) {
-  var hoverdiv
+hoverFn(color) {
+  let hoverdiv;
+  let board = this;
   $('.board-slot-hover').hover(
     function() {
       $(this).css({
@@ -267,7 +277,7 @@ function hoverFn(color) {
         opacity: '0'
       })
     }
-  )
+  );
   $('.board-column .board-slot').hover(
     function() {
       // $(this).css("background", "red");
@@ -304,5 +314,10 @@ function hoverFn(color) {
         })
       }
     }
-  )
+  );
 }
+
+
+}
+
+

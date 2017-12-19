@@ -1,12 +1,12 @@
 header {
-  font-family: 'Kalam', cursive;
+  font-family: 'Comfortaa', cursive;
   margin-bottom: 50px;
   margin-top: 20px;
   font-size: 20px;
 }
 h1 {
   font-family: 'Comfortaa', cursive;
-  font-size: 70px;
+  font-size: 50px;
   margin-bottom: 20px;
 }
 .nav-pills .nav-link.active {
@@ -38,6 +38,23 @@ a:focus {
 .other-games img {
   width: 100%;
 }
+h2,
+h3 {
+  font-family: 'Comfortaa', cursive;
+}
+.games p {
+  font-size: 18px;
+}
+@media only screen and (min-width: 780px) {
+  .games p {
+    font-size: 24px;
+  }
+}
+@media only screen and (max-width: 480px) {
+  .games p {
+    font-size: 12px;
+  }
+}
 html {
   position: relative;
   min-height: 100%;
@@ -67,16 +84,16 @@ footer a:visited {
   }
 }
 .board {
-  max-width: 800px;
-  margin: 0 auto;
+  max-width: 770px;
   padding: 10px;
+  overflow: hidden;
 }
 .board .board-column-hover {
   width: 11vw;
   height: 100%;
   float: left;
   position: relative;
-  max-width: 13%;
+  max-width: 85px;
 }
 .board .board-column-hover .board-slot-hover {
   width: 80%;
@@ -89,7 +106,7 @@ footer a:visited {
   opacity: 100;
   z-index: 2;
   margin-bottom: 10px;
-  max-height: 80px;
+  max-height: 70px;
   border-radius: 50%;
 }
 .board .board-column-hover:hover .board-slot-hover {
@@ -101,7 +118,7 @@ footer a:visited {
   height: 100%;
   float: left;
   position: relative;
-  max-width: 13%;
+  max-width: 85px;
 }
 .board .board-column .board-slot {
   width: 100%;
@@ -112,7 +129,7 @@ footer a:visited {
   cursor: pointer;
   display: block;
   z-index: 2;
-  max-height: 100px;
+  max-height: 85px;
 }
 .board .board-column .board-slot.red:before {
   content: "";
@@ -186,5 +203,9 @@ p#computer {
 }
 button {
   cursor: pointer;
+}
+.gamer {
+  font-family: 'Comfortaa', cursive;
+  font-size: 18px;
 }
 /*@import 'stickyfooter';*/
