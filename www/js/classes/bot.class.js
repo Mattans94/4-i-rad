@@ -1,7 +1,8 @@
 class Bot extends Player{
 
-	constructor(){
-		super();
+	constructor(name){
+		super(name);
+
 
 	}
 

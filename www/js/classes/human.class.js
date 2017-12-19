@@ -1,7 +1,8 @@
 class Human extends Player{
 
-	constructor(){
-
+	constructor(name){
+		super();
+		this.name = name;
 	}
 
 }
