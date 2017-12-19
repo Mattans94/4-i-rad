@@ -47,6 +47,7 @@ class Game {
     }
 
 
+    //TODO: Remove/make static
     loadHiScores(){
       // @ts-ignore
       JSON._classes(HighscoreList, Human, Bot);
@@ -63,7 +64,16 @@ class Game {
         });
     }
 
-
+    static async loadHiScores(){
+      // @ts-ignore
+      JSON._classes(HighscoreList, Human, Bot);
+      // @ts-ignore
+      return await JSON._load('hi-scores').then((data) => {
+        return data.list;
+      })
+      .catch(() => {
+        return new HighscoreList();
+      });
 }
 
 
