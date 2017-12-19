@@ -6,7 +6,7 @@ header {
 }
 h1 {
   font-family: 'Comfortaa', cursive;
-  font-size: 70px;
+  font-size: 50px;
   margin-bottom: 20px;
 }
 .nav-pills .nav-link.active {
@@ -38,9 +38,24 @@ a:focus {
 .other-games img {
   width: 100%;
 }
+h2,
+h3 {
+  font-family: 'Comfortaa', cursive;
+}
+.games p {
+  font-size: 18px;
+}
+@media only screen and (min-width: 780px) {
+  .games p {
+    font-size: 24px;
+  }
+}
 html {
   position: relative;
   min-height: 100%;
+}
+body {
+  margin-bottom: 230px;
 }
 p {
   font-size: 17px;
@@ -59,14 +74,6 @@ footer a:visited {
   color: white;
 }
 @media only screen and (max-width: 768px) {
-  footer {
-    height: 200px;
-  }
-}
-@media screen and (max-width: 767px) {
-  body {
-    margin-bottom: 230px;
-  }
   footer {
     height: 200px;
   }
@@ -157,6 +164,11 @@ footer a:visited {
   height: 100px;
   background: red;
   border-radius: 100%;
+}
+@media screen and (min-width: 767px) {
+  .boardarea {
+    min-height: 700px;
+  }
 }
 .modal-content {
   background-color: #f4dc42;
