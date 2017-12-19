@@ -19,7 +19,7 @@ class Game {
     //     name2 = this.player2.name;
     // }
 
-
+    // TODO: används dessa?
     setPlayer1Type(response) {
         this.player1Type = response;
     }
@@ -108,7 +108,7 @@ $(document).on("click", "#switchButton2", function() {
 
 let url = location.pathname;
 
-
+// TODO: Lägg till check med pushstate eller något för att se om man kom från player.html, annars cleara localstorage så att inte name/type hämtas från gammal session
 function loadPlayers() {
     //Default values for player type is human, only if page is not play.html
     if (!(url == '/play.html' || url == '/player.html')) {
@@ -116,6 +116,7 @@ function loadPlayers() {
         localStorage.setItem('player2Type', "human");
         return false; // Not ready to start
     } else if (url == '/player.html') {
+      localStorage.clear();
     $(document).on('click', '.startGame', function() {
         let val1 = $('#playerName1').val() || 'Player 1';
         let val2 = $('#playerName2').val() || 'Player 2';
