@@ -28,8 +28,6 @@ class Game{
 	}
 }
 
-let game = new Game();
-
 
 
 //Change stored player type on button click
