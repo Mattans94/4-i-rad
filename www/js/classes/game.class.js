@@ -4,10 +4,11 @@ class Game {
     }
 
     newGame() {
-    	this.loadHiScores();
+    	
         this.board = new Board(this);
         this.board.generateBoard();
-        //return this.board; // really?
+        this.loadHiScores();
+        return this.board; // really?
     }
 
     setName(player1, player2) {
@@ -32,7 +33,9 @@ class Game {
     		this.player1 = players[0];
     		this.player2 = players[1];
         this.board = this.newGame(this.player1, this.player2);
-    	}
+    	} else {
+            this.board = this.newGame(this.player1, this.player2);
+        }
     	
     }
 

@@ -175,6 +175,11 @@ footer a:visited {
     min-height: 700px;
   }
 }
+@media screen and (max-width: 768px) {
+  .boardarea {
+    min-height: 500px;
+  }
+}
 .modal-content {
   background-color: #f4dc42;
 }
