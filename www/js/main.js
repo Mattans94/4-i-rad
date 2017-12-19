@@ -7,7 +7,8 @@ JSON._classes(Board);
 JSON._load('saves')
 .then((data) => {
   // Retrieve the app from JSON
-  board = data.board;
+  // board = data.board;
+  board = new Board();
 })
 .catch(() => {
   // No working json data
