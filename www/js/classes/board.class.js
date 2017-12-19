@@ -25,6 +25,7 @@ class Board extends Base {
         this.width = this.state.length
         this.height = this.state[0].length
         hoverFn(player1color)
+        this.possibleMoves = new Array(7).fill(1)
     }
 
     /**
@@ -63,7 +64,9 @@ class Board extends Base {
     }
 
     nextPlayer() {
-      this.currentPlayer ^= 3 // Switches between 1 and 2 // this.currentPlayer ^= 1 // Switches between 1 and 0 instead
+      this.currentPlayer ^= 3 // Switches between 1 and 2
+        // this.currentPlayer ^= 1 // Switches between 1 and 0 instead
+        // this.currentPlayer ^= -2 // Switches between 1 and -1
       if(this.currentPlayer === 1){
         hoverFn(player1color)
       }
@@ -77,6 +80,9 @@ class Board extends Base {
             return (slot === 0)
         })
         if (this.setSlot(column, y, this.currentPlayer)) {
+            if (y === 6){
+              this.possibleMoves[column] = 0
+            }
             return y
         } else {
             return -1
