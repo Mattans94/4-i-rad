@@ -15,9 +15,6 @@ class Board extends Base {
             [0, 0, 0, 0, 0, 0]
         ];
 
-        JSON._save('saves', {
-            board: this
-        });
         this.game = game;
         this.player1 = this.game.player1;
         this.player2 = this.game.player2;

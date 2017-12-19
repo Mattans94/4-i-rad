@@ -4,7 +4,7 @@ class Game {
     }
 
     newGame() {
-    		this.highscoreList = new HighscoreList(); // ? don't do this in the end
+    	this.loadHiScores();
         this.board = new Board(this);
         this.board.generateBoard();
         //return this.board; // really?
@@ -35,6 +35,23 @@ class Game {
     	}
     	
     }
+
+
+    loadHiScores(){
+        JSON._classes(HighscoreList, Human, Bot);
+        JSON._load('hi-scores')
+        .then((data) => {
+            this.highscoreList = data.list;
+        })
+        .catch(() => {
+            this.highscoreList = new HighscoreList();
+        })
+        .then(() => {
+            // only need something here if rendering highscore list directly
+        });
+    }
+
+
 }
 
 
