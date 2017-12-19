@@ -3,17 +3,33 @@ p {
 }
 
 footer {
-  position: relative;
+  font-family: 'Kalam', cursive;
+  position: absolute;
   bottom: 0;
   width: 100%;
-  height: 60px;
+  height: 120px;
   justify-content: center;
+
+a:link, a:active, a:visited {
+    color: white;
+	}
 }
 
 
 @media only screen and (max-width: 768px){
 	footer{
-		height: 100px;
+		height: 200px;
 	}
 }
 
+@media screen and (max-width: 767px) {
+
+    body {
+      margin-bottom:230px;
+    }
+
+    footer {
+      height: 200px;
+    }
+
+}

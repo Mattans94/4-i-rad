@@ -1,0 +1,28 @@
+footer {
+  font-family: 'Kalam', cursive;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  /* Set the fixed height of the footer here */
+  height: 120px;
+}
+a:link,
+a:active,
+a:visited {
+  color: white;
+}
+a:hover {
+  color: #ddd;
+}
+/*
+  Other footer height for Boostrap xs, sm
+  (for breakpoint see: https://getbootstrap.com/css/)
+*/
+@media screen and (max-width: 767px) {
+  body {
+    margin-bottom: 230px;
+  }
+  footer {
+    height: 200px;
+  }
+}
