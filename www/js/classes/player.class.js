@@ -1,15 +1,7 @@
 class Player {
 
-	constructor(name, color, playerId){
+	constructor(name){
 		this.name = name;
-		this.color = color;
-		this.playerId = playerId;
-		this.numberOfMoves = 0;
-	}
-
-	makeMove(){	
-		this.numberOfMoves++
-
 	}
 
 }
