@@ -18,27 +18,42 @@
   <body>
     
     <header>
-      <div class="container">
-        <div class="row">
-          <div class="col-12">
-            <h1>FYRA I RAD</h1>
-            <ul class="nav nav-pills nav-fill">
-              <li class="nav-item">
-                <a class="nav-link" href="index.html">Start</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link active" href="player.html">Play</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="highscore.html">Highscore list</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="rules.html">Spelregler</a>
-              </li>
-            </ul>
+      <h1>FYRA I RAD</h1>
+      <ul class="nav nav-pills nav-fill mb-4">
+        <li class="nav-item">
+          <a class="nav-link" href="index.html">Start</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link active" href="player.html">Play</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="highscore.html">Highscore list</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="rules.html" data-toggle="modal" data-target="#exampleModal">Spelregler</a>
+        </li>
+      </ul>
+      <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Spelregler</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <p>Varannan gång lägger deltagarna en bricka i spelet. Den som först får fyra av sina brickor i rad (vågrätt, lodrätt eller diagonalt) vinner.</p> 
+              <p>Eftersom brickor hela tiden tillförs samtidigt som ytan är begränsad slutar spelet oavgjort när det inte längre finns plats för fler brickor.</p> 
+              <p>Det har demonstrerats att i en match i Fyra i rad, så kan den som lägger först, om han använder rätt strategi, vinna, hur än motståndaren lägger sina brickor.</p>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Stäng</button>
+            </div>
           </div>
         </div>
       </div>
+
     </header>
 
     <main>
@@ -47,7 +62,8 @@
         </section>
       </div>
         
-
+<div class="player1"></div>
+<div class="player2"></div>
 
     </main>
 
@@ -111,9 +127,10 @@
     <script src="/js/libs/popper-1.11.0.js"></script>
     <script src="/js/libs/bootstrap-4-beta.js"></script>
     <!-- Application specific JavaScript -->
-    <script src="/js/classes/player.class.js"></script>
     <script src="/js/classes/base.class.js"></script>
     <script src="/js/classes/board.class.js"></script>
+    <script src="/js/classes/game.class.js"></script>
+    <script src="/js/classes/player.class.js"></script>
     <script src="/js/main.js"></script>
   </body>
 </html>

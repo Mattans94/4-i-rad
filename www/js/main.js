@@ -13,7 +13,7 @@ JSON._load('saves')
 .catch(() => {
   // No working json data
   // create new app
-	board = new Board();
+	let game = new Game();
 })
 .then(() => {
 
@@ -21,4 +21,3 @@ JSON._load('saves')
  //  // Tell the app to render to <main>
  //  board.generateBoard();
 });
-
