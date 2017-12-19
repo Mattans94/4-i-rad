@@ -1696,9 +1696,9 @@ jsonfile@^3.0.0:
   optionalDependencies:
     graceful-fs "^4.1.6"
 
-jsonflex@^1.0.9:
-  version "1.0.9"
-  resolved "https://registry.yarnpkg.com/jsonflex/-/jsonflex-1.0.9.tgz#2de0c95d2ba500475ac4b07f39ac7d79dd76cdec"
+jsonflex@^1.0.10:
+  version "1.0.10"
+  resolved "https://registry.yarnpkg.com/jsonflex/-/jsonflex-1.0.10.tgz#2c9bbf0e6442821ffe0aafdae4ab8ded8d8a921f"
   dependencies:
     app-root-path "^2.0.1"
     asleep "^1.0.3"
