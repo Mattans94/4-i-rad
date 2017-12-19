@@ -158,6 +158,11 @@ footer a:visited {
   background: red;
   border-radius: 100%;
 }
+@media screen and (min-width: 767px) {
+  .boardarea {
+    min-height: 875px;
+  }
+}
 .modal-content {
   background-color: #f4dc42;
 }
