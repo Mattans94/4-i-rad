@@ -37,14 +37,13 @@
 
     </header>
 
- 
+
 
       <div class="container">
         <form>
-          <h2 class="headline">hej</h2>
           <div class="form-group row">
             <label for="inputname" class="col-sm-2 col-form-label">Player 1</label>
-            <div class="col-sm-6">
+            <div class="col-sm-4">
               <div class="row">
                 <input type="name" class="form-control" id="playerName1" placeholder="Name:">
               </div>
@@ -54,10 +53,18 @@
             </div>
             <p id="human" class="show">&#x1F64B;</p>
             <p id="computer" class="hidden">&#x1F4BB;</p>
+            <div class="player1RadioBtns col-3 d-none">
+              <div class="radio-inline">
+                <label><input type="radio" name="optradio">Lätt</label>
+              </div>
+              <div class="radio-inline">
+                <label><input type="radio" name="optradio">Svår</label>
+              </div>
+            </div>
           </div>
           <div class="form-group row">
             <label for="inputname" class="col-sm-2 col-form-label">Player 2</label>
-            <div class="col-sm-6">
+            <div class="col-sm-4">
               <div class="row">
                 <input type="name" class="form-control" id="playerName2" placeholder="Name:">
               </div>
@@ -65,12 +72,20 @@
             <div class="offset-sm-2 col-sm-1">
               <button type="button" class="btn btn-secondary" id="switchButton2">Spelare</button>
             </div>
-              <p id="human" class="show2">&#x1F64B;</p>
-              <p id="computer" class="hidden2">&#x1F4BB;</p>
+            <p id="human" class="show2">&#x1F64B;</p>
+            <p id="computer" class="hidden2">&#x1F4BB;</p>
+            <div class="player2RadioBtns col-3 d-none">
+              <div class="radio-inline">
+                <label><input type="radio" name="optradio">Lätt</label>
+              </div>
+              <div class="radio-inline">
+                <label><input type="radio" name="optradio">Svår</label>
+              </div>
+            </div>
           </div>
             <div class="form-group row">
               <div class="offset-sm-2 col-sm-10">
-                <a class="btn btn-primary" href="/play.html" role="button">Starta Spel</a>
+                <a class="btn btn-primary startGame" href="/play.html" role="button">Starta Spel</a>
               </div>
           </div>
         </form>
@@ -83,15 +98,15 @@
 
 
      <footer class="container-fluid bg-dark text-light">
-      
+
       <section class="row mt-3">
-      
+
       <!-- Equal width columns can be acheived with just setting the col class-->
 
       <!-- please note: does not allow for responsive layout / different column width on different viewport sizes-->
 
         <div class="col-9 col-md-4">
-          
+
           <div class="row justify-content-center">
             <div class="col-6 col-md-auto mt-2">
               <h6>Group -C</h6>
@@ -107,19 +122,19 @@
         </div>
 
         <div class="col-md-4 d-none d-md-block">
-      
+
           <div class="row justify-content-center">
             <div class="col-6 col-md-auto mt-2">
               <h6>E-mail</h6>
               <p class="mb-1"><a href="mailto:info@groupc.com">info@groupc.com</p>
-              
+
             </div>
           </div>
-        
+
         </div>
       </section> <!--end of row-->
 
-    
+
     </footer>
 
 

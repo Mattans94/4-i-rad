@@ -3,7 +3,7 @@ const player1color = 'red'
 const player2color = 'yellow'
 
 class Board extends Base {
-    constructor() {
+    constructor(game) {
         super();
         this.state = [
             [0, 0, 0, 0, 0, 0],
@@ -15,16 +15,16 @@ class Board extends Base {
             [0, 0, 0, 0, 0, 0]
         ];
 
-        JSON._save('saves', {
-            board: this
-        });
+        this.game = game;
+        this.player1 = this.game.player1;
+        this.player2 = this.game.player2;
         this.co = 0;
         this.winner = null;
         this.board = this.generateBoard();
-        this.currentPlayer = 1
-        this.width = this.state.length
-        this.height = this.state[0].length
-        hoverFn(player1color)
+        this.currentPlayer = 1;
+        this.width = this.state.length;
+        this.height = this.state[0].length;
+        hoverFn(player1color, this);
     }
 
     /**
@@ -62,13 +62,17 @@ class Board extends Base {
         }
     }
 
+    get currentRound(){
+      return Math.ceil(this.co/2);
+    }
+
     nextPlayer() {
       this.currentPlayer ^= 3 // Switches between 1 and 2 // this.currentPlayer ^= 1 // Switches between 1 and 0 instead
       if(this.currentPlayer === 1){
-        hoverFn(player1color)
+        hoverFn(player1color, this)
       }
       if(this.currentPlayer === 2){
-        hoverFn(player2color)
+        hoverFn(player2color, this)
       }
   }
 
@@ -98,6 +102,7 @@ class Board extends Base {
 
     }
     checkWinner(bd) {
+
       // console.log(bd);
       // Check down
       for (let row = 0; row < 6; row++) {
@@ -136,14 +141,17 @@ class Board extends Base {
 
       this.co++;
       if (this.winner != null) {
-        $('.board-column-hover').css({'opacity': '0'})
-        return true
+        this.winner = this.winner == 1 ? this.player1 : this.player2;
+        this.winner.rounds = this.currentRound;
+        this.game.highscoreList.register(this.winner);
+        $('.board-column-hover').css({'opacity': '0'});
+        return true;
       } else if (this.co === 42) {
           this.winner = 'draw';
-          $('.board-column-hover').css({'opacity': '0'})
-          return true
+          $('.board-column-hover').css({'opacity': '0'});
+          return true;
       } else {
-        return false
+        return false;
       }
   }
 
@@ -238,7 +246,7 @@ class Board extends Base {
  *
  * @param {string} color
  */
-function hoverFn(color) {
+function hoverFn(color, board) {
   var hoverdiv
   $('.board-slot-hover').hover(
     function() {
