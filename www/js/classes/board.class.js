@@ -24,7 +24,7 @@ class Board extends Base {
         this.currentPlayer = 1;
         this.width = this.state.length;
         this.height = this.state[0].length;
-        hoverFn(player1color, this);
+        // this.hoverFn(player1color); //Moved into generateBoard
     }
 
     /**
@@ -69,10 +69,10 @@ class Board extends Base {
     nextPlayer() {
       this.currentPlayer ^= 3 // Switches between 1 and 2 // this.currentPlayer ^= 1 // Switches between 1 and 0 instead
       if(this.currentPlayer === 1){
-        hoverFn(player1color, this)
+        this.hoverFn(player1color)
       }
       if(this.currentPlayer === 2){
-        hoverFn(player2color, this)
+        this.hoverFn(player2color)
       }
   }
 
@@ -183,6 +183,10 @@ class Board extends Base {
 
     generateBoard() {
         this.render('section.boardarea');
+        $(() => {
+          this.hoverFn(player1color);
+      });
+
     }
 
 
@@ -203,8 +207,8 @@ class Board extends Base {
         element.className += ' yellow'
 
       }
-      $(parent).hover(function(){
-      })
+      // $(parent).hover(function(){
+      // })
       this.nextPlayer()
     }
   }
@@ -237,17 +241,15 @@ class Board extends Base {
 
   }
 
-}
-
-
 
 /**
  * Hc Svnt Dracones
  *
  * @param {string} color
  */
-function hoverFn(color, board) {
-  var hoverdiv
+hoverFn(color) {
+  let hoverdiv;
+  let board = this;
   $('.board-slot-hover').hover(
     function() {
       $(this).css({
@@ -269,7 +271,7 @@ function hoverFn(color, board) {
         opacity: '0'
       })
     }
-  )
+  );
   $('.board-column .board-slot').hover(
     function() {
       // $(this).css("background", "red");
@@ -306,5 +308,10 @@ function hoverFn(color, board) {
         })
       }
     }
-  )
+  );
 }
+
+
+}
+
+
