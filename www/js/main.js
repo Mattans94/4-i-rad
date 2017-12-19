@@ -12,7 +12,7 @@ JSON._load('saves')
 .catch(() => {
   // No working json data
   // create new app
-	let board = new Board();
+	let game = new Game();
 })
 .then(() => {
 
