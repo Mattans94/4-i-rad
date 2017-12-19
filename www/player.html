@@ -15,7 +15,7 @@
 
   </head>
   <body>
-    
+
     <header>
       <div class="container">
         <div class="row">
@@ -48,8 +48,8 @@
               </button>
             </div>
             <div class="modal-body">
-              <p>Varannan gång lägger deltagarna en bricka i spelet. Den som först får fyra av sina brickor i rad (vågrätt, lodrätt eller diagonalt) vinner.</p> 
-              <p>Eftersom brickor hela tiden tillförs samtidigt som ytan är begränsad slutar spelet oavgjort när det inte längre finns plats för fler brickor.</p> 
+              <p>Varannan gång lägger deltagarna en bricka i spelet. Den som först får fyra av sina brickor i rad (vågrätt, lodrätt eller diagonalt) vinner.</p>
+              <p>Eftersom brickor hela tiden tillförs samtidigt som ytan är begränsad slutar spelet oavgjort när det inte längre finns plats för fler brickor.</p>
               <p>Det har demonstrerats att i en match i Fyra i rad, så kan den som lägger först, om han använder rätt strategi, vinna, hur än motståndaren lägger sina brickor.</p>
             </div>
             <div class="modal-footer">
@@ -63,42 +63,58 @@
 
     <main>
       <div class="container">
-         <form>
-           <h2 class="headline">hej</h2>
-           <div class="form-group row">
-             <label for="inputname" class="col-sm-2 col-form-label">Player 1</label>
-             <div class="col-sm-6">
-               <div class="row">
-                 <input type="name" class="form-control" id="playerName1" placeholder="Name:">
-               </div>
-             </div>
-             <div class="offset-sm-2 col-sm-1">
-               <button type="button" class="btn btn-secondary" id="switchButton1">Spelare</button>
-             </div>
-             <p id="human" class="show">&#x1F64B;</p>
-             <p id="computer" class="hidden">&#x1F4BB;</p>
-           </div>
-           <div class="form-group row">
-             <label for="inputname" class="col-sm-2 col-form-label">Player 2</label>
-             <div class="col-sm-6">
-               <div class="row">
-                 <input type="name" class="form-control" id="playerName2" placeholder="Name:">
-               </div>
-             </div>
-             <div class="offset-sm-2 col-sm-1">
-               <button type="button" class="btn btn-secondary" id="switchButton2">Spelare</button>
-             </div>
-               <p id="human" class="show2">&#x1F64B;</p>
-               <p id="computer" class="hidden2">&#x1F4BB;</p>
-           </div>
-             <div class="form-group row">
-               <div class="offset-sm-2 col-sm-10">
-                 <a class="btn btn-primary" href="/play.html" role="button">Starta Spel</a>
-               </div>
-           </div>
-         </form>
+        <form>
+          <div class="form-group row">
+            <label for="inputname" class="col-sm-2 col-form-label">Player 1</label>
+            <div class="col-sm-4">
+              <div class="row">
+                <input type="name" class="form-control" id="playerName1" placeholder="Name:">
+              </div>
+            </div>
+            <div class="offset-sm-2 col-sm-1">
+              <button type="button" class="btn btn-secondary" id="switchButton1">Spelare</button>
+            </div>
+            <p id="human" class="show">&#x1F64B;</p>
+            <p id="computer" class="hidden">&#x1F4BB;</p>
+            <div class="player1RadioBtns col-3 d-none">
+              <div class="radio-inline">
+                <label><input type="radio" name="optradio">Lätt</label>
+              </div>
+              <div class="radio-inline">
+                <label><input type="radio" name="optradio">Svår</label>
+              </div>
+            </div>
+          </div>
+          <div class="form-group row">
+            <label for="inputname" class="col-sm-2 col-form-label">Player 2</label>
+            <div class="col-sm-4">
+              <div class="row">
+                <input type="name" class="form-control" id="playerName2" placeholder="Name:">
+              </div>
+            </div>
+            <div class="offset-sm-2 col-sm-1">
+              <button type="button" class="btn btn-secondary" id="switchButton2">Spelare</button>
+            </div>
+            <p id="human" class="show2">&#x1F64B;</p>
+            <p id="computer" class="hidden2">&#x1F4BB;</p>
+            <div class="player2RadioBtns col-3 d-none">
+              <div class="radio-inline">
+                <label><input type="radio" name="optradio">Lätt</label>
+              </div>
+              <div class="radio-inline">
+                <label><input type="radio" name="optradio">Svår</label>
+              </div>
+            </div>
+          </div>
+            <div class="form-group row">
+              <div class="offset-sm-2 col-sm-10">
+                <a class="btn btn-primary startGame" href="/play.html" role="button">Starta Spel</a>
+              </div>
+          </div>
+        </form>
 
-       </div>
+      </div>
+
      </main>
 
 
@@ -109,44 +125,44 @@
         <div class="row mt-3">
 
        <!-- <section class="row mt-3"> -->
-      
+
       <!-- Equal width columns can be acheived with just setting the col class-->
 
       <!-- please note: does not allow for responsive layout / different column width on different viewport sizes-->
 
         <div class="col-9 col-md-4 mt-3">
-          
+
           <div class="row justify-content-center">
             <div class="col-6 col-md-auto">
               <h6>4 I RAD</h6>
               <p class="mb-1"><i class="fa fa-map-marker" aria-hidden="true"></i>  Stortorget 3 | 213 00 Malmö</p>
               <p class="mb-1"><i class="fa fa-phone" aria-hidden="true"></i>   +46-702726283</p>
-              
+
             </div>
           </div>
 
         </div>
 
         <div class="col-md-4 d-none d-md-block mt-3">
-      
+
           <div class="row justify-content-center">
             <div class="col-6 col-md-auto">
               <h6>E-post</h6>
               <p class="mb-1"><a href="mailto:info@gruppc.se"><i class="fa fa-envelope-o" aria-hidden="true"></i>   info@gruppc.se</p>
-              
+
             </div>
           </div>
-        
+
         </div>
 
         <div class="col-1 col-md-4 mt-3">
-        
+
           <div class="row justify-content-center">
             <div class="col-6 col-md-auto">
               <p class="mb-1"><a class="text-light"href="#"><i class="fa fa-facebook-official fa-2x" aria-hidden="true"></i></a></p>
               <p class="mb-1"><a class="text-light"href="#"><i class="fa fa-instagram fa-2x" aria-hidden="true"></i></a></p>
 
-              
+
             </div>
           </div>
 
@@ -154,7 +170,7 @@
       <!-- </section> -->
   </footer>
 
-              
+
             </div>
           </div>
 

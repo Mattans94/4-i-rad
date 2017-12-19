@@ -155,7 +155,7 @@ footer a:visited {
 }
 @media screen and (min-width: 767px) {
   .boardarea {
-    min-height: 875px;
+    min-height: 700px;
   }
 }
 .modal-content {
