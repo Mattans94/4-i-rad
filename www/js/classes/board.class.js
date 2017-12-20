@@ -162,6 +162,7 @@ class Board extends Base {
   }
 
     click(element, instances){
+
       let parent = element.parent();
       // if(parent.hasClass('board-column')){
       //     this.createSlot(parent);
@@ -317,6 +318,48 @@ hoverFn(color) {
   );
 }
 
+static pureCheckWinner(bd){
+
+  if (typeof bd === 'undefined'){
+    return null
+  }
+
+  let winner = 0;
+  for (let row = 0; row < 6; row++) {
+
+    for (let col = 0; col < 7; col++) {
+
+        for (let player of [1, -1]) {
+
+            //vertical
+
+            // if(bd[col][row] == player){
+            //   console.log('col', col);
+            //   console.log('row',row);
+            // }
+
+            if (row < 3 && bd[col][row] == player && bd[col][row + 1] == player && bd[col][row + 2] == player && bd[col][row + 3] == player) {
+                return player;
+            }
+
+            // horizontal
+
+            if (col < 3 && bd[col][row] == player && bd[col + 1][row] == player && bd[col + 2][row] == player && bd[col + 3][row] == player) {
+                return player;
+            }
+
+            if (col < 4 && bd[col][row] == player && bd[col + 1][row + 1] == player && bd[col + 2][row + 2] == player && bd[col + 3][row + 3] == player) {
+                return player;
+            }
+
+            if (col > 2 && row < 3 && bd[col][row] == player && bd[col - 1][row + 1] == player && bd[col - 2][row + 2] == player && bd[col - 3][row + 3] == player) {
+                return player;
+            }
+        }
+    }
+}
+return winner;
+}
 
 }
 
