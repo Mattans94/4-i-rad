@@ -24,7 +24,8 @@ class Board extends Base {
         this.currentPlayer = 1;
         this.width = this.state.length;
         this.height = this.state[0].length;
-        hoverFn(player1color, this);
+        // this.hoverFn(player1color); //Moved into generateBoard
+        this.possibleMoves = new Array(7).fill(1)
     }
 
     /**
@@ -67,12 +68,14 @@ class Board extends Base {
     }
 
     nextPlayer() {
-      this.currentPlayer ^= 3 // Switches between 1 and 2 // this.currentPlayer ^= 1 // Switches between 1 and 0 instead
+      this.currentPlayer ^= 3 // Switches between 1 and 2
+        // this.currentPlayer ^= 1 // Switches between 1 and 0 instead
+        // this.currentPlayer ^= -2 // Switches between 1 and -1
       if(this.currentPlayer === 1){
-        hoverFn(player1color, this)
+        this.hoverFn(player1color)
       }
       if(this.currentPlayer === 2){
-        hoverFn(player2color, this)
+        this.hoverFn(player2color)
       }
   }
 
@@ -81,6 +84,9 @@ class Board extends Base {
             return (slot === 0)
         })
         if (this.setSlot(column, y, this.currentPlayer)) {
+            if (y === 6){
+              this.possibleMoves[column] = 0
+            }
             return y
         } else {
             return -1
@@ -156,6 +162,7 @@ class Board extends Base {
   }
 
     click(element, instances){
+
       let parent = element.parent();
       // if(parent.hasClass('board-column')){
       //     this.createSlot(parent);
@@ -183,6 +190,10 @@ class Board extends Base {
 
     generateBoard() {
         this.render('section.boardarea');
+        $(() => {
+          this.hoverFn(player1color);
+      });
+
     }
 
 
@@ -203,8 +214,8 @@ class Board extends Base {
         element.className += ' yellow'
 
       }
-      $(parent).hover(function(){
-      })
+      // $(parent).hover(function(){
+      // })
       this.nextPlayer()
     }
   }
@@ -237,17 +248,15 @@ class Board extends Base {
 
   }
 
-}
-
-
 
 /**
  * Hc Svnt Dracones
  *
  * @param {string} color
  */
-function hoverFn(color, board) {
-  var hoverdiv
+hoverFn(color) {
+  let hoverdiv;
+  let board = this;
   $('.board-slot-hover').hover(
     function() {
       $(this).css({
@@ -269,7 +278,7 @@ function hoverFn(color, board) {
         opacity: '0'
       })
     }
-  )
+  );
   $('.board-column .board-slot').hover(
     function() {
       // $(this).css("background", "red");
@@ -306,5 +315,52 @@ function hoverFn(color, board) {
         })
       }
     }
-  )
+  );
 }
+
+static pureCheckWinner(bd){
+
+  if (typeof bd === 'undefined'){
+    return null
+  }
+
+  let winner = 0;
+  for (let row = 0; row < 6; row++) {
+
+    for (let col = 0; col < 7; col++) {
+
+        for (let player of [1, -1]) {
+
+            //vertical
+
+            // if(bd[col][row] == player){
+            //   console.log('col', col);
+            //   console.log('row',row);
+            // }
+
+            if (row < 3 && bd[col][row] == player && bd[col][row + 1] == player && bd[col][row + 2] == player && bd[col][row + 3] == player) {
+                return player;
+            }
+
+            // horizontal
+
+            if (col < 3 && bd[col][row] == player && bd[col + 1][row] == player && bd[col + 2][row] == player && bd[col + 3][row] == player) {
+                return player;
+            }
+
+            if (col < 4 && bd[col][row] == player && bd[col + 1][row + 1] == player && bd[col + 2][row + 2] == player && bd[col + 3][row + 3] == player) {
+                return player;
+            }
+
+            if (col > 2 && row < 3 && bd[col][row] == player && bd[col - 1][row + 1] == player && bd[col - 2][row + 2] == player && bd[col - 3][row + 3] == player) {
+                return player;
+            }
+        }
+    }
+}
+return winner;
+}
+
+}
+
+
