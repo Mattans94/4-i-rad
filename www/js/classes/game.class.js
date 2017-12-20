@@ -4,10 +4,11 @@ class Game {
       if (this.getPlayers() && this.player1 && this.player2){ //Ready to start game
         this.newGame();
       }
+      this.loadHiScores();
     }
 
     newGame() {
-    	this.loadHiScores();
+    	this.loadHiScores(); //TODO: Remove?
       this.board = new Board(this);
       this.board.generateBoard();
     }
