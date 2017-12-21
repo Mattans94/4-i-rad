@@ -25,7 +25,17 @@ a:hover {
 a:focus {
   outline: none;
 }
-main .jumbotron {
+@media only screen and (min-width: 768px) {
+  .nav-item {
+    font-size: 24px;
+  }
+}
+@media only screen and (max-width: 480px) {
+  .nav-item {
+    font-size: 14px;
+  }
+}
+.jumbotron {
   padding-bottom: 10px;
   padding-top: 20px;
 }
@@ -204,6 +214,9 @@ footer a:visited {
   background-image: url("../imgs/Confetti.jpg");
   color: white;
   text-shadow: -1px -1px 0 #000000, 1px -1px 0 #000000, -1px 1px 0 #000000, 1px 1px 0 #000000;
+}
+#gameOverModal .close {
+  color: white;
 }
 #ruleModal .modal-content {
   background-color: #f4dc42;
