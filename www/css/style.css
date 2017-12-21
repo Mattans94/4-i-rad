@@ -35,35 +35,46 @@ a:focus {
     font-size: 14px;
   }
 }
-.jumbotron {
+main .jumbotron {
   padding-bottom: 10px;
   padding-top: 20px;
 }
-.jumbotron h1 {
+main .jumbotron h1 {
   font-size: 5.9vw;
 }
-.card {
+main .card {
   border: none;
 }
-.other-games img {
+main .other-games img {
   width: 100%;
 }
-h2,
-h3 {
+main h2,
+main h3 {
   font-family: 'Comfortaa', cursive;
 }
-.games p {
+main .games p {
   font-size: 18px;
 }
 @media only screen and (min-width: 780px) {
-  .games p {
+  main .games p {
     font-size: 24px;
   }
 }
 @media only screen and (max-width: 480px) {
-  .games p {
+  main .games p {
     font-size: 12px;
   }
+}
+main .btn-newgame,
+main .btn-gameover {
+  background-color: #f4dc42;
+  color: #000;
+  margin-right: 15px;
+  margin-top: 35px;
+  border-radius: 3.25rem;
+}
+main .btn-newgame {
+  margin-right: 45px;
 }
 html {
   position: relative;

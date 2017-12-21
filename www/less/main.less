@@ -1,38 +1,51 @@
-.jumbotron{
-	padding-bottom: 10px;
-	padding-top: 20px;
-}
-
-.jumbotron h1{
-	font-size: 5.9vw;
-}
-
-.card{
-	border:none;
-}
-
-.other-games img {
-	width: 100%;
-}
-
-h2,h3 {
-	font-family: 'Comfortaa', cursive;
-
-}
-
-.games p {
-	font-size: 18px;
-}
-
-@media only screen and (min-width: 780px){
-	.games p {
-		font-size: 24px;
+main{
+	.jumbotron{
+		padding-bottom: 10px;
+		padding-top: 20px;
 	}
 
-}
+	.jumbotron h1{
+		font-size: 5.9vw;
+	}
 
-@media only screen and (max-width: 480px){
+	.card{
+		border:none;
+	}
+
+	.other-games img {
+		width: 100%;
+	}
+
+	h2,h3 {
+		font-family: 'Comfortaa', cursive;
+
+	}
+
 	.games p {
-		font-size: 12px;
+		font-size: 18px;
+	}
+
+	@media only screen and (min-width: 780px){
+		.games p {
+			font-size: 24px;
+		}
+
+	}
+
+	@media only screen and (max-width: 480px){
+		.games p {
+			font-size: 12px;
+		}
+	}
+
+	.btn-newgame, .btn-gameover{
+		background-color: @bg;
+		color:#000;
+		margin-right: 15px;
+		margin-top: 35px;
+		border-radius: 3.25rem;
+	}
+	.btn-newgame{
+		margin-right: 45px;
 	}
 }
