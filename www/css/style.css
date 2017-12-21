@@ -35,7 +35,7 @@ a:focus {
     font-size: 14px;
   }
 }
-.jumbotron {
+main .jumbotron {
   padding-bottom: 10px;
   padding-top: 20px;
 }
