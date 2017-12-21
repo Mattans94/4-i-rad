@@ -180,10 +180,13 @@ footer a:visited {
     min-height: 500px;
   }
 }
-.modal-content {
+.playercard {
+  margin-top: 150px;
+}
+#ruleModal .modal-content {
   background-color: #f4dc42;
 }
-.modal-body {
+#ruleModal .modal-body {
   background-color: #fff;
 }
 .players {
