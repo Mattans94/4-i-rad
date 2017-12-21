@@ -7,7 +7,7 @@ if (Array.isArray(list.list)){
   list.list.forEach((item, index) => {
     if (item.name && item.rounds){
       data += `<tr>
-      <th scope="row">${index}</th>
+      <th scope="row">${index+1}</th>
       <td>${item.name}</td>
       <td>${item.rounds}</td>
     </tr>`
