@@ -261,22 +261,22 @@ hoverFn(color) {
   $('.board-slot-hover').hover(
     function() {
       $(this).css({
-        background: color,
-        opacity: '100'
+        background: color
+        // opacity: '100'
       })
       $(this).click(function() {
         // console.log(((board.currentPlayer == 1) ? player2color: player1color))
         $(this).css({
-          background: board.currentPlayer == 1 ? player2color : player1color, // TODO: Ändra till board.player2.color och board.player1.color
-          opacity: '100'
+          background: color // TODO: Ändra till board.player2.color och board.player1.color
+          // opacity: '100'
         })
       })
     },
     function() {
       // $(this).css('background', 'white');
       $(this).css({
-        background: 'white',
-        opacity: '0'
+        background: 'white'
+        // opacity: '0'
       })
     }
   );
@@ -294,22 +294,25 @@ hoverFn(color) {
               .split('column-')
               .pop()
         )
-        .children('.board-slot-hover')
+        .children('.board-slot-hover');
+        hoverdiv.css({
+          // background: board.currentPlayer == 1 ? player1color : player2color
+          background: color
+          // opacity: '100'
+        });
       $(this).click(() => {
         // console.log(((board.currentPlayer == 1) ? player2color: player1color))
         hoverdiv.css({
-          background: board.currentPlayer == 1 ? player2color : player1color, // TODO: Ändra till board.player2.color och board.player1.color
+          background: color
+          // background: board.currentPlayer == 1 ? player2color : player1color
           // opacity: '100'
         })
-      })
-      hoverdiv.css({
-        background: color,
-        // opacity: '100'
-      })
+      });
     },
     function() {
       // $(this).css('background', 'white');
       if (hoverdiv) {
+        console.log(hoverdiv)
         hoverdiv.css({
           background: 'white',
           // opacity: '0'

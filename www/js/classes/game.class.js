@@ -138,6 +138,7 @@ function loadPlayers() {
     return false; // Still not ready to start
     } else if (url == "/play.html") {
     //If play.html, get player names and types and render to page
+    // TODO: clear after loading
     let name1 = localStorage.getItem('player1Name') || 'Player 1';
     let name2 = localStorage.getItem('player2Name') || 'Player 2';
     let type1 = localStorage.getItem('player1Type') || 'human';
