@@ -47,11 +47,19 @@ function recursor(iterator, winFn){
 
 }
 
+/**
+ * Hc Svnt Dracones
+ *
+ * @param {any} moves
+ * @param {any} state
+ * @param {any} insertValue
+ * @param {any} [move=moves.findIndex((x) => x === 1)]
+ */
 function* testIterator(moves, state, insertValue, move = moves.findIndex((x) => x === 1)){
 
   let nextArrayFn = deepCopyCurry(state)(insertValue)
 
-  if (moves[move] == 0){
+  if (moves[move] === 0){
     yield* testIterator(moves, state, insertValue, move+1)
   }
 

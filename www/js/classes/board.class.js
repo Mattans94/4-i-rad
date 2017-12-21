@@ -185,7 +185,7 @@ class Board extends Base {
         this.createSingleSlot(parent, row);
         this.checkWinner(this.state);
     } else {
-      console.log('Game over');
+      console.log('Game over'); // TODO: Remove
     }
   }
 
@@ -252,7 +252,6 @@ class Board extends Base {
 
 
 /**
- * Hc Svnt Dracones
  *
  * @param {string} color
  */
