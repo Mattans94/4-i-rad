@@ -184,9 +184,10 @@ class Board extends Base {
       const row = this.placeInColumn(parent[0].id.split('column-').pop())
         this.createSingleSlot(parent, row);
         this.checkWinner(this.state);
-    } else {
-      console.log('Game over'); // TODO: Remove
     }
+    // else {
+    //   console.log('Game over'); // TODO: Remove
+    // }
   }
 
 
@@ -267,13 +268,12 @@ hoverFn(color) {
       $(this).click(function() {
         // console.log(((board.currentPlayer == 1) ? player2color: player1color))
         $(this).css({
-          background: color // TODO: Ändra till board.player2.color och board.player1.color
+          background: color
           // opacity: '100'
         })
       })
     },
     function() {
-      // $(this).css('background', 'white');
       $(this).css({
         background: 'white'
         // opacity: '0'
