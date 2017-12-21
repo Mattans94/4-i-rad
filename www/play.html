@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="sv">
-    <head>
+  <head>
     <title>4 i rad</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -12,10 +12,8 @@
     <link href="https://fonts.googleapis.com/css?family=Comfortaa:700" rel="stylesheet">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="/css/style.css">
-
   </head>
   <body>
-
     <header class="mb-1">
       <div class="container">
         <div class="row">
@@ -44,7 +42,7 @@
             <div class="modal-header">
               <h5 class="modal-title" id="ruleModalLabel">Spelregler</h5>
               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
+              <span aria-hidden="true">&times;</span>
               </button>
             </div>
             <div class="modal-body">
@@ -59,57 +57,47 @@
         </div>
       </div>
     </header>
-      
+    
     <!-- TODO hantera oavgjort -->
-      <!-- Modal -->
-      <div class="modal fade" id="gameOverModal" tabindex="-1" role="dialog" aria-labelledby="gameOvermMdalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-          <div class="modal-content">
-            <div class="modal-header text-center d-inline">
-              <h2 class="modal-title text-center d-inline" id="gameOverModalLabel">And the winner is!</h2>
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close"> 
-                <span aria-hidden="true">&times;</span>
-              </button>
-            </div>
-            <div class="modal-body h2 text-center">
-              ...
-            </div>
-            <div class="modal-footer">
-              <a class="btn btn-dark" href="/play.html" role="button">Play again</a>
-              <a class="btn btn-dark" href="/player.html" role="button">New Players</a>
-              <a class="btn btn-dark" href="/highscore.html" role="button">Highscore</a>
-
-            </div>
+    <!-- Modal -->
+    <div class="modal fade" id="gameOverModal" tabindex="-1" role="dialog" aria-labelledby="gameOvermMdalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header text-center d-inline">
+            <h2 class="modal-title text-center d-inline" id="gameOverModalLabel">And the winner is!</h2>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body h2 text-center">
+            ...
+          </div>
+          <div class="modal-footer">
+            <a class="btn btn-dark" href="/play.html" role="button">Play again</a>
+            <a class="btn btn-dark" href="/player.html" role="button">New Players</a>
+            <a class="btn btn-dark" href="/highscore.html" role="button">Highscore</a>
           </div>
         </div>
       </div>
-
+    </div>
     <main>
-
       <div class="container">
         <div class="row">
-              <div class="col-12 col-sm-12 btn-play">
-                <a href="/play.html" role="button" class="btn btn-newgame float-right">Restart <i class="fa fa-refresh" aria-hidden="true"></i></a>
-                <a href="/player.html" role="button" class="btn btn-gameover float-right">New game <i class="fa fa-play" aria-hidden="true"></i></a>
-              </div>
-            </div>
-        <div class="row">
-          <div class="col-md-7">
-            <!-- TODO: FIX SCALING -->
-            <!--buttons-->
+          <div class="col-md-8">
             <section class="boardarea">
             </section>
-
           </div>
-          <div class="col-md-5 playercard">
-            <div class="card text-white bg-danger mb-3" style="max-width: 20rem;">
+          <div class="col-12 col-sm-12 col-md-4 btn-play display">
+            <a href="/play.html" role="button" class="btn btn-newgame col-12">Restart <i class="fa fa-refresh" aria-hidden="true"></i></a>
+            <a href="/player.html" role="button" class="btn btn-gameover col-12">New game <i class="fa fa-play" aria-hidden="true"></i></a>
+            <div class="card text-white bg-danger col-12">
               <div class="card-header">Player 1</div>
               <div class="card-body">
                 <h4 class="card-title"><span id="player1name">Player 1</span><span id="player1type"> Human</span></h4>
                 <p class="card-text"><span id="player1moves">Här ska det stå hur många drag man gjort</span></p>
               </div>
             </div>
-            <div class="card text-white bg-warning mb-3" style="max-width: 20rem;">
+            <div class="card text-white bg-warning col-12">
               <div class="card-header">Player 2</div>
               <div class="card-body">
                 <h4 class="card-title"><span id="player2name">Player 2</span><span id="player2type"> Human</span></h4>
@@ -119,78 +107,55 @@
           </div>
         </div>
       </div>
-
     </main>
-
-
-
- <footer class="bg-dark text-light">
+    <footer class="bg-dark text-light">
       <div class="container-fluid ">
         <div class="row mt-3">
-
-       <!-- <section class="row mt-3"> -->
-
-      <!-- Equal width columns can be acheived with just setting the col class-->
-
-      <!-- please note: does not allow for responsive layout / different column width on different viewport sizes-->
-
-        <div class="col-9 col-md-4 mt-3">
-
-          <div class="row justify-content-center">
-            <div class="col-6 col-md-auto">
-              <h6>4 I RAD</h6>
-              <p class="mb-1"><i class="fa fa-map-marker" aria-hidden="true"></i>  Stortorget 3 | 213 00 Malmö</p>
-              <p class="mb-1"><i class="fa fa-phone" aria-hidden="true"></i>   +46-702726283</p>
-
+          <!-- <section class="row mt-3"> -->
+          <!-- Equal width columns can be acheived with just setting the col class-->
+          <!-- please note: does not allow for responsive layout / different column width on different viewport sizes-->
+          <div class="col-9 col-md-4 mt-3">
+            <div class="row justify-content-center">
+              <div class="col-6 col-md-auto">
+                <h6>4 I RAD</h6>
+                <p class="mb-1"><i class="fa fa-map-marker" aria-hidden="true"></i>  Stortorget 3 | 213 00 Malmö</p>
+                <p class="mb-1"><i class="fa fa-phone" aria-hidden="true"></i>   +46-702726283</p>
+              </div>
             </div>
           </div>
-
-        </div>
-
-        <div class="col-md-4 d-none d-md-block mt-3">
-
-          <div class="row justify-content-center">
-            <div class="col-6 col-md-auto">
-              <h6>E-post</h6>
-              <p class="mb-1"><a href="mailto:info@gruppc.se"><i class="fa fa-envelope-o" aria-hidden="true"></i>   info@gruppc.se</p>
-
+          <div class="col-md-4 d-none d-md-block mt-3">
+            <div class="row justify-content-center">
+              <div class="col-6 col-md-auto">
+                <h6>E-post</h6>
+                <p class="mb-1"><a href="mailto:info@gruppc.se"><i class="fa fa-envelope-o" aria-hidden="true"></i>   info@gruppc.se</p>
+              </div>
             </div>
           </div>
-
-        </div>
-
-        <div class="col-1 col-md-4 mt-3">
-
-          <div class="row justify-content-center">
-            <div class="col-6 col-md-auto">
-              <p class="mb-1"><a class="text-light"href="#"><i class="fa fa-facebook-official fa-2x" aria-hidden="true"></i></a></p>
-              <p class="mb-1"><a class="text-light"href="#"><i class="fa fa-instagram fa-2x" aria-hidden="true"></i></a></p>
-
-
+          <div class="col-1 col-md-4 mt-3">
+            <div class="row justify-content-center">
+              <div class="col-6 col-md-auto">
+                <p class="mb-1"><a class="text-light"href="#"><i class="fa fa-facebook-official fa-2x" aria-hidden="true"></i></a></p>
+                <p class="mb-1"><a class="text-light"href="#"><i class="fa fa-instagram fa-2x" aria-hidden="true"></i></a></p>
+              </div>
             </div>
           </div>
-
-        </div>
-      <!-- </section> -->
-  </footer>
-
-
-
-    <!-- JavaScript libraries -->
-    <script src="/jsonflex.js"></script>
-    <script src="/js/libs/jquery-3.2.1.js"></script>
-    <script src="/js/libs/popper-1.11.0.js"></script>
-    <script src="/js/libs/bootstrap-4-beta.js"></script>
-    <!-- Application specific JavaScript -->
-    <script src="/js/classes/base.class.js"></script>
-    <script src="/js/classes/board.class.js"></script>
-    <script src="/js/classes/highscore-list.class.js"></script>
-    <script src="/js/classes/game.class.js"></script>
-    <script src="/js/classes/player.class.js"></script>
-    <script src="/js/classes/human.class.js"></script>
-    <script src="/js/classes/brain.class.js"></script>
-    <script src="/js/classes/bot.class.js"></script>
-    <script src="/js/main.js"></script>
-    <script src="/js/play.js"></script>
-  </body>
-</html>
+          <!-- </section> -->
+        </footer>
+        <!-- JavaScript libraries -->
+        <script src="/jsonflex.js"></script>
+        <script src="/js/libs/jquery-3.2.1.js"></script>
+        <script src="/js/libs/popper-1.11.0.js"></script>
+        <script src="/js/libs/bootstrap-4-beta.js"></script>
+        <!-- Application specific JavaScript -->
+        <script src="/js/classes/base.class.js"></script>
+        <script src="/js/classes/board.class.js"></script>
+        <script src="/js/classes/highscore-list.class.js"></script>
+        <script src="/js/classes/game.class.js"></script>
+        <script src="/js/classes/player.class.js"></script>
+        <script src="/js/classes/human.class.js"></script>
+        <script src="/js/classes/brain.class.js"></script>
+        <script src="/js/classes/bot.class.js"></script>
+        <script src="/js/main.js"></script>
+        <script src="/js/play.js"></script>
+      </body>
+    </html>
