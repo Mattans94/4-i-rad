@@ -151,6 +151,8 @@ class Board extends Base {
         this.winner.rounds = this.currentRound;
         this.game.highscoreList.register(this.winner);
         $('.board-column-hover').css({'opacity': '0'});
+        $('#gameOverModal .modal-body').text(this.winner.name);
+        $('#gameOverModal').modal();
         return true;
       } else if (this.co === 42) {
           this.winner = 'draw';

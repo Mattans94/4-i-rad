@@ -66,17 +66,17 @@
         <div class="modal-dialog" role="document">
           <div class="modal-content">
             <div class="modal-header">
-              <h5 class="modal-title" id="gameOverModalLabel">And the winner is!</h5>
+              <h2 class="modal-title text-center" id="gameOverModalLabel">And the winner is!</h2>
               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
               </button>
             </div>
-            <div class="modal-body">
+            <div class="modal-body h2 text-center">
               ...
             </div>
             <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-dismiss="modal">New game</button>
-              <button type="button" class="btn btn-primary">Change players</button>
+              <button type="button" class="btn btn-dark" data-dismiss="modal">New game</button>
+              <button type="button" class="btn btn-dark">Change players</button>
             </div>
           </div>
         </div>
@@ -87,8 +87,11 @@
       <div class="container">
         <div class="row">
           <div class="col-md-7">
+            
+            <!-- TODO: FIX SCALING -->
             <section class="boardarea">
             </section>
+
           </div>
           <div class="col-md-5 playercard">
             <div class="card text-white bg-warning mb-3" style="max-width: 20rem;">
@@ -172,6 +175,7 @@
     <script src="/js/libs/bootstrap-4-beta.js"></script>
     <!-- Application specific JavaScript -->
     <script src="/js/classes/base.class.js"></script>
+    <script src="/js/play.js"></script>
     <script src="/js/classes/board.class.js"></script>
     <script src="/js/classes/highscore-list.class.js"></script>
     <script src="/js/classes/game.class.js"></script>

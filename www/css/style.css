@@ -183,6 +183,17 @@ footer a:visited {
 .playercard {
   margin-top: 150px;
 }
+#gameOverModal .modal-header {
+  border-bottom: none;
+}
+#gameOverModal .modal-footer {
+  border-top: none;
+}
+#gameOverModal .modal-content {
+  background-image: url("../imgs/Confetti.jpg");
+  color: white;
+  text-shadow: -1px -1px 0 #000000, 1px -1px 0 #000000, -1px 1px 0 #000000, 1px 1px 0 #000000;
+}
 #ruleModal .modal-content {
   background-color: #f4dc42;
 }
