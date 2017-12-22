@@ -43,7 +43,6 @@ header {
   }
 
 }
-
 @media only screen and (max-width: 480px){
   .nav-item{
     font-size: 14px;
@@ -52,11 +51,29 @@ header {
 
 .logo {
 width: 30%;
-height: 80%;  
+height: 80%;
+  @media (max-width: 768px){
+    width: 100%;  
+  }
 }
 
 .imglogo{
   display: block;
   width: 100%;
   height:100%;
+}
+
+.extra {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  @media (max-width: 768px){
+    justify-content: center;
+  }
+
+  .last {
+    align-items: center;
+    display: flex;
+  }
+
 }
