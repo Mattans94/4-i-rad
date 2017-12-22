@@ -159,10 +159,19 @@ class Board extends Base {
         $('.board-column-hover').css({'opacity': '0'});
         $('#gameOverModal .modal-body').text(this.winner.name);
         $('#gameOverModal').modal();
+        $('#gameOverModal').append('<div class="confetti"></div>');
         return true;
       } else if (this.co === 42) {
           this.winner = 'draw';
           $('.board-column-hover').css({'opacity': '0'});
+          $('#gameOverModal .modal-title').text('');
+          $('#gameOverModal .modal-content').css({
+            'background-image':'url("../imgs/sad.jpg")',
+            'background-size' : 'contain',
+            'background-repeat' : 'no-repeat'
+          });
+          $('#gameOverModal .modal-body').addClass('draw').text(`Sorry it's a draw`);
+          $('#gameOverModal').modal();
           return true;
       } else {
         return false;
