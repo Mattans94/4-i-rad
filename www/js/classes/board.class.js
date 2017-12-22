@@ -363,7 +363,7 @@ static pureCheckWinner(bd){
 
             // horizontal
 
-            if (col < 3 && bd[col][row] == player && bd[col + 1][row] == player && bd[col + 2][row] == player && bd[col + 3][row] == player) {
+            if (col < 4 && bd[col][row] == player && bd[col + 1][row] == player && bd[col + 2][row] == player && bd[col + 3][row] == player) {
                 return player;
             }
 
