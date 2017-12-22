@@ -137,9 +137,9 @@ class Board extends Base {
 
         if (currentPlayer == 1) {
             $("#player1card").css("background", colorPlayer1);
-            $("#player2card").css("background", "rgba(200,200,200,0.7)");
+            $("#player2card").css("background", "rgba(200,200,200,0.9)");
         } else {
-            $("#player1card").css("background", "rgba(200,200,200,0.7)")
+            $("#player1card").css("background", "rgba(200,200,200,0.9)")
             $("#player2card").css("background", colorPlayer2);
         }
 
