@@ -10,11 +10,11 @@ h1 {
   margin-bottom: 20px;
 }
 .nav-pills .nav-link.active {
-  background-color: #a9a9a9;
+  background-color: #808080;
   color: #fff;
 }
 .nav-pills .nav-link.hover {
-  background-color: #a9a9a9;
+  background-color: #808080;
 }
 a:link {
   text-decoration: none;
@@ -79,7 +79,7 @@ main .games p {
 }
 main .btn-newgame,
 main .btn-gameover {
-  background-color: #a9a9a9;
+  background-color: #808080;
   color: #000;
   margin-right: 15px;
   margin-top: 5px;
@@ -295,7 +295,10 @@ footer a:visited {
   margin-top: 20px;
 }
 #ruleModal .modal-content {
-  background-color: #f4dc42;
+  background-color: grey;
+}
+h5 {
+  color: #fff;
 }
 #ruleModal .modal-body {
   background-color: #fff;
