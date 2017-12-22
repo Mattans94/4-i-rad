@@ -20,12 +20,12 @@ class Board extends Base {
         this.player2 = this.game.player2;
         this.co = 0;
         this.winner = null;
-        this.board = this.generateBoard();
-        this.currentPlayer = 1;
+        this.board = this.generateBoard(); //TODO: This runs twice
         this.width = this.state.length;
         this.height = this.state[0].length;
         // this.hoverFn(player1color); //Moved into generateBoard
         this.possibleMoves = new Array(7).fill(1)
+        this.currentPlayer = 2; // Start with player 1
     }
 
     /**
@@ -68,6 +68,8 @@ class Board extends Base {
     }
 
     nextPlayer() {
+      console.log(this.winner)
+      const delay = (this.player1.constructor.name == 'Bot' && this.player2.constructor.name == 'Bot') ? 400 : 500
       this.currentPlayer ^= 3 // Switches between 1 and 2
         // this.currentPlayer ^= 1 // Switches between 1 and 0 instead
         // this.currentPlayer ^= -2 // Switches between 1 and -1
@@ -75,18 +77,20 @@ class Board extends Base {
         if (this.player1.constructor.name == 'Human'){
           this.hoverFn(player1color)
         } else {
-          let move = this.player1.decisionFn();
+          let move = this.player1.decisionFn(this, this.possibleMoves);
           let element = $($('#column-' + move.toString()).children()[0])
-          this.click(element, this)
+          setTimeout((() => this.click(element, this)), delay)
+          // this.click(element, this)
         }
       }
       if(this.currentPlayer === 2){
-        if (this.player1.constructor.name == 'Human'){
+        if (this.player2.constructor.name == 'Human'){
           this.hoverFn(player2color)
         } else {
-          let move = this.player2.decisionFn();
+          let move = this.player2.decisionFn(this, this.possibleMoves);
           let element = $($('#column-' + move.toString()).children()[0])
-          this.click(element, this)
+          setTimeout((() => this.click(element, this)), delay)
+          // this.click(element, this)
         }
       }
   }
@@ -191,11 +195,11 @@ class Board extends Base {
       let parentchild = parent[0].parentElement.children[childnumber + 7]
 
       this.createSingleSlot($(parentchild), row);
-      this.checkWinner(this.state);
+      return this.checkWinner(this.state);
       } else if (parent.hasClass('board-column') && (this.winner === null)){
       const row = this.placeInColumn(parent[0].id.split('column-').pop())
         this.createSingleSlot(parent, row);
-        this.checkWinner(this.state);
+        return this.checkWinner(this.state);
     }
     // else {
     //   console.log('Game over'); // TODO: Remove
@@ -206,9 +210,8 @@ class Board extends Base {
     generateBoard() {
         this.render('section.boardarea');
         $(() => {
-          this.hoverFn(player1color);
+          // this.hoverFn(player1color);
       });
-
     }
 
 
