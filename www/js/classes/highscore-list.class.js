@@ -6,6 +6,10 @@ class HighscoreList {
 
     }
 
+     sortNumber(a,b) {
+        return a.rounds - b.rounds;
+    }
+
     register(player) {
         console.log(player)
 
@@ -22,6 +26,12 @@ class HighscoreList {
             this.list.splice(position, 0, player);
             this.list = this.list.slice(0, this.maxLength);
 
+
+
+
+            this.list.sort(this.sortNumber);
+            console.log(this.list)
+
             JSON._save('hi-scores', {
                 list: this
             });
@@ -32,3 +42,4 @@ class HighscoreList {
     }
 
 }
+
