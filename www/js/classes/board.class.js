@@ -75,10 +75,11 @@ class Board extends Base {
 
     nextPlayer() {
       console.log(this.winner)
-      const delay = (this.player1.constructor.name == 'Bot' && this.player2.constructor.name == 'Bot') ? 400 : 500
+      const delay = (this.player1.constructor.name == 'Bot' && this.player2.constructor.name == 'Bot') ? 1200 : 500
       this.currentPlayer ^= 3 // Switches between 1 and 2
         // this.currentPlayer ^= 1 // Switches between 1 and 0 instead
         // this.currentPlayer ^= -2 // Switches between 1 and -1
+      this.changePlayerColor();
       if(this.currentPlayer === 1){
         if (this.player1.constructor.name == 'Human'){
           this.hoverFn(player1color)
@@ -115,17 +116,17 @@ class Board extends Base {
         }
 
     }
-    changePlayerColor(currentPlayer) {
-        currentPlayer;
-        let colorPlayer1 = "red";
+    changePlayerColor() {
+        let currentPlayer = this.currentPlayer;
+        let colorPlayer1 = "#dc3545";
         let colorPlayer2 = "#fdd91d";
 
         if (currentPlayer == 1) {
-            $("p.player1").css("color", colorPlayer1);
-            $("p.player2").css("color", "grey");
+            $("#player1card").css("background", colorPlayer1);
+            $("#player2card").css("background", "rgba(200,200,200,0.7)");
         } else {
-            $("p.player1").css("color", "grey")
-            $("p.player2").css("color", colorPlayer2);
+            $("#player1card").css("background", "rgba(200,200,200,0.7)")
+            $("#player2card").css("background", colorPlayer2);
         }
 
     }
