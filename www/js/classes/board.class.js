@@ -72,10 +72,22 @@ class Board extends Base {
         // this.currentPlayer ^= 1 // Switches between 1 and 0 instead
         // this.currentPlayer ^= -2 // Switches between 1 and -1
       if(this.currentPlayer === 1){
-        this.hoverFn(player1color)
+        if (this.player1.constructor.name == 'Human'){
+          this.hoverFn(player1color)
+        } else {
+          let move = this.player1.decisionFn();
+          let element = $($('#column-' + move.toString()).children()[0])
+          this.click(element, this)
+        }
       }
       if(this.currentPlayer === 2){
-        this.hoverFn(player2color)
+        if (this.player1.constructor.name == 'Human'){
+          this.hoverFn(player2color)
+        } else {
+          let move = this.player2.decisionFn();
+          let element = $($('#column-' + move.toString()).children()[0])
+          this.click(element, this)
+        }
       }
   }
 
@@ -84,7 +96,7 @@ class Board extends Base {
             return (slot === 0)
         })
         if (this.setSlot(column, y, this.currentPlayer)) {
-            if (y === 6){
+          if (y === 5){
               this.possibleMoves[column] = 0
             }
             return y
@@ -251,7 +263,7 @@ class Board extends Base {
 
   }
 
-
+// TODO: Fixa färg på click...
 /**
  *
  * @param {string} color
@@ -312,7 +324,7 @@ hoverFn(color) {
     function() {
       // $(this).css('background', 'white');
       if (hoverdiv) {
-        console.log(hoverdiv)
+        // console.log(hoverdiv)
         hoverdiv.css({
           background: 'white',
           // opacity: '0'
@@ -322,47 +334,59 @@ hoverFn(color) {
   );
 }
 
-static pureCheckWinner(bd){
-
-  if (typeof bd === 'undefined'){
+static pureCheckWinner(bd) {
+  if (!bd) {
     return null
   }
 
-  let winner = 0;
+  let winner = 0
   for (let row = 0; row < 6; row++) {
-
     for (let col = 0; col < 7; col++) {
-
-        for (let player of [1, -1]) {
-
-            //vertical
-
-            // if(bd[col][row] == player){
-            //   console.log('col', col);
-            //   console.log('row',row);
-            // }
-
-            if (row < 3 && bd[col][row] == player && bd[col][row + 1] == player && bd[col][row + 2] == player && bd[col][row + 3] == player) {
-                return player;
-            }
-
-            // horizontal
-
-            if (col < 3 && bd[col][row] == player && bd[col + 1][row] == player && bd[col + 2][row] == player && bd[col + 3][row] == player) {
-                return player;
-            }
-
-            if (col < 4 && bd[col][row] == player && bd[col + 1][row + 1] == player && bd[col + 2][row + 2] == player && bd[col + 3][row + 3] == player) {
-                return player;
-            }
-
-            if (col > 2 && row < 3 && bd[col][row] == player && bd[col - 1][row + 1] == player && bd[col - 2][row + 2] == player && bd[col - 3][row + 3] == player) {
-                return player;
-            }
+      for (let player of [1, -1]) {
+        if (
+          row < 3 &&
+          bd[col][row] == player &&
+          bd[col][row + 1] == player &&
+          bd[col][row + 2] == player &&
+          bd[col][row + 3] == player
+        ) {
+          return player
         }
+
+        if (
+          col < 3 &&
+          bd[col][row] == player &&
+          bd[col + 1][row] == player &&
+          bd[col + 2][row] == player &&
+          bd[col + 3][row] == player
+        ) {
+          return player
+        }
+
+        if (
+          col < 4 &&
+          bd[col][row] == player &&
+          bd[col + 1][row + 1] == player &&
+          bd[col + 2][row + 2] == player &&
+          bd[col + 3][row + 3] == player
+        ) {
+          return player
+        }
+
+        if (
+          col > 2 &&
+          row < 3 &&
+          bd[col][row] == player &&
+          bd[col - 1][row + 1] == player &&
+          bd[col - 2][row + 2] == player &&
+          bd[col - 3][row + 3] == player
+        ) {
+          return player
+        }
+      }
     }
-}
-return winner;
+  }
+  return winner
 }
 
 }
