@@ -227,7 +227,7 @@ class Board extends Base {
     //need to add id on them as well but here is a start on the board
 
     template(){
-      let returnValue = '<div class="board col-12">';
+      let returnValue = '<div class="board">';
       let inner = '', column = '';
       let innerhover = '', columnhover = '';
 
