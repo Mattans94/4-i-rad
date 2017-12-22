@@ -73,7 +73,7 @@ main .jumbotron {
 main .jumbotron h1 {
   font-size: 5.9vw;
 }
-main .card {
+main .card.first-page {
   border: none;
   margin: 0;
 }

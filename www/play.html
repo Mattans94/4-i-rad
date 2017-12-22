@@ -88,8 +88,10 @@
             </section>
           </div>
           <div class="col-12 col-sm-12 col-md-4 btn-play display">
-            <a href="/play.html" role="button" class="btn btn-newgame col-12">Restart <i class="fa fa-refresh" aria-hidden="true"></i></a>
-            <a href="/player.html" role="button" class="btn btn-gameover col-12">New game <i class="fa fa-play" aria-hidden="true"></i></a>
+            <div class="d-none d-md-block">
+              <a href="/play.html" role="button" class="btn btn-newgame col-12">Restart <i class="fa fa-refresh" aria-hidden="true"></i></a>
+              <a href="/player.html" role="button" class="btn btn-gameover col-12">New game <i class="fa fa-play" aria-hidden="true"></i></a>
+          </div>
             <div class="card text-white col-12" id="player1card">
               <div class="card-header">Player 1</div>
               <div class="card-body">
@@ -104,6 +106,10 @@
                 <p class="card-text"><span id="player2moves">Här ska det stå hur många drag Jonas gjort</span></p>
               </div>
             </div>
+            <div class="d-md-none">
+            <a href="/play.html" role="button" class="btn btn-newgame col-12">Restart <i class="fa fa-refresh" aria-hidden="true"></i></a>
+            <a href="/player.html" role="button" class="btn btn-gameover col-12">New game <i class="fa fa-play" aria-hidden="true"></i></a>
+          </div>
           </div>
         </div>
       </div>
