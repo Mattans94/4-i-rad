@@ -145,7 +145,7 @@ footer a:visited {
 }
 @media (min-width: 1400px) {
   .board {
-    max-width: 640px;
+    max-width: 600px;
   }
 }
 .board .board-column-hover {
@@ -194,7 +194,7 @@ footer a:visited {
 }
 @media (min-width: 1400px) {
   .board .board-column-hover .board-slot-hover {
-    max-height: 90px;
+    max-height: 85px;
     height: 9vw;
   }
 }
@@ -245,7 +245,7 @@ footer a:visited {
 }
 @media (min-width: 1400px) {
   .board .board-column .board-slot {
-    max-height: 90px;
+    max-height: 85px;
     height: 9vw;
   }
 }
