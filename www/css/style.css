@@ -77,6 +77,10 @@ main .card.first-page {
   border: none;
   margin: 0;
 }
+main .card {
+  color: white;
+  text-shadow: -1px -1px 0 #666666, 1px -1px 0 #666666, -1px 1px 0 #666666, 1px 1px 0 #666666;
+}
 main .other-games img {
   width: 100%;
 }
