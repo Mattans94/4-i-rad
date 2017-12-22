@@ -7,6 +7,7 @@ class HighscoreList {
     }
 
     register(player) {
+        console.log(player)
 
         let position = this.list.maxLength;
 
@@ -17,10 +18,16 @@ class HighscoreList {
             }
         }
 
-        this.list.splice(position, 0, player);
-        this.list = this.list.slice(0, this.maxLength);
+        if (player instanceof Human) {
+            this.list.splice(position, 0, player);
+            this.list = this.list.slice(0, this.maxLength);
 
-        JSON._save('hi-scores', {list: this});
+            JSON._save('hi-scores', {
+                list: this
+            });
+        }
+
+
 
     }
 
