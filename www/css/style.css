@@ -102,10 +102,16 @@ main .btn-gameover {
   color: #fff;
   margin-right: 15px;
   margin-top: 5px;
-  border-radius: 3.25rem;
+  border-radius: 2.5rem;
 }
 main .btn-newgame {
   margin-right: 45px;
+}
+main .games p {
+  color: #000;
+}
+main .games p:hover {
+  color: grey		;
 }
 html {
   position: relative;
