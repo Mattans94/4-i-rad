@@ -16,6 +16,9 @@ h1 {
 .nav-pills .nav-link.hover {
   background-color: #f4dc42;
 }
+a:link {
+  text-decoration: none;
+}
 a {
   color: #000;
 }
