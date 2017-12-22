@@ -75,7 +75,9 @@ class Board extends Base {
 
     nextPlayer() {
       console.log(this.winner)
-      const delay = (this.player1.constructor.name == 'Bot' && this.player2.constructor.name == 'Bot') ? 1000 : 500
+      const delay = (this.player1.constructor.name == 'Bot' && this.player2.constructor.name == 'Bot') ? 250 : 750
+      const oldClickFn = this.click
+      const oldHoverFn = this.hoverFn
       this.currentPlayer ^= 3 // Switches between 1 and 2
         // this.currentPlayer ^= 1 // Switches between 1 and 0 instead
         // this.currentPlayer ^= -2 // Switches between 1 and -1
@@ -84,9 +86,15 @@ class Board extends Base {
         if (this.player1.constructor.name == 'Human'){
           this.hoverFn(player1color)
         } else {
+          this.click = null;
+          this.hoverFn = null;
           let move = this.player1.decisionFn(this, this.possibleMoves);
           let element = $($('#column-' + move.toString()).children()[0])
-          setTimeout((() => this.click(element, this)), delay)
+          setTimeout((() => {
+            this.click = oldClickFn;
+            this.hoverFn = oldHoverFn;
+            this.click(element, this)
+          }), delay)
           // this.click(element, this)
         }
       }
@@ -94,9 +102,15 @@ class Board extends Base {
         if (this.player2.constructor.name == 'Human'){
           this.hoverFn(player2color)
         } else {
+          this.click = null;
+          this.hoverFn = null;
           let move = this.player2.decisionFn(this, this.possibleMoves);
           let element = $($('#column-' + move.toString()).children()[0])
-          setTimeout((() => this.click(element, this)), delay)
+          setTimeout((() => {
+            this.click = oldClickFn;
+            this.hoverFn = oldHoverFn;
+            this.click(element, this)
+          }), delay)
           // this.click(element, this)
         }
       }
@@ -282,7 +296,7 @@ class Board extends Base {
 
   }
 
-// TODO: Fixa färg på click...
+  // TODO: Fixa färg på click...
 /**
  *
  * @param {string} color
@@ -327,14 +341,14 @@ hoverFn(color) {
         )
         .children('.board-slot-hover');
         hoverdiv.css({
-          // background: board.currentPlayer == 1 ? player1color : player2color
-          background: color
+          background: board.currentPlayer == 1 ? player1color : player2color
+          // background: color
           // opacity: '100'
         });
       $(this).click(() => {
         // console.log(((board.currentPlayer == 1) ? player2color: player1color))
         hoverdiv.css({
-          background: color
+          // background: color
           background: board.currentPlayer == 1 ? player2color : player1color
           // opacity: '100'
         })
@@ -409,5 +423,3 @@ static pureCheckWinner(bd) {
 }
 
 }
-
-
