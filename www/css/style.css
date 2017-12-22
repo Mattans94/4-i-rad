@@ -75,6 +75,7 @@ main .jumbotron h1 {
 }
 main .card {
   border: none;
+  margin: 0;
 }
 main .other-games img {
   width: 100%;
