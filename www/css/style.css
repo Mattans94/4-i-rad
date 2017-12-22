@@ -80,7 +80,7 @@ main .games p {
 main .btn-newgame,
 main .btn-gameover {
   background-color: #808080;
-  color: #000;
+  color: #fff;
   margin-right: 15px;
   margin-top: 5px;
   border-radius: 3.25rem;
