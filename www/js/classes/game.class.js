@@ -90,10 +90,10 @@ $(document).on("click", "#switchButton1", function() {
 
     if ($("p.hidden").css("display") == "none") {
         value = 'human'
-        console.log(value);
+        // console.log(value);
     } else {
         value = 'computer'
-        console.log(value);
+        // console.log(value);
     }
 
 
@@ -109,10 +109,10 @@ $(document).on("click", "#switchButton2", function() {
 
     if ($("p.hidden2").css("display") == "none") {
         value = 'human'
-        console.log(value);
+        // console.log(value);
     } else {
         value = 'computer'
-        console.log(value);
+        // console.log(value);
     }
 
     localStorage.setItem('player2Type', value);
@@ -144,8 +144,8 @@ function loadPlayers() {
     let name2 = localStorage.getItem('player2Name') || 'Player 2';
     let type1 = localStorage.getItem('player1Type') || 'human';
     let type2 = localStorage.getItem('player2Type') || 'human';
-    console.log(name1 + " is type " + type1);
-    console.log(name2 + " is type " + type2);
+    // console.log(name1 + " is type " + type1);
+    // console.log(name2 + " is type " + type2);
     $('.player1').html(name1);
     $('.player2').html(name2);
 

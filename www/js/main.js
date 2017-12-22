@@ -1,2 +1,5 @@
 let game = new Game();
-game.board.nextPlayer(); // Start game
+try{
+  game.board.nextPlayer(); // Start game
+} catch(e){
+}

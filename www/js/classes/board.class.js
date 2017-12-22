@@ -75,7 +75,7 @@ class Board extends Base {
 
     nextPlayer() {
       console.log(this.winner)
-      const delay = (this.player1.constructor.name == 'Bot' && this.player2.constructor.name == 'Bot') ? 1200 : 500
+      const delay = (this.player1.constructor.name == 'Bot' && this.player2.constructor.name == 'Bot') ? 1000 : 500
       this.currentPlayer ^= 3 // Switches between 1 and 2
         // this.currentPlayer ^= 1 // Switches between 1 and 0 instead
         // this.currentPlayer ^= -2 // Switches between 1 and -1
@@ -335,7 +335,7 @@ hoverFn(color) {
         // console.log(((board.currentPlayer == 1) ? player2color: player1color))
         hoverdiv.css({
           background: color
-          // background: board.currentPlayer == 1 ? player2color : player1color
+          background: board.currentPlayer == 1 ? player2color : player1color
           // opacity: '100'
         })
       });
