@@ -25,35 +25,56 @@ a:hover {
 a:focus {
   outline: none;
 }
-.jumbotron {
-  padding-bottom: 10px;
-  padding-top: 20px;
-}
-.jumbotron h1 {
-  font-size: 5.9vw;
-}
-.card {
-  border: none;
-}
-.other-games img {
-  width: 100%;
-}
-h2,
-h3 {
-  font-family: 'Comfortaa', cursive;
-}
-.games p {
-  font-size: 18px;
-}
-@media only screen and (min-width: 780px) {
-  .games p {
+@media only screen and (min-width: 768px) {
+  .nav-item {
     font-size: 24px;
   }
 }
 @media only screen and (max-width: 480px) {
-  .games p {
+  .nav-item {
+    font-size: 14px;
+  }
+}
+main .jumbotron {
+  padding-bottom: 10px;
+  padding-top: 20px;
+}
+main .jumbotron h1 {
+  font-size: 5.9vw;
+}
+main .card {
+  border: none;
+}
+main .other-games img {
+  width: 100%;
+}
+main h2,
+main h3 {
+  font-family: 'Comfortaa', cursive;
+}
+main .games p {
+  font-size: 18px;
+}
+@media only screen and (min-width: 780px) {
+  main .games p {
+    font-size: 24px;
+  }
+}
+@media only screen and (max-width: 480px) {
+  main .games p {
     font-size: 12px;
   }
+}
+main .btn-newgame,
+main .btn-gameover {
+  background-color: #f4dc42;
+  color: #000;
+  margin-right: 15px;
+  margin-top: 35px;
+  border-radius: 3.25rem;
+}
+main .btn-newgame {
+  margin-right: 45px;
 }
 html {
   position: relative;
@@ -175,10 +196,32 @@ footer a:visited {
     min-height: 700px;
   }
 }
-.modal-content {
+@media screen and (max-width: 768px) {
+  .boardarea {
+    min-height: 500px;
+  }
+}
+.playercard {
+  margin-top: 150px;
+}
+#gameOverModal .modal-header {
+  border-bottom: none;
+}
+#gameOverModal .modal-footer {
+  border-top: none;
+}
+#gameOverModal .modal-content {
+  background-image: url("../imgs/Confetti.jpg");
+  color: white;
+  text-shadow: -1px -1px 0 #000000, 1px -1px 0 #000000, -1px 1px 0 #000000, 1px 1px 0 #000000;
+}
+#gameOverModal .close {
+  color: white;
+}
+#ruleModal .modal-content {
   background-color: #f4dc42;
 }
-.modal-body {
+#ruleModal .modal-body {
   background-color: #fff;
 }
 .players {
