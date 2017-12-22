@@ -56,6 +56,12 @@ class Board extends Base {
     setSlot(x, y, playerId) {
         try {
             this.state[x][y] = playerId < 2 ? 1 : -1
+            if(playerId == 1){
+              $('#player1moves').text(this.currentRound +1);
+            }
+            if(playerId == 2){
+              $('#player2moves').text(this.currentRound );
+            }
             return true
         } catch (error) {
             console.log('Invalid slot')
