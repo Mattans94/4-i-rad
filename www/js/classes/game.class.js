@@ -55,7 +55,8 @@ class Game {
       // @ts-ignore
       JSON._load('hi-scores')
         .then((data) => {
-            this.highscoreList = data.list;
+          console.log(data)
+            this.highscoreList = data.list || new HighscoreList();
         })
         .catch(() => {
             this.highscoreList = new HighscoreList();
