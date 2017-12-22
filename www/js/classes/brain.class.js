@@ -1,114 +1,147 @@
 class Brain {
 
-  static smartMove(board, depth, slotIndicator, winFn = Board.pureCheckWinner){
+/**
+ * Calculates a move
+ *
+ * @static
+ * @param {number} [depth=2] How far ahead to look, higher means more difficult
+ * @param {Object} [board=game.board] The current board
+ * @param {number} [slotIndicator=game.board.currentPlayer < 2 ? 1 : -1] Player identifier, 1 or -1
+ * @param {any} [winFn=Board.pureCheckWinner] Function to check for wins
+ * @returns a move to make or null if none is found
+ * @memberof Brain
+ */
+static smartMove(depth = 2, board = game.board, slotIndicator = game.board.currentPlayer < 2 ? 1 : -1, winFn = Board.pureCheckWinner){
     if (typeof winFn !== 'function'){
-      throw new Error('Parameter winFn must be a function!')
+      throw new Error('Parameter winFn must be a function!');
     }
 
-    // TODO: Remove the emergency brakes 😱
-    let emergencyBrake = 0
+    let generator = stateGenerator(board.state, slotIndicator, board.possibleMoves);
 
-    // let stateCopy = deepCopy(board.state)
-    // let moveIterator = stateCopy[Symbol.iterator]()
-    // for (let move of board.possibleMoves){
-    //   stateCopy[move].findIndex((slot) => {
-    //     return (slot === 0)
-    // })
-    // }
+    let moveToMake = depth < 2 ? Brain.easyMove(generator, winFn) : Brain.mediumMove(generator, winFn);
 
-
-    let search = testIterator(board.possibleMoves, board.state, slotIndicator)
-
-    let moveToMake = recursor(search, winFn)
-
-    return moveToMake
-
-    // while (emergencyBrake < 10){
-      // console.log(search.next())
-      // console.log(winFn(search.next().value))
-      // console.log(recursor(search, winFn))
-      // recursor(search, winFn).value != 'undefined'
-      // emergencyBrake++
-    // }
+    return moveToMake;
 
   }
+
+
+  /**
+   * Figures out a medium difficulty move.
+   * Tries to win or at least block the opponent.
+   *
+   * @param {Generator} generator
+   * @param {function} winFn
+   * @memberof Brain
+   */
+  static mediumMove(generator, winFn){
+
+    let index = generator.next()
+      .value.concat(generator // Run twice and concat
+        .next().value)
+        .map((state) => winFn(state))
+        .findIndex((move) => !!move);
+
+    if (index != -1){
+      return index % 7;
+    } else {
+      return null;
+    }
+  }
+
+  /**
+   * Figures out an easy difficulty move.
+   * Only tries to win in a single move.
+   *
+   * @param {Generator} generator
+   * @param {function} winFn
+   * @memberof Brain
+   */
+  static easyMove(generator, winFn){
+
+    let index = generator.next()
+      .value
+        .map((state) => winFn(state))
+        .findIndex((move) => !!move);
+
+    if (index != -1){
+      return index;
+    } else {
+      return null;
+    }
+  }
 }
-
-function recursor(iterator, winFn){
-
-  //TODO: gör ny winfn utan co++
-  return winFn(iterator.next().value) === 0 ? recursor(iterator, winFn) : iterator.next(true)
-
-  // if (winFn(iterator.next().value) != 0){
-  //   return iterator.next(true)
-  // } else {
-  //   recursor(iterator, winFn)
-  // }
-
-}
-
 /**
  * Hc Svnt Dracones
  *
- * @param {any} moves
- * @param {any} state
- * @param {any} insertValue
- * @param {any} [move=moves.findIndex((x) => x === 1)]
+ * @generator
+ * @param {Array.<Array.<number>>} state original state
+ * @param {number} insertValue value to insert, 1 or -1
+ * @param {number|Array.<number>} moves where to insert
+ * @yields {Array.<Array.<number>>|Array.<Array.<Array.<number>>>} New clones of states with inserted values
  */
-function* testIterator(moves, state, insertValue, move = moves.findIndex((x) => x === 1)){
+function* stateGenerator(state, insertValue, moves){
 
-  let nextArrayFn = deepCopyCurry(state)(insertValue)
+  let nextArrayFn = deepCopyCurry(state)
+  let moveFns = Array.isArray(moves) ? moves.map((legalMove, index) => {return legalMove == 1 ? nextArrayFn(index) : null}) : nextArrayFn(moves)
 
-  if (moves[move] === 0){
-    yield* testIterator(moves, state, insertValue, move+1)
+  if (!Array.isArray(moveFns)){
+    var newMoves = yield moveFns()(insertValue);
+    if (typeof newMoves == 'undefined'){
+      newMoves = yield moveFns()(-insertValue); // Call twice to get new states for both players
+    }
+    if (typeof newMoves != 'undefined'){
+      yield* stateGenerator(state, insertValue, newMoves);
+    }
+    return
   }
 
-  if (move < moves.length){
-    let y = state[move].findIndex((slot) => {
-      return (slot === 0)
-    })
-    let peekAMove = yield nextArrayFn(move)(y) || false
-      if (peekAMove) {
-        yield move
-        peekAMove = false
-      }
-    yield* testIterator(moves, state, insertValue, move+1)
-}
+  // Moves is array, return many new states at once
+  let stateFns = moveFns.map((fn) => typeof fn =='function' ? fn() : (x) => null)
+
+  var newMoves = yield stateFns.map((fn) => fn(insertValue))
+  if (typeof newMoves == 'undefined'){
+    newMoves = yield stateFns.map((fn) => fn(-insertValue)) // Call twice to get new states for both players
+  }
+  if (typeof newMoves != 'undefined'){
+  yield* stateGenerator(state, insertValue, newMoves)
+  }
+  return;
 }
 
 
-function deepCopy(array){
-  return array.map((arr) => {
+function deepCopy(matrix){
+  return matrix.map((arr) => {
     return arr.slice();
-});
+  });
 }
 
-function deepCopyCurry(array){
-  return function(newValue){
-    return function(x){
-      return function(y){
-        let newArray = deepCopy(array)
-        newArray[x][y] = newValue
-        return newArray
+/**
+ * @param {Array.<Array.<Number>>} matrix original state matrix to clone
+ * @returns Curry 😉
+ */
+function deepCopyCurry(matrix){
+  return /** @param {number} x column */ function(x){
+    return /** @param {number} [y] optional y-coordinate, or finds first zero */ function(y) {
+        y = typeof y === 'undefined' ? matrix[x].findIndex((slot) => {
+          return (slot === 0)
+        }) : y
+      return /** @param {number} newValue @returns {Array.<Array.<number>>} a brand new matrix with the new value inserted */ function(newValue) {
+        if (y === -1){
+          return null; // Handle illegal moves
+        }
+        let newMatrix = deepCopy(matrix)
+        newMatrix[x][y] = newValue
+        return newMatrix
       }
     }
   }
 }
 
-function testSmartMove(){
+function showMeTheWay(){
   let slotIndicator = game.board.currentPlayer < 2 ? 1 : -1
-  let prediction = Brain.smartMove(game.board, 1, slotIndicator)
-  let move = prediction.value
-  console.log(prediction)
-  console.log(move)
-  if (typeof move !== 'number'){
-    move = ~~(Math.random() * 7)
+  let prediction = Brain.smartMove(2)
+  if (prediction !== null) {
+    console.log(prediction)
   }
-  // let parent = $('#column-' + move.toString())
-  // game.board.createSingleSlot(parent, move);
-  // game.board.checkWinner(game.board.state);
-
-  let element = $($('#column-' + move.toString()).children()[0])
-  game.board.click(element, game.board)
 
 }

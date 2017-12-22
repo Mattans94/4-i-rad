@@ -1,7 +1,8 @@
 class Player {
 
 	constructor(name = 'Player'){
-		this.name = name;
+    this.name = name;
+
 	}
 
 }
