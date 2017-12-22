@@ -327,15 +327,15 @@ hoverFn(color) {
         )
         .children('.board-slot-hover');
         hoverdiv.css({
-          // background: board.currentPlayer == 1 ? player1color : player2color
-          background: color
+          background: board.currentPlayer == 1 ? player1color : player2color
+          // background: color
           // opacity: '100'
         });
       $(this).click(() => {
         // console.log(((board.currentPlayer == 1) ? player2color: player1color))
         hoverdiv.css({
-          background: color
-          // background: board.currentPlayer == 1 ? player2color : player1color
+          // background: color
+          background: board.currentPlayer == 1 ? player2color : player1color
           // opacity: '100'
         })
       });
