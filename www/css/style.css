@@ -10,11 +10,11 @@ h1 {
   margin-bottom: 20px;
 }
 .nav-pills .nav-link.active {
-  background-color: #808080;
+  background-color: grey;
   color: #fff;
 }
 .nav-pills .nav-link.hover {
-  background-color: #808080;
+  background-color: grey;
 }
 a:link {
   text-decoration: none;
@@ -79,7 +79,7 @@ main .card.first-page {
 }
 main .card {
   color: white;
-  text-shadow: -1px -1px 0 #666666, 1px -1px 0 #666666, -1px 1px 0 #666666, 1px 1px 0 #666666;
+  text-shadow: -1px -1px 0 #666, 1px -1px 0 #666, -1px 1px 0 #666, 1px 1px 0 #666;
 }
 main .other-games img {
   width: 100%;
@@ -103,7 +103,7 @@ main .games p {
 }
 main .btn-newgame,
 main .btn-gameover {
-  background-color: #808080;
+  background-color: grey;
   color: #fff;
   margin-right: 15px;
   margin-top: 5px;
@@ -304,6 +304,8 @@ footer a:visited {
     min-height: 700px;
   }
 }
+@media screen and (max-width: 768px) {
+}
 #gameOverModal .modal-header {
   border-bottom: none;
 }
@@ -313,7 +315,7 @@ footer a:visited {
 #gameOverModal .modal-content {
   background-image: url("../imgs/Confetti.jpg");
   color: white;
-  text-shadow: -1px -1px 0 #000000, 1px -1px 0 #000000, -1px 1px 0 #000000, 1px 1px 0 #000000;
+  text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
 }
 #gameOverModal .close {
   color: white;
