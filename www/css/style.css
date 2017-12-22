@@ -106,8 +106,16 @@ footer a:visited {
 }
 .board {
   width: 100%;
-  max-height: 700px;
-  max-width: 640px;
+}
+@media (max-width: 1399px) {
+  .board {
+    max-width: 500px;
+  }
+}
+@media (min-width: 1400px) {
+  .board {
+    max-width: 640px;
+  }
 }
 .board .board-column-hover {
   width: 14.28571429%;
@@ -148,7 +156,12 @@ footer a:visited {
     height: 7vw;
   }
 }
-@media (min-width: 992px) {
+@media (min-width: 992) {
+  .board .board-column-hover .board-slot-hover {
+    max-height: 70px;
+  }
+}
+@media (min-width: 1400px) {
   .board .board-column-hover .board-slot-hover {
     max-height: 90px;
     height: 9vw;
@@ -195,6 +208,11 @@ footer a:visited {
   }
 }
 @media (min-width: 992px) {
+  .board .board-column .board-slot {
+    max-height: 70px;
+  }
+}
+@media (min-width: 1400px) {
   .board .board-column .board-slot {
     max-height: 90px;
     height: 9vw;
