@@ -1,2 +1,4 @@
 let game = new Game();
-game.board.nextPlayer(); // Start game
+if (location.pathname == '/play.html'){
+  game.board.nextPlayer(); // Start game
+}
