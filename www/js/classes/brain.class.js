@@ -18,7 +18,9 @@ static smartMove(depth = 2, board = game.board, slotIndicator = game.board.curre
 
     let generator = stateGenerator(board.state, slotIndicator, board.possibleMoves);
 
-    let moveToMake = depth < 2 ? Brain.easyMove(generator, winFn) : Brain.hardMove(generator, winFn);
+    let moveToMake = depth < 2 ? Brain.easyMove(generator, winFn) : depth < 4 ? Brain.mediumMove(generator, winFn) : Brain.hardMove(generator, winFn);
+    // let moveToMake = Brain.mediumMove(generator, winFn)
+    // let moveToMake = Brain.hardMove(generator, winFn)
 
     return moveToMake;
 
@@ -63,7 +65,9 @@ static hardMove(generator, winFn, slotIndicator = game.board.currentPlayer < 2 ?
     let potentialMoves = badMoves.map((move, index) => ((move !== 0) ? move : goodMoves[index]) * slotIndicator)
     // console.log(potentialMoves)
 
-    return null;
+    let maxPotential = potentialMoves.reduce((a,b) => Math.max(a,b))
+    return potentialMoves.map((move) => move == maxPotential ? 1 : 0)
+    // return potentialMoves;
 
   }
 
