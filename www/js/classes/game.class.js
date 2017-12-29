@@ -13,22 +13,6 @@ class Game {
       this.board.generateBoard();
     }
 
-    // setName(player1, player2) {
-    //     let name1 = $('#playerName1').val();
-    //     let name2 = $('#playerName2').val();
-    //     name1 = this.player1.name;
-    //     name2 = this.player2.name;
-    // }
-
-    // TODO: används dessa?
-    setPlayer1Type(response) {
-        this.player1Type = response;
-    }
-
-    setPlayer2Type(response) {
-        this.player2Type = response;
-    }
-
     getPlayers() {
       let players = loadPlayers()
     	if (Array.isArray(players)){
@@ -55,7 +39,7 @@ class Game {
       // @ts-ignore
       JSON._load('hi-scores')
         .then((data) => {
-          console.log(data)
+          // console.log(data)
             this.highscoreList = data.list || new HighscoreList();
         })
         .catch(() => {
@@ -90,10 +74,10 @@ $(document).on("click", "#switchButton1", function() {
 
     if ($("p.hidden").css("display") == "none") {
         value = 'human'
-        console.log(value);
+        // console.log(value);
     } else {
         value = 'computer'
-        console.log(value);
+        // console.log(value);
     }
 
 
@@ -109,10 +93,10 @@ $(document).on("click", "#switchButton2", function() {
 
     if ($("p.hidden2").css("display") == "none") {
         value = 'human'
-        console.log(value);
+        // console.log(value);
     } else {
         value = 'computer'
-        console.log(value);
+        // console.log(value);
     }
 
     localStorage.setItem('player2Type', value);
@@ -144,8 +128,8 @@ function loadPlayers() {
     let name2 = localStorage.getItem('player2Name') || 'Player 2';
     let type1 = localStorage.getItem('player1Type') || 'human';
     let type2 = localStorage.getItem('player2Type') || 'human';
-    console.log(name1 + " is type " + type1);
-    console.log(name2 + " is type " + type2);
+    // console.log(name1 + " is type " + type1);
+    // console.log(name2 + " is type " + type2);
     $('.player1').html(name1);
     $('.player2').html(name2);
 

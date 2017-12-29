@@ -157,7 +157,7 @@ function deepCopy(matrix){
 
 /**
  * @param {Array.<Array.<Number>>} matrix original state matrix to clone
- * @returns Curry 😉
+ * @returns Functions for quickly creating board copies with new inserted moves
  */
 function deepCopyCurry(matrix){
   return /** @param {number} x column */ function(x){

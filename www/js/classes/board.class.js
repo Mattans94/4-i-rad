@@ -1,4 +1,3 @@
-//TODO: Ändra till board.playerX.color överallt
 const player1color = 'red'
 const player2color = 'yellow'
 
@@ -20,16 +19,15 @@ class Board extends Base {
         this.player2 = this.game.player2;
         this.co = 0;
         this.winner = null;
-        this.board = this.generateBoard(); //TODO: This runs twice
         this.width = this.state.length;
         this.height = this.state[0].length;
         // this.hoverFn(player1color); //Moved into generateBoard
         this.possibleMoves = new Array(7).fill(1)
-        this.currentPlayer = 2; // Start with player 1
+        this.currentPlayer = 2; // Game starts by switching to player 1
     }
 
     /**
-     *
+     * Gets a slot
      *
      * @param {number} x Horizontal axis
      * @param {number} y Vertical axis
@@ -64,7 +62,7 @@ class Board extends Base {
             }
             return true
         } catch (error) {
-            console.log('Invalid slot')
+            // console.log('Invalid slot')
             return false
         }
     }
@@ -74,7 +72,10 @@ class Board extends Base {
     }
 
     nextPlayer() {
-      console.log(this.winner)
+      if(!!this.winner){
+        return;
+      }
+      // console.log(this.winner)
       const delay = (this.player1.constructor.name == 'Bot' && this.player2.constructor.name == 'Bot') ? 250 : 750
       const oldClickFn = this.click
       const oldHoverFn = this.hoverFn
@@ -84,32 +85,45 @@ class Board extends Base {
       this.changePlayerColor();
       if(this.currentPlayer === 1){
         if (this.player1.constructor.name == 'Human'){
-          this.hoverFn(player1color)
+          $('.board-slot-hover').css({"opacity": "100"})
+          // this.hoverFn(player2color)
         } else {
-          this.click = null;
-          this.hoverFn = null;
+          $('.board-slot-hover').css({"opacity": "0"})
+          // this.hoverFn(player2color)
+          this.click = $.noop;
+          // this.hoverFn = null;
           let move = this.player1.decisionFn(this, this.possibleMoves);
           let element = $($('#column-' + move.toString()).children()[0])
           setTimeout((() => {
             this.click = oldClickFn;
-            this.hoverFn = oldHoverFn;
+            // this.hoverFn = oldHoverFn;
             this.click(element, this)
+            this.hoverTrigger()
           }), delay)
           // this.click(element, this)
         }
       }
       if(this.currentPlayer === 2){
         if (this.player2.constructor.name == 'Human'){
-          this.hoverFn(player2color)
+          $('.board-slot-hover').css({"opacity": "100"})
+          // this.hoverFn(player1color)
         } else {
-          this.click = null;
-          this.hoverFn = null;
+          $('.board-slot-hover').css({"opacity": "0"})
+          // this.hoverFn(player1color)
+          this.click = $.noop;
+          // this.hoverFn = null;
           let move = this.player2.decisionFn(this, this.possibleMoves);
           let element = $($('#column-' + move.toString()).children()[0])
+          // console.log(element)
           setTimeout((() => {
             this.click = oldClickFn;
-            this.hoverFn = oldHoverFn;
+            // this.hoverFn = oldHoverFn;
             this.click(element, this)
+            // element.trigger('click')
+            // element.trigger('mouseenter')
+            // element.trigger('click')
+            this.hoverTrigger()
+            // element.trigger('mouseleave')
           }), delay)
           // this.click(element, this)
         }
@@ -210,7 +224,7 @@ class Board extends Base {
   }
 
     click(element, instances){
-
+      // console.log(element)
       let parent = element.parent();
       // if(parent.hasClass('board-column')){
       //     this.createSlot(parent);
@@ -231,22 +245,19 @@ class Board extends Base {
         this.createSingleSlot(parent, row);
         return this.checkWinner(this.state);
     }
-    // else {
-    //   console.log('Game over'); // TODO: Remove
-    // }
   }
 
 
     generateBoard() {
         this.render('section.boardarea');
         $(() => {
-          // this.hoverFn(player1color);
+          this.hoverFn(player1color);
       });
     }
 
 
     createSlot(parent) {
-        console.log('working', parent);
+        // console.log('working', parent);
         this.render(parent, '2');
     }
 
@@ -262,8 +273,8 @@ class Board extends Base {
         element.className += ' yellow'
 
       }
-      // $(parent).hover(function(){
-      // })
+      $(parent).hover(function(){
+      })
       this.nextPlayer()
     }
   }
@@ -296,7 +307,6 @@ class Board extends Base {
 
   }
 
-  // TODO: Fixa färg på click...
 /**
  *
  * @param {string} color
@@ -304,21 +314,27 @@ class Board extends Base {
 hoverFn(color) {
   let hoverdiv;
   let board = this;
+  // console.log(hoverdiv)
   $('.board-slot-hover').hover(
     function() {
+      board.hoverTarget = $(this);
       $(this).css({
-        background: color
+        // background: color
+        background: board.currentPlayer == 1 ? player1color : player2color
         // opacity: '100'
       })
       $(this).click(function() {
         // console.log(((board.currentPlayer == 1) ? player2color: player1color))
+
         $(this).css({
-          background: color
+          background: board.currentPlayer == 1 ? player2color : player1color
+          // background: color
           // opacity: '100'
         })
       })
     },
     function() {
+      board.hoverTarget = null;
       $(this).css({
         background: 'white'
         // opacity: '0'
@@ -328,7 +344,7 @@ hoverFn(color) {
   $('.board-column .board-slot').hover(
     function() {
       // $(this).css("background", "red");
-      hoverdiv = $(this)
+      board.hoverTarget = hoverdiv = $(this)
         .parent()
         .parent()
         .children(
@@ -345,7 +361,10 @@ hoverFn(color) {
           // background: color
           // opacity: '100'
         });
+
       $(this).click(() => {
+        // console.log("!")
+
         // console.log(((board.currentPlayer == 1) ? player2color: player1color))
         hoverdiv.css({
           // background: color
@@ -357,6 +376,7 @@ hoverFn(color) {
     function() {
       // $(this).css('background', 'white');
       if (hoverdiv) {
+        board.hoverTarget = null;
         // console.log(hoverdiv)
         hoverdiv.css({
           background: 'white',
@@ -365,6 +385,15 @@ hoverFn(color) {
       }
     }
   );
+}
+
+set hoverTarget(hoverdiv){
+  this.hoverTrigger = (hoverdiv !== null) ? () => {
+    hoverdiv.css({background: this.currentPlayer == 1 ? player1color : player2color})
+  } : () => {}
+}
+
+hoverTrigger() {
 }
 
 static pureCheckWinner(bd) {

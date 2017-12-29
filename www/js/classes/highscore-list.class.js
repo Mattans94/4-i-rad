@@ -11,7 +11,7 @@ class HighscoreList {
     }
 
     register(player) {
-        console.log(player)
+        // console.log(player)
 
         let position = this.list.maxLength;
 
@@ -30,7 +30,7 @@ class HighscoreList {
 
 
             this.list.sort(this.sortNumber);
-            console.log(this.list)
+            // console.log(this.list)
 
             JSON._save('hi-scores', {
                 list: this
