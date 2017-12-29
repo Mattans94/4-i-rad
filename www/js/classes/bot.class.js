@@ -20,7 +20,7 @@ class Bot extends Player{
   mediumMove(board = game.board, possibleMoves = game.board.possibleMoves){
     // console.log(board.state.slice())
     let move = Brain.smartMove(2, board)
-    console.log(move)
+    // console.log(move)
     // move != null ? move : this.randomMove();
     if (move == null){
       move = this.randomMove(possibleMoves)
