@@ -1,4 +1,3 @@
-//TODO: Ändra till board.playerX.color överallt
 const player1color = 'red'
 const player2color = 'yellow'
 
@@ -20,16 +19,15 @@ class Board extends Base {
         this.player2 = this.game.player2;
         this.co = 0;
         this.winner = null;
-        this.board = this.generateBoard(); //TODO: This runs twice
         this.width = this.state.length;
         this.height = this.state[0].length;
         // this.hoverFn(player1color); //Moved into generateBoard
-        this.possibleMoves = new Array(7).fill(1)
-        this.currentPlayer = 2; // Start with player 1
+        this.possibleMoves = new Array(7).fill(1);
+        this.currentPlayer = 2; // Game starts by switching to player 1
     }
 
     /**
-     *
+     * Gets a slot
      *
      * @param {number} x Horizontal axis
      * @param {number} y Vertical axis
@@ -38,9 +36,9 @@ class Board extends Base {
      */
     getSlot(x, y) {
         if (x < this.state.length && y < this.state[0].length) {
-            return this.state[x][y]
+            return this.state[x][y];
         } else {
-            return false
+            return false;
         }
     }
 
@@ -62,10 +60,10 @@ class Board extends Base {
             if(playerId == 2){
               $('#player2moves').text(this.currentRound );
             }
-            return true
+            return true;
         } catch (error) {
-            console.log('Invalid slot')
-            return false
+            // console.log('Invalid slot')
+            return false;
         }
     }
 
@@ -74,59 +72,64 @@ class Board extends Base {
     }
 
     nextPlayer() {
-      console.log(this.winner)
-      const delay = (this.player1.constructor.name == 'Bot' && this.player2.constructor.name == 'Bot') ? 250 : 750
-      const oldClickFn = this.click
-      const oldHoverFn = this.hoverFn
-      this.currentPlayer ^= 3 // Switches between 1 and 2
+      if(!!this.winner){
+        return;
+      }
+      const delay = (this.player1.constructor.name == 'Bot' && this.player2.constructor.name == 'Bot') ? 250 : 750;
+      const oldClickFn = this.click;
+      const oldHoverFn = this.hoverFn;
+      this.currentPlayer ^= 3; // Switches between 1 and 2
         // this.currentPlayer ^= 1 // Switches between 1 and 0 instead
         // this.currentPlayer ^= -2 // Switches between 1 and -1
       this.changePlayerColor();
       if(this.currentPlayer === 1){
         if (this.player1.constructor.name == 'Human'){
-          this.hoverFn(player1color)
+          $('.board-slot-hover').fadeTo(400, 1);
         } else {
-          this.click = null;
-          this.hoverFn = null;
+          $('.board-slot-hover').css({"opacity": "0"});
+          this.click = $.noop;
+          // this.hoverFn = null;
           let move = this.player1.decisionFn(this, this.possibleMoves);
-          let element = $($('#column-' + move.toString()).children()[0])
+          let element = $($('#column-' + move.toString()).children()[0]);
           setTimeout((() => {
             this.click = oldClickFn;
-            this.hoverFn = oldHoverFn;
-            this.click(element, this)
+            // this.hoverFn = oldHoverFn;
+            this.click(element, this);
+            this.hoverTrigger();
           }), delay)
           // this.click(element, this)
         }
       }
       if(this.currentPlayer === 2){
         if (this.player2.constructor.name == 'Human'){
-          this.hoverFn(player2color)
+          $('.board-slot-hover').fadeTo(400, 1)
+          // $('.board-slot-hover').css({"opacity": "100"})
+          // this.hoverFn(player1color)
         } else {
-          this.click = null;
-          this.hoverFn = null;
+          $('.board-slot-hover').css({"opacity": "0"});
+          this.click = $.noop;
           let move = this.player2.decisionFn(this, this.possibleMoves);
           let element = $($('#column-' + move.toString()).children()[0])
           setTimeout((() => {
             this.click = oldClickFn;
-            this.hoverFn = oldHoverFn;
-            this.click(element, this)
+            this.click(element, this);
+            this.hoverTrigger();
           }), delay)
-          // this.click(element, this)
         }
       }
   }
 
     placeInColumn(column) {
         let y = this.state[column].findIndex((slot) => {
-            return (slot === 0)
+            return (slot === 0);
         })
         if (this.setSlot(column, y, this.currentPlayer)) {
           if (y === 5){
-              this.possibleMoves[column] = 0
+              this.possibleMoves[column] = 0;
             }
-            return y
+            return y;
         } else {
-            return -1
+            return -1;
         }
 
     }
@@ -139,7 +142,7 @@ class Board extends Base {
             $("#player1card").css("background", colorPlayer1);
             $("#player2card").css("background", "rgba(200,200,200,0.9)");
         } else {
-            $("#player1card").css("background", "rgba(200,200,200,0.9)")
+            $("#player1card").css("background", "rgba(200,200,200,0.9)");
             $("#player2card").css("background", colorPlayer2);
         }
 
@@ -191,6 +194,7 @@ class Board extends Base {
         $('#gameOverModal .modal-body').text(this.winner.name);
         $('#gameOverModal').modal();
         $('#gameOverModal').append('<div class="confetti"></div>');
+        startConfetti();
         return true;
       } else if (this.co === 42) {
           this.winner = 'draw';
@@ -210,66 +214,66 @@ class Board extends Base {
   }
 
     click(element, instances){
-
       let parent = element.parent();
-      // if(parent.hasClass('board-column')){
-      //     this.createSlot(parent);
-      // }
 
-      // let e = element
-
-    if (parent.hasClass('board-column-hover') && (this.winner === null)) {
-
-      let childnumber = parseInt(parent[0].id.split('column-hover-').pop())
-      const row = this.placeInColumn(childnumber)
-      let parentchild = parent[0].parentElement.children[childnumber + 7]
-
-      this.createSingleSlot($(parentchild), row);
-      return this.checkWinner(this.state);
-      } else if (parent.hasClass('board-column') && (this.winner === null)){
-      const row = this.placeInColumn(parent[0].id.split('column-').pop())
-        this.createSingleSlot(parent, row);
-        return this.checkWinner(this.state);
+    if (this.winner !== null){
+      return;
     }
-    // else {
-    //   console.log('Game over'); // TODO: Remove
-    // }
+    let row;
+    let target;
+    let animationElement;
+    if (parent.hasClass('board-column-hover')) {
+        let childnumber = parseInt(parent[0].id.split('column-hover-').pop());
+        row = this.placeInColumn(childnumber);
+        let parentchild = parent[0].parentElement.children[childnumber + 7];
+        target = $(parentchild);
+        animationElement = element;
+      } else if (parent.hasClass('board-column')) {
+        let columnNumber = parent[0].id.split('column-').pop()
+        row = this.placeInColumn(columnNumber);
+        target = parent;
+        animationElement = $('#column-hover-' + columnNumber + ' .board-slot-hover').last()
+        // console.log(animationElement);
+    }
+    if (row === -1 || typeof row === 'undefined'){
+      return;
+    }
+    // console.log(animationElement)
+    let player = this.currentPlayer;
+    let currentState = deepCopy(this.state);
+    let callback = () => {
+    if (this.winner === null) {
+        this.createSingleSlot(target, row, player);
+        this.checkWinner(currentState);
+      }
+    }
+    this.animateDivToRow(animationElement, row, callback);
+    // console.log(this.state)
+    this.nextPlayer();
+    this.hoverTrigger();
+    // this.createSingleSlot(target, row);
+    // return this.checkWinner(this.state);
   }
 
 
     generateBoard() {
         this.render('section.boardarea');
         $(() => {
-          // this.hoverFn(player1color);
+          this.hoverFn();
       });
     }
 
 
-    createSlot(parent) {
-        console.log('working', parent);
-        this.render(parent, '2');
-    }
-
-    createSingleSlot(parent, row){
-      // console.log(parent[0].id.split('column-').pop())
-      // const row = this.placeInColumn(parent[0].id.split('column-').pop())
+    createSingleSlot(parent, row, player = this.currentPlayer){
       if (row != -1){
-      let element = parent[0].children[this.height - row - 1]
-      if (this.currentPlayer == 1){
-        element.className += ' red'
-
-      } else if (this.currentPlayer == 2){
-        element.className += ' yellow'
-
+      let element = parent[0].children[this.height - row - 1];
+      if (player == 1){
+        element.className += ' red';
+      } else if (player == 2){
+        element.className += ' yellow';
       }
-      // $(parent).hover(function(){
-      // })
-      this.nextPlayer()
     }
   }
-
-
-    //need to add id on them as well but here is a start on the board
 
     template(){
       let returnValue = '<div class="board">';
@@ -296,39 +300,38 @@ class Board extends Base {
 
   }
 
-  // TODO: Fixa färg på click...
 /**
- *
- * @param {string} color
+ * Sets up hover-slots
  */
-hoverFn(color) {
+hoverFn() {
   let hoverdiv;
   let board = this;
+  // console.log(hoverdiv)
   $('.board-slot-hover').hover(
     function() {
+      board.hoverTarget = $(this);
       $(this).css({
-        background: color
+        // background: color
+        background: board.currentPlayer == 1 ? player1color : player2color
         // opacity: '100'
       })
       $(this).click(function() {
-        // console.log(((board.currentPlayer == 1) ? player2color: player1color))
         $(this).css({
-          background: color
-          // opacity: '100'
+          background: board.currentPlayer == 1 ? player2color : player1color
         })
       })
     },
     function() {
+      board.hoverTarget = null;
       $(this).css({
         background: 'white'
-        // opacity: '0'
       })
     }
   );
   $('.board-column .board-slot').hover(
     function() {
       // $(this).css("background", "red");
-      hoverdiv = $(this)
+      board.hoverTarget = hoverdiv = $(this)
         .parent()
         .parent()
         .children(
@@ -342,29 +345,51 @@ hoverFn(color) {
         .children('.board-slot-hover');
         hoverdiv.css({
           background: board.currentPlayer == 1 ? player1color : player2color
-          // background: color
-          // opacity: '100'
         });
+
       $(this).click(() => {
-        // console.log(((board.currentPlayer == 1) ? player2color: player1color))
-        hoverdiv.css({
-          // background: color
-          background: board.currentPlayer == 1 ? player2color : player1color
-          // opacity: '100'
-        })
+        // hoverdiv.css({
+        //   background: board.currentPlayer == 1 ? player2color : player1color
+        // })
       });
     },
     function() {
       // $(this).css('background', 'white');
       if (hoverdiv) {
+        board.hoverTarget = null;
         // console.log(hoverdiv)
         hoverdiv.css({
           background: 'white',
-          // opacity: '0'
         })
       }
     }
   );
+}
+
+set hoverTarget(hoverdiv){
+  this.hoverTrigger = (hoverdiv !== null) ? () => {
+    hoverdiv.css({background: this.currentPlayer == 1 ? player1color : player2color})
+  } : () => {}
+}
+
+hoverTrigger() {
+}
+
+animateDivToRow(div, row, callback = (() => {})){
+  let height = $('.board-column .board-slot').eq(1).position().top*(6-row)+10;
+  let addedClass = this.currentPlayer == 1 ? 'bg-very-red' : 'bg-very-yellow';
+  // console.log(div)
+  let newDiv = div.clone().css({position: 'absolute', 'z-index': 3}).addClass(addedClass).prependTo(div.parent())
+  const afterFn = () => {
+    // newDiv.css({top: '0px'});
+    newDiv.remove();
+    callback();
+  }
+  if ((window.matchMedia("(orientation: landscape)").matches) && (window.outerWidth < 813) && (window.outerHeight < window.outerWidth)) {
+    height = height * 1.41;
+ }
+  newDiv.animate({top: height}, 400, afterFn);
+  // newDiv.animate({top: height}, 5000, afterFn);
 }
 
 static pureCheckWinner(bd) {
@@ -383,7 +408,7 @@ static pureCheckWinner(bd) {
           bd[col][row + 2] == player &&
           bd[col][row + 3] == player
         ) {
-          return player
+          return player;
         }
 
         if (
@@ -393,7 +418,7 @@ static pureCheckWinner(bd) {
           bd[col + 2][row] == player &&
           bd[col + 3][row] == player
         ) {
-          return player
+          return player;
         }
 
         if (
@@ -403,7 +428,7 @@ static pureCheckWinner(bd) {
           bd[col + 2][row + 2] == player &&
           bd[col + 3][row + 3] == player
         ) {
-          return player
+          return player;
         }
 
         if (
@@ -414,12 +439,12 @@ static pureCheckWinner(bd) {
           bd[col - 2][row + 2] == player &&
           bd[col - 3][row + 3] == player
         ) {
-          return player
+          return player;
         }
       }
     }
   }
-  return winner
+  return winner;
 }
 
 }

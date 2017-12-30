@@ -18,12 +18,58 @@ static smartMove(depth = 2, board = game.board, slotIndicator = game.board.curre
 
     let generator = stateGenerator(board.state, slotIndicator, board.possibleMoves);
 
-    let moveToMake = depth < 2 ? Brain.easyMove(generator, winFn) : Brain.mediumMove(generator, winFn);
+    let moveToMake = depth < 2 ? Brain.easyMove(generator, winFn) : depth < 4 ? Brain.mediumMove(generator, winFn) : Brain.hardMove(generator, winFn);
+    // let moveToMake = Brain.mediumMove(generator, winFn)
+    // let moveToMake = Brain.hardMove(generator, winFn)
 
     return moveToMake;
 
   }
+/**
+ * Figures out a hard difficulty move
+ *
+ * @static
+ * @param {Generator} generator
+ * @param {function} winFn
+ * @param {number} [slotIndicator=game.board.currentPlayer < 2 ? 1 : -1] Player identifier, 1 or -1
+ * @memberof Brain
+ */
+static hardMove(generator, winFn, slotIndicator = game.board.currentPlayer < 2 ? 1 : -1){
 
+    const possibleStates = generator.next().value;
+    let nextMoves = possibleStates.map((state) => state != null ? state.map((column) => column[5] != 0 ? 0 : 1) : null)
+
+    if (nextMoves.reduce((acc, x) => (acc + (x !== null ? 1 : 0)), 0) < 2) {
+      // There is only one possible move, return it
+      return nextMoves.findIndex((x) => Array.isArray(x))
+    }
+
+    let index = possibleStates.concat(generator.next().value)
+      .map((state) => winFn(state))
+      .findIndex((move) => !!move);
+
+    if (index != -1){
+      return index % 7;
+    }
+    // console.log(nextMoves)
+    let stateGenerators = possibleStates.map((state, index) => {return state != null ? stateGenerator(state, -slotIndicator, nextMoves[index]) : null})
+
+    let badMoves = stateGenerators.map((gen) => {return gen != null ? gen.next().value : null})
+     .map((states) => states != null ? states.map(state => winFn(state)).reduce((acc, x) => acc + x, 0) : -Infinity * slotIndicator)
+
+    // console.log(badMoves)
+
+    let goodMoves = stateGenerators.map((gen) => {return gen != null ? gen.next().value : null})
+     .map((states) => states != null ? states.map(state => winFn(state)).reduce((acc, x) => acc + x, 0) : Infinity * slotIndicator)
+    // console.log(goodMoves)
+    let potentialMoves = badMoves.map((move, index) => ((move !== 0) ? move : goodMoves[index]) * slotIndicator)
+    // console.log(potentialMoves)
+
+    let maxPotential = potentialMoves.reduce((a,b) => Math.max(a,b))
+    return potentialMoves.map((move) => move == maxPotential ? 1 : 0)
+    // return potentialMoves;
+
+  }
 
   /**
    * Figures out a medium difficulty move.
@@ -82,6 +128,7 @@ static smartMove(depth = 2, board = game.board, slotIndicator = game.board.curre
 function* stateGenerator(state, insertValue, moves){
 
   let nextArrayFn = deepCopyCurry(state)
+
   let moveFns = Array.isArray(moves) ? moves.map((legalMove, index) => {return legalMove == 1 ? nextArrayFn(index) : null}) : nextArrayFn(moves)
 
   if (!Array.isArray(moveFns)){
@@ -89,21 +136,18 @@ function* stateGenerator(state, insertValue, moves){
     if (typeof newMoves == 'undefined'){
       newMoves = yield moveFns()(-insertValue); // Call twice to get new states for both players
     }
-    if (typeof newMoves != 'undefined'){
-      yield* stateGenerator(state, insertValue, newMoves);
-    }
-    return
-  }
-
+  } else {
   // Moves is array, return many new states at once
-  let stateFns = moveFns.map((fn) => typeof fn =='function' ? fn() : (x) => null)
-
-  var newMoves = yield stateFns.map((fn) => fn(insertValue))
-  if (typeof newMoves == 'undefined'){
-    newMoves = yield stateFns.map((fn) => fn(-insertValue)) // Call twice to get new states for both players
+    let stateFns = moveFns.map((fn) => typeof fn =='function' ? fn() : (x) => null)
+    var newMoves = yield stateFns.map((fn) => fn(insertValue))
+    if (typeof newMoves == 'undefined'){
+      newMoves = yield stateFns.map((fn) => fn(-insertValue)) // Call twice to get new states for both players
+    }
   }
   if (typeof newMoves != 'undefined'){
-  yield* stateGenerator(state, insertValue, newMoves)
+    let args = Array.isArray(newMoves[0]) ? newMoves : [state, insertValue, newMoves]
+    // @ts-ignore
+    yield* stateGenerator(...args)
   }
   return;
 }
@@ -117,7 +161,7 @@ function deepCopy(matrix){
 
 /**
  * @param {Array.<Array.<Number>>} matrix original state matrix to clone
- * @returns Curry 😉
+ * @returns Functions for quickly creating board copies with new inserted moves
  */
 function deepCopyCurry(matrix){
   return /** @param {number} x column */ function(x){

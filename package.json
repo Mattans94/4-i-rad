@@ -1,12 +1,12 @@
 {
   "name": "4-i-rad",
-  "version": "0.0.0",
+  "version": "1.1.0",
   "description": "",
   "main": "app.js",
   "scripts": {
     "test": "eslint .",
     "start": "node app.js",
-    "sync": "node --inspect app.js | browser-sync start --proxy localhost:3000 --no-online --files \"www, views, public, !**/*.json, !**/*.css\""
+    "sync": "node --inspect app.js | browser-sync start --proxy localhost:3000 --no-online --files \"www, views, public, !**/*.json\""
   },
   "author": "",
   "license": "ISC",

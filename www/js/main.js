@@ -1,5 +1,4 @@
 let game = new Game();
-try{
+if (location.pathname == '/play.html'){
   game.board.nextPlayer(); // Start game
-  } catch(e){
 }

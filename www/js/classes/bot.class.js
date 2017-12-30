@@ -3,7 +3,8 @@ class Bot extends Player{
 	constructor(name){
 		super(name);
 
-    this.decisionFn = this.mediumMove;
+    // this.decisionFn = this.mediumMove;
+    this.decisionFn = this.hardMove;
 
 	}
 
@@ -18,14 +19,21 @@ class Bot extends Player{
   }
 
   mediumMove(board = game.board, possibleMoves = game.board.possibleMoves){
-    // console.log(board.state.slice())
     let move = Brain.smartMove(2, board)
-    // console.log(move)
-    // move != null ? move : this.randomMove();
     if (move == null){
       move = this.randomMove(possibleMoves)
     }
-    // console.log(game.board.possibleMoves)
+    return move
+  }
+
+  hardMove(board = game.board, possibleMoves = game.board.possibleMoves){
+    let move = Brain.smartMove(4, board)
+    if (move == null){
+      move = this.randomMove(possibleMoves)
+    }
+    if (Array.isArray(move)){
+      move = this.randomMove(move)
+    }
     return move
   }
 
