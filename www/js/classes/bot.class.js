@@ -32,7 +32,6 @@ class Bot extends Player{
       move = this.randomMove(possibleMoves)
     }
     if (Array.isArray(move)){
-      console.log(move)
       move = this.randomMove(move)
     }
     return move
