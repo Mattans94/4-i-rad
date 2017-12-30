@@ -22,7 +22,7 @@ class Board extends Base {
         this.width = this.state.length;
         this.height = this.state[0].length;
         // this.hoverFn(player1color); //Moved into generateBoard
-        this.possibleMoves = new Array(7).fill(1)
+        this.possibleMoves = new Array(7).fill(1);
         this.currentPlayer = 2; // Game starts by switching to player 1
     }
 
@@ -36,9 +36,9 @@ class Board extends Base {
      */
     getSlot(x, y) {
         if (x < this.state.length && y < this.state[0].length) {
-            return this.state[x][y]
+            return this.state[x][y];
         } else {
-            return false
+            return false;
         }
     }
 
@@ -60,10 +60,10 @@ class Board extends Base {
             if(playerId == 2){
               $('#player2moves').text(this.currentRound );
             }
-            return true
+            return true;
         } catch (error) {
             // console.log('Invalid slot')
-            return false
+            return false;
         }
     }
 
@@ -75,33 +75,27 @@ class Board extends Base {
       if(!!this.winner){
         return;
       }
-      // console.log(this.winner)
-      const delay = (this.player1.constructor.name == 'Bot' && this.player2.constructor.name == 'Bot') ? 250 : 750
-      const oldClickFn = this.click
-      const oldHoverFn = this.hoverFn
-      this.currentPlayer ^= 3 // Switches between 1 and 2
+      const delay = (this.player1.constructor.name == 'Bot' && this.player2.constructor.name == 'Bot') ? 250 : 750;
+      const oldClickFn = this.click;
+      const oldHoverFn = this.hoverFn;
+      this.currentPlayer ^= 3; // Switches between 1 and 2
         // this.currentPlayer ^= 1 // Switches between 1 and 0 instead
         // this.currentPlayer ^= -2 // Switches between 1 and -1
       this.changePlayerColor();
       if(this.currentPlayer === 1){
         if (this.player1.constructor.name == 'Human'){
-          // $('.board-slot-hover').css({"opacity": "100"})
-
-          $('.board-slot-hover').fadeTo(400, 1)
-
-          // this.hoverFn(player2color)
+          $('.board-slot-hover').fadeTo(400, 1);
         } else {
-          $('.board-slot-hover').css({"opacity": "0"})
-          // this.hoverFn(player2color)
+          $('.board-slot-hover').css({"opacity": "0"});
           this.click = $.noop;
           // this.hoverFn = null;
           let move = this.player1.decisionFn(this, this.possibleMoves);
-          let element = $($('#column-' + move.toString()).children()[0])
+          let element = $($('#column-' + move.toString()).children()[0]);
           setTimeout((() => {
             this.click = oldClickFn;
             // this.hoverFn = oldHoverFn;
-            this.click(element, this)
-            this.hoverTrigger()
+            this.click(element, this);
+            this.hoverTrigger();
           }), delay)
           // this.click(element, this)
         }
@@ -112,39 +106,30 @@ class Board extends Base {
           // $('.board-slot-hover').css({"opacity": "100"})
           // this.hoverFn(player1color)
         } else {
-          $('.board-slot-hover').css({"opacity": "0"})
-          // this.hoverFn(player1color)
+          $('.board-slot-hover').css({"opacity": "0"});
           this.click = $.noop;
-          // this.hoverFn = null;
           let move = this.player2.decisionFn(this, this.possibleMoves);
           let element = $($('#column-' + move.toString()).children()[0])
-          // console.log(element)
           setTimeout((() => {
             this.click = oldClickFn;
-            // this.hoverFn = oldHoverFn;
-            this.click(element, this)
-            // element.trigger('click')
-            // element.trigger('mouseenter')
-            // element.trigger('click')
-            this.hoverTrigger()
-            // element.trigger('mouseleave')
+            this.click(element, this);
+            this.hoverTrigger();
           }), delay)
-          // this.click(element, this)
         }
       }
   }
 
     placeInColumn(column) {
         let y = this.state[column].findIndex((slot) => {
-            return (slot === 0)
+            return (slot === 0);
         })
         if (this.setSlot(column, y, this.currentPlayer)) {
           if (y === 5){
-              this.possibleMoves[column] = 0
+              this.possibleMoves[column] = 0;
             }
-            return y
+            return y;
         } else {
-            return -1
+            return -1;
         }
 
     }
@@ -157,7 +142,7 @@ class Board extends Base {
             $("#player1card").css("background", colorPlayer1);
             $("#player2card").css("background", "rgba(200,200,200,0.9)");
         } else {
-            $("#player1card").css("background", "rgba(200,200,200,0.9)")
+            $("#player1card").css("background", "rgba(200,200,200,0.9)");
             $("#player2card").css("background", colorPlayer2);
         }
 
@@ -229,13 +214,7 @@ class Board extends Base {
   }
 
     click(element, instances){
-      // console.log(element)
       let parent = element.parent();
-      // if(parent.hasClass('board-column')){
-      //     this.createSlot(parent);
-      // }
-
-      // let e = element
 
     if (this.winner !== null){
       return;
@@ -244,14 +223,14 @@ class Board extends Base {
     let target;
     let animationElement;
     if (parent.hasClass('board-column-hover')) {
-        let childnumber = parseInt(parent[0].id.split('column-hover-').pop())
-        row = this.placeInColumn(childnumber)
-        let parentchild = parent[0].parentElement.children[childnumber + 7]
+        let childnumber = parseInt(parent[0].id.split('column-hover-').pop());
+        row = this.placeInColumn(childnumber);
+        let parentchild = parent[0].parentElement.children[childnumber + 7];
         target = $(parentchild);
         animationElement = element;
       } else if (parent.hasClass('board-column')) {
         let columnNumber = parent[0].id.split('column-').pop()
-        row = this.placeInColumn(columnNumber)
+        row = this.placeInColumn(columnNumber);
         target = parent;
         animationElement = $('#column-hover-' + columnNumber + ' .board-slot-hover').last()
         // console.log(animationElement);
@@ -287,22 +266,14 @@ class Board extends Base {
 
     createSingleSlot(parent, row, player = this.currentPlayer){
       if (row != -1){
-      let element = parent[0].children[this.height - row - 1]
+      let element = parent[0].children[this.height - row - 1];
       if (player == 1){
-        element.className += ' red'
+        element.className += ' red';
       } else if (player == 2){
-        element.className += ' yellow'
+        element.className += ' yellow';
       }
-      // console.log(row)
-
-      // this.animateTo(row)
-
-      // this.nextPlayer()
     }
   }
-
-
-    //need to add id on them as well but here is a start on the board
 
     template(){
       let returnValue = '<div class="board">';
@@ -406,7 +377,7 @@ hoverTrigger() {
 
 animateDivToRow(div, row, callback = (() => {})){
   let height = $('.board-column .board-slot').eq(1).position().top*(6-row)+10;
-  let addedClass = this.currentPlayer == 1 ? 'bg-very-red' : 'bg-very-yellow'
+  let addedClass = this.currentPlayer == 1 ? 'bg-very-red' : 'bg-very-yellow';
   // console.log(div)
   let newDiv = div.clone().css({position: 'absolute', 'z-index': 3}).addClass(addedClass).prependTo(div.parent())
   const afterFn = () => {
@@ -415,7 +386,7 @@ animateDivToRow(div, row, callback = (() => {})){
     callback();
   }
   if ((window.matchMedia("(orientation: landscape)").matches) && (window.outerWidth < 813) && (window.outerHeight < window.outerWidth)) {
-    height = height * 1.41
+    height = height * 1.41;
  }
   newDiv.animate({top: height}, 400, afterFn);
   // newDiv.animate({top: height}, 5000, afterFn);
@@ -437,7 +408,7 @@ static pureCheckWinner(bd) {
           bd[col][row + 2] == player &&
           bd[col][row + 3] == player
         ) {
-          return player
+          return player;
         }
 
         if (
@@ -447,7 +418,7 @@ static pureCheckWinner(bd) {
           bd[col + 2][row] == player &&
           bd[col + 3][row] == player
         ) {
-          return player
+          return player;
         }
 
         if (
@@ -457,7 +428,7 @@ static pureCheckWinner(bd) {
           bd[col + 2][row + 2] == player &&
           bd[col + 3][row + 3] == player
         ) {
-          return player
+          return player;
         }
 
         if (
@@ -468,12 +439,12 @@ static pureCheckWinner(bd) {
           bd[col - 2][row + 2] == player &&
           bd[col - 3][row + 3] == player
         ) {
-          return player
+          return player;
         }
       }
     }
   }
-  return winner
+  return winner;
 }
 
 }
