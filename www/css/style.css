@@ -386,4 +386,10 @@ button {
   font-family: 'Comfortaa', cursive;
   font-size: 18px;
 }
+@media (max-width: 575px) {
+  p#human,
+  p#computer {
+    margin-left: 21px;
+  }
+}
 /*@import 'stickyfooter';*/
