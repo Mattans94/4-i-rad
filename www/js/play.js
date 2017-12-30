@@ -20,10 +20,8 @@ $(function() {
 $(window).resize(landscapeFunction)
 
 function landscapeFunction() {
-  console.log("resized!")
   setTimeout(()=> {
     if ((window.matchMedia("(orientation: landscape)").matches) && (window.outerWidth < 813) && (window.outerHeight < window.outerWidth)) {
-        console.log('landscape!')
         $('html, body').animate({
             scrollTop: $('#column-hover-0 .board-slot-hover').first().offset().top
         }, 1000);

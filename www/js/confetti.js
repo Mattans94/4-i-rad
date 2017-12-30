@@ -1,9 +1,10 @@
+function startConfetti(){
 (function ($) {
 	//
 	// Zachary Johnson (@zacharyjohnson, zachstronaut.com)
 	// Forked from: https://www.zachstronaut.com/posts/2009/12/21/happy-xmas-winternet.html
 	//
-	
+
 	var ww = 0,
 		wh = 0,
 		maxw = 0,
@@ -22,7 +23,7 @@
 		vs = [], // falling/y velocities
 		hvs = [];
 
-	
+
 	$(init);
 
 	function init() {
@@ -30,34 +31,34 @@
 			detectSize = function () {
 				ww = $(window).width();
 				wh = $(window).height();
-				
+
 				maxw = ww + 300;
 				minw = -300;
 				maxh = wh + 300;
 			};
-		
+
 		detectSize();
-		
+
 		$(window).resize(detectSize);
-		
+
 		// Should return a string for the text-shadow applied to body or 'none'
 		// Otherwise would return null or undefined for browsers that don't support text-shadow
 		if (!$('body').css('textShadow')) {
 			textShadowSupport = false;
 		}
-		
+
 		// FF seems to just be able to handle like 50... 25 with rotation
 		// Safari seems fine with 150+... 75 with rotation
 		while (initialFlakes--) {
 			addFlake(true);
 		}
-		
+
 		prevTime = Date.now();
 		setInterval(move, 50);
 	} // init()
 
 
-	function addFlake(initial) {		
+	function addFlake(initial) {
 		var $flake = $('<span>' + confetti[Math.floor(Math.random() * confetti.length)] + '</span>').css(
 				{
 					display: 'block',
@@ -145,7 +146,7 @@
 		if (textShadowSupport) {
 			$flake.css('textIndent', '-9999px');
 		}
-		
+
 		while (s--) {
 			// Pick which size flake this will be
 			if (r < sizes[s].r) {
@@ -154,7 +155,7 @@
 				break;
 			}
 		}
-		
+
 		$flake.css(
 			{
 				color: color,
@@ -171,7 +172,7 @@
 		hvs[i] = Math.round(v * 0.5);
 	} // resetFlake
 
-	
+
 	function move() {
 		var i = flakeCount,
 			x, y, v, half_v,
@@ -191,24 +192,24 @@
 		// Wind changes
 		if (Math.random() > 0.8) {
 			xv += -1 + Math.random() * 2;
-			
+
 			if (Math.abs(xv) > 3) {
 				xv = 3 * (xv / Math.abs(xv));
 			}
 		}
-		
+
 		// Move each flake
 		while (i--) {
 			x = xs[i];
 			y = ys[i];
 			v = vs[i];
 			half_v = hvs[i];
-			
+
 			y += v;
-			
+
 			x += Math.round(xv * v);
 			x += -half_v + Math.round(Math.random() * v);
-			
+
 			// Because flakes are rotating, the origin could be +/- the size of the flake offset
 			if (x > maxw) {
 				x = -300;
@@ -216,7 +217,7 @@
 			} else if (x < minw) {
 				x = ww;
 			}
-			
+
 			if (y > maxh) {
 				resetFlake(i);
 
@@ -230,7 +231,7 @@
 						top: y + 'px'
 					}
 				);
-				
+
 				// Only spin biggest three flake sizes
 				// Stupid IE9 can't do CSS3 transitions/animations
 				// Of course it also can't do text-shadow... so maybe my accomodating IE9 here with a JS animation is silly. heh
@@ -241,3 +242,4 @@
 		}
 	} // move()
 }(jQuery));
+}

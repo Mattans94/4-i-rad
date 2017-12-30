@@ -209,6 +209,7 @@ class Board extends Base {
         $('#gameOverModal .modal-body').text(this.winner.name);
         $('#gameOverModal').modal();
         $('#gameOverModal').append('<div class="confetti"></div>');
+        startConfetti();
         return true;
       } else if (this.co === 42) {
           this.winner = 'draw';
