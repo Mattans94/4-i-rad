@@ -413,10 +413,11 @@ animateDivToRow(div, row, callback = (() => {})){
     newDiv.remove();
     callback();
   }
-  if ((window.matchMedia("(orientation: landscape)").matches) && ($(window).width() < 813)) {
-    height = height * 1.32
+  if ((window.matchMedia("(orientation: landscape)").matches) && (window.outerWidth < 813) && (window.outerHeight < window.outerWidth)) {
+    height = height * 1.41
  }
-  newDiv.animate({top: height}, afterFn);
+  newDiv.animate({top: height}, 400, afterFn);
+  // newDiv.animate({top: height}, 5000, afterFn);
 }
 
 static pureCheckWinner(bd) {

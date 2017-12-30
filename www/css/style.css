@@ -205,7 +205,7 @@ footer a:visited {
 }
 @media (min-width: 1400px) {
   .board .board-column-hover .board-slot-hover {
-    max-height: 85px;
+    max-height: 80px;
     height: 9vw;
   }
 }
@@ -256,7 +256,7 @@ footer a:visited {
 }
 @media (min-width: 1400px) {
   .board .board-column .board-slot {
-    max-height: 85px;
+    max-height: 80px;
     height: 9vw;
   }
 }
@@ -306,7 +306,7 @@ footer a:visited {
 }
 @media screen and (max-width: 812px) and (orientation: landscape) {
   .boardarea {
-    transform: scale(0.75);
+    transform: scale(0.7);
   }
 }
 #gameOverModal .modal-header {
@@ -336,6 +336,19 @@ footer a:visited {
 .bg-very-yellow {
   background: yellow !important;
   opacity: 1 !important;
+}
+@media (min-width: 992px) {
+  .board-container {
+    max-width: 840px;
+  }
+}
+@media (min-width: 1400px) {
+  .board-container {
+    max-width: 886px;
+  }
+  .boardarea {
+    padding-right: 15px;
+  }
 }
 #ruleModal .modal-content {
   background-color: #343a3f;
