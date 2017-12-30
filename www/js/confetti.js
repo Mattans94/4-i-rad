@@ -1,6 +1,6 @@
 function startConfetti(){
 (function ($) {
-	//
+	// https://codepen.io/zachstronaut/pen/DGmEl (License: MIT)
 	// Zachary Johnson (@zacharyjohnson, zachstronaut.com)
 	// Forked from: https://www.zachstronaut.com/posts/2009/12/21/happy-xmas-winternet.html
 	//

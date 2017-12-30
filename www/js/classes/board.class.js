@@ -256,7 +256,7 @@ class Board extends Base {
         animationElement = $('#column-hover-' + columnNumber + ' .board-slot-hover').last()
         // console.log(animationElement);
     }
-    if (row === -1){
+    if (row === -1 || typeof row === 'undefined'){
       return;
     }
     // console.log(animationElement)
