@@ -1,4 +1,14 @@
+var confettiTimer; // Global
+
+function stopConfetti(){
+  const fadeTime = 3000;
+  $('.confetti').fadeOut(fadeTime);
+  setTimeout(() => {clearInterval(confettiTimer)}, fadeTime);
+}
+
 function startConfetti(){
+  const confettiTime = 10000;
+  setTimeout(() => {stopConfetti()}, confettiTime);
 (function ($) {
 	// https://codepen.io/zachstronaut/pen/DGmEl (License: MIT)
 	// Zachary Johnson (@zacharyjohnson, zachstronaut.com)
@@ -54,7 +64,7 @@ function startConfetti(){
 		}
 
 		prevTime = Date.now();
-		setInterval(move, 50);
+		confettiTimer = setInterval(move, 50);
 	} // init()
 
 
